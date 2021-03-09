@@ -1,29 +1,20 @@
 <script>
-	export let name;
+	import NavigationBar from './components/NavigationBar.svelte'
+	import Carousel from './components/Carousel.svelte'
 </script>
 
 <main>
-	<h1>Henlo {name}!</h1>
+	<NavigationBar/>
+	<Carousel/>
 </main>
 
 <style>
 	main {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
-	h1 {
-		color: #571600;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
 	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		
 	}
 </style>
