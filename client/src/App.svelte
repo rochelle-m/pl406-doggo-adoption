@@ -32,7 +32,8 @@
  <nav>
 
 <Navbar color=" " dark expand="md">
-  <NavbarBrand href="/">Doggo ♡</NavbarBrand>
+  <NavbarBrand href="/">
+    <img src="images/icons/logo.png" alt="logo" /></NavbarBrand>
   <NavbarToggler on:click={() => (isOpen = !isOpen)} />
   <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
     <Nav class="ml-auto" navbar>
@@ -74,11 +75,12 @@
 	main {
 		text-align: center;
 		margin: 0 auto;
+    font-family: "Quicksand", "Arial", sans-serif;
 	}
 
-	@media (min-width: 640px) {
-		
-	}
+  nav img {
+    width: 10vmin;
+  }
 
 	nav{
 	  background-color:#302121;
