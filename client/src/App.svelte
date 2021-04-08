@@ -36,9 +36,7 @@
   <NavbarToggler on:click={() => (isOpen = !isOpen)} />
   <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
     <Nav class="ml-auto" navbar>
-      <NavItem>
-        <NavLink href="#Home/">Home</NavLink>
-      </NavItem>
+      
       <NavItem>
         <NavLink href="#Adopt/">Adopt</NavLink>
       </NavItem>
@@ -47,6 +45,9 @@
       </NavItem>
       <NavItem>
         <NavLink href="Volunteer">Volunteer</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="#Donate/">Donate</NavLink>
       </NavItem>
       <NavItem>
         <NavLink href="Event">Event</NavLink>
