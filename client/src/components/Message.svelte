@@ -1,5 +1,5 @@
 <div class="message">
-    <h2> ⧛ Under consruction ⌂ ⧛</h2>
+    <h2> ⧛ Under construction ⌂ ⧛</h2>
 </div>
 
 <style>

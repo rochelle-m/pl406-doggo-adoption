@@ -27,11 +27,11 @@
 
 <main>
   <Router>
-    <nav>
+    <nav class="px-3">
       <Navbar color=" " dark expand="md">
         <NavbarBrand href="/">
-          <img src="images/icons/logo.png" alt="logo" /></NavbarBrand
-        >
+          <img src="images/icons/logo-w.png" alt="logo" />
+        </NavbarBrand>
         <NavbarToggler on:click={() => (isOpen = !isOpen)} />
         <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
           <Nav class="ml-auto" navbar>
@@ -64,22 +64,14 @@
 
     <Route path="/"><Home /></Route>
     <Route path="adopt"><Doggos /></Route>
+    <Footer />
   </Router>
-  <Footer />
 </main>
 
 <style>
   main {
     text-align: center;
     margin: 0 auto;
-    font-family: "Quicksand", "Arial", sans-serif;
   }
 
-  nav img {
-    width: 10vmin;
-  }
-
-  nav {
-    background-color: #302121;
-  }
 </style>
