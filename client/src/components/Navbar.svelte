@@ -1,6 +1,6 @@
 <script>
 
-import { Link } from "svelte-routing";
+ import { Link } from "svelte-routing";
 
  import {
     Collapse,
@@ -40,13 +40,13 @@ import { Link } from "svelte-routing";
               <NavLink>Foster</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="Volunteer">Volunteer</NavLink>
+              <Link class="nav-link" to="volunteer">Volunteer</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="#Donate/">Donate</NavLink>
+              <Link class="nav-link" to="donate">Donate</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="Event">Events</NavLink>
+              <Link class="nav-link" to="events">Events</Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>Help</DropdownToggle>
