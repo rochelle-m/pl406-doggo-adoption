@@ -10,14 +10,47 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/dog14.jpg" alt="dog1" width="1100" height="500">
+      <img src="images/dog10.jpg" alt="dog10" width="100%" height="500">
+      	<div class="carousel-caption">
+		    <h3>text for adopt</h3>
+		    <br>
+		    <form action="#adopt">
+    				<input type="submit" value="Adopt" />
+			</form>
+  		</div>
+  		
     </div>
     <div class="carousel-item">
-      <img src="images/dog3.jpg" alt="dog2" width="1100" height="500">
+      <img src="images/dog14.jpg" alt="dog14" width="100%" height="500">
+      <div class="carousel-caption">
+		    <h3>text for foster</h3>
+		    <br>
+		     <form action="#foster">
+    				<input type="submit" value="Foster" />
+			</form>
+  		</div>
     </div>
     <div class="carousel-item">
-      <img src="images/dog10.jpg" alt="dog3" width="1100" height="500">
+      <img src="images/dog3.jpg" alt="dog3" width="100%" height="500">
+      <div class="carousel-caption">
+		    <h3>text for volunteer</h3>
+		    <br>
+		     <form action="#volunteer">
+    				<input type="submit" value="Volunteer" />
+			</form>
+  		</div>
     </div>
+    <div class="carousel-item">
+      <img src="images/dog1.jpg" alt="dog1" width="100%" height="500">
+      <div class="carousel-caption">
+		    <h3>text for donate</h3>
+		    <br>
+		     <form action="#donate">
+    				<input type="submit" value="Donate" />
+			</form>
+  		</div>
+    </div>
+    
   </div>
   
   
@@ -29,5 +62,12 @@
   </a>
 </div>
 <style>
-  
+ .carousel-caption
+ {
+ 	font-weight: bold;
+    transform: translate(35%, -95%);
+    position: absolute;
+    right: 0px;
+    top: 50%;
+ } 
 </style>
