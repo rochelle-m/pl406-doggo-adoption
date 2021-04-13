@@ -5,12 +5,13 @@
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#demo" data-slide-to="3"></li>
   </ul>
   
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/dog10.jpg" alt="dog10" width="100%" height="500">
+      <img src="images/dog10.jpg" alt="dog10" width="100%" >
       	<div class="carousel-caption">
 		    <h3>text for adopt</h3>
 		    <br>
@@ -21,7 +22,7 @@
   		
     </div>
     <div class="carousel-item">
-      <img src="images/dog14.jpg" alt="dog14" width="100%" height="500">
+      <img src="images/dog14.jpg" alt="dog14" width="100%" >
       <div class="carousel-caption">
 		    <h3>text for foster</h3>
 		    <br>
@@ -31,7 +32,7 @@
   		</div>
     </div>
     <div class="carousel-item">
-      <img src="images/dog3.jpg" alt="dog3" width="100%" height="500">
+      <img src="images/dog3.jpg" alt="dog3" width="100%" >
       <div class="carousel-caption">
 		    <h3>text for volunteer</h3>
 		    <br>
@@ -41,7 +42,7 @@
   		</div>
     </div>
     <div class="carousel-item">
-      <img src="images/dog1.jpg" alt="dog1" width="100%" height="500">
+      <img src="images/dog12.jpg" alt="dog1" width="100%" id="item4" >
       <div class="carousel-caption">
 		    <h3>text for donate</h3>
 		    <br>
@@ -51,7 +52,7 @@
   		</div>
     </div>
     
-  </div>
+  </div>  
   
   
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -65,9 +66,14 @@
  .carousel-caption
  {
  	font-weight: bold;
-    transform: translate(35%, -95%);
+    transform: translate(20%, -95%);
     position: absolute;
     right: 0px;
-    top: 50%;
+    height: fit-content;
+    top: 55%;
  } 
+
+ #item4 {
+   filter: brightness(50%);
+ }
 </style>

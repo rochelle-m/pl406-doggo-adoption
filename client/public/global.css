@@ -21,12 +21,8 @@ nav img {
   width: 10vmin;
 }
 
-nav {
-  background-color: #302121;
-}
-
 a {
-  color: rgb(0, 100, 200);
+  color: rgb(207, 207, 207);
   text-decoration: none;
 }
 
