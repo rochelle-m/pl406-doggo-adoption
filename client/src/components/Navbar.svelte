@@ -22,8 +22,8 @@
   }
 </script>
 
-<nav class="px-3">
-  <Navbar color=" " dark expand="md" >
+<nav class="px-3" id="navbar">
+  <Navbar color="" dark expand="md" >
     <NavbarBrand href="/">
       <img src="images/icons/logo-w.png" alt="logo" />
     </NavbarBrand>
