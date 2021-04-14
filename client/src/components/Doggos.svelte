@@ -1,10 +1,11 @@
 <script>
-  import Message from "./Message.svelte";
+  import Banner from "./Banner.svelte";
   let message = "Adopt";
+  let imgSrc = "images/dog11.jpg";
 </script>
 
 <div>
-  <Message {message} />
+  <Banner {message} {imgSrc} />
   <h3>⧛ Under construction ⌂ ⧛</h3>
 </div>
 

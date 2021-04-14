@@ -1,9 +1,10 @@
 <script>
   export let message;
+  export let imgSrc;
 </script>
 
 <div class="d-flex justify-content-center">
-  <img src="images/dog11.jpg" alt="s" />
+  <img src={imgSrc} alt="banner" />
   <h2>{message}</h2>
 </div>
 
