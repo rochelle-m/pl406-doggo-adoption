@@ -24,5 +24,6 @@
   img {
     filter: brightness(40%);
     width: 100%;
+    height:550px;
   }
 </style>

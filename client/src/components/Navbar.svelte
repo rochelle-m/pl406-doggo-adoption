@@ -34,7 +34,7 @@
           <Link class="nav-link" to="adopt">Adopt</Link>
         </NavItem>
         <NavItem>
-          <NavLink>Foster</NavLink>
+          <Link class="nav-link" to="foster">Foster</Link>
         </NavItem>
         <NavItem>
           <Link class="nav-link" to="volunteer">Volunteer</Link>
