@@ -2,6 +2,7 @@
   import { Router, Route, Link } from "svelte-routing";
   import Home from "./components/Home.svelte";
   import Doggos from "./components/Doggos.svelte";
+  import Donate from "./components/Donate.svelte";
   import Footer from "./components/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
 
@@ -12,6 +13,7 @@
     <Navbar />
     <Route path="/"><Home /></Route>
     <Route path="adopt"><Doggos /></Route>
+    <Route path="donate"><Donate /></Route>
     <Footer />
   </Router>
 </main>

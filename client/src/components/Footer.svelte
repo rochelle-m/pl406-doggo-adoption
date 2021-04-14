@@ -10,7 +10,6 @@
         <h3 class="font-weight-bold container ">Doggo</h3>
         <p class="mb-0">Adopt. Foster. Care.</p>
         <p class="mb-0">The goodest girls and boys.</p>
-        <small> All donations are exempted under the 80g certificate. </small>
       </div>
       <div class="col-sm-6 col-md-3 item contact">
         <address class="col-sm-12">
