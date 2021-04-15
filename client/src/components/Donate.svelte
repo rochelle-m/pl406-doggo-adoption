@@ -1,11 +1,12 @@
 <script>
   import Banner from "./Banner.svelte";
-  let message = "Adopt";
-  let imgSrc = "images/dog11.jpg";
+  let message = "Donate";
+  let imgSrc = "images/donate.jpg";
 </script>
 
 <div>
   <Banner {message} {imgSrc} />
+  <small> All donations are exempted under the 80g certificate. </small>
   <h3>⧛ Under construction ⌂ ⧛</h3>
 </div>
 
