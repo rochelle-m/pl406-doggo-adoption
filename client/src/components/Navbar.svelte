@@ -48,8 +48,8 @@
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>Help</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem>Pet food</DropdownItem>
-            <DropdownItem>Vaccination Centre</DropdownItem>
+            <DropdownItem> <Link class="nav-link" to="food" > <p style="color: #302121; margin:0">Pet food</p></Link></DropdownItem>
+            <DropdownItem> <Link class="nav-link" to="vaccination"><p style="color: #302121; margin:0;">Vaccination Centre</p></Link></DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       </Nav>

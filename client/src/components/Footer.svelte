@@ -145,14 +145,12 @@
       text-align: center;
       padding-bottom: 18px;
     }
-  }
 
-  @media (max-width: 767px) {
     footer .item.text {
       margin-bottom: 20px;
     }
   }
-
+  
   @media (max-width: 991px) {
     footer .item.social {
       text-align: center;

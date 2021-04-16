@@ -6,7 +6,6 @@
 
 <div>
   <Banner {message} {imgSrc} />
-  <small> All donations are exempted under the 80g certificate. </small>
   <h3>⧛ Under construction ⌂ ⧛</h3>
 </div>
 

@@ -10,8 +10,6 @@
   import Vaccination from "./components/Vaccination.svelte";
   import Footer from "./components/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
-
-
 </script>
 
 <main>
@@ -23,8 +21,8 @@
     <Route path="foster"><Foster /></Route>
     <Route path="volunteer"><Volunteer /></Route>
     <Route path="events"><Events /></Route>
-     <Route path="petFood"><PetFood /></Route>
-      <Route path="vaccination"><Vaccination /></Route>
+    <Route path="food"><PetFood /></Route>
+    <Route path="vaccination"><Vaccination /></Route>
     <Footer />
   </Router>
 </main>
@@ -34,5 +32,4 @@
     text-align: center;
     margin: 0 auto;
   }
-
 </style>

@@ -13,7 +13,7 @@
     <div class="carousel-item active">
       <img src="images/dog10.jpg" alt="dog10" width="100%" >
       	<div class="carousel-caption">
-		    <h3>text for adopt</h3>
+		    <h3>will you be my hooman? ♡</h3>
 		    <br>
 		    <form action="#adopt">
     				<input type="submit" value="Adopt" />
