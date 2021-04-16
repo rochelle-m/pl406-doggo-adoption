@@ -19,17 +19,24 @@ public class DoggoController {
     DoggoRepository doggoRepository;
 
     @GetMapping("/")
-    public String henlo(){
+    public String henlo() {
         return "Henlo fren";
     }
 
     @PostMapping("/doggos")
-    public ResponseEntity<Doggo> createDoggo(@RequestBody Doggo doggo){
-        try{
-            Doggo _doggo = doggoRepository.save(new Doggo(doggo.getId(), doggo.getName(), doggo.getBreed(), doggo.getRemarks()));
+    public ResponseEntity<Doggo> createDoggo(@RequestBody Doggo doggo) {
+        try {
+            Doggo _doggo = doggoRepository.save(new Doggo(doggo.getId(),
+                    doggo.getName(),
+                    doggo.getBreed(),
+                    doggo.getDescription(),
+                    doggo.getRemarks(),
+                    doggo.getPrimaryImg(),
+                    doggo.getSecondaryImg(),
+                    doggo.getAdopted(),
+                    doggo.getFostered()));
             return new ResponseEntity<>(_doggo, HttpStatus.CREATED);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -57,14 +64,14 @@ public class DoggoController {
     }
 
     @GetMapping("/doggos/{id}")
-    public ResponseEntity<Doggo> getDoggoById(@PathVariable("id") String id){
+    public ResponseEntity<Doggo> getDoggoById(@PathVariable("id") String id) {
         Optional<Doggo> doggo = doggoRepository.findById(id);
 
         return doggo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/doggos/{id}")
-    public ResponseEntity<HttpStatus> deleteDoggo (@PathVariable("id") String id){
+    public ResponseEntity<HttpStatus> deleteDoggo(@PathVariable("id") String id) {
         try {
             doggoRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
