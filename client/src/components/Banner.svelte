@@ -12,7 +12,7 @@
   h2 {
     position: absolute;
     z-index: 10;
-    top: 15vw;
+    top: 18vw;
     text-align: center;
     display: block;
     text-transform: uppercase;
@@ -24,6 +24,6 @@
   img {
     filter: brightness(40%);
     width: 100%;
-    height:550px;
+    height: 75vh;
   }
 </style>
