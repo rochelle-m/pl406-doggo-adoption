@@ -10,19 +10,30 @@ public class Doggo {
     private String id;
     private String name;
     private String breed;
-    private final String description;
+    private String description;
     private String remarks;
     @Nullable
-    private final String primaryImg;
+    private String primaryImg;
     @Nullable
-    private final String secondaryImg;
-    private final Boolean isAdopted;
-    private final Boolean isFostered;
+    private String secondaryImg;
+    private Boolean isAdopted;
+    private Boolean isFostered;
 
-    public Doggo(String id, String name, String breed,
-                 String description, String remarks,
-                 @Nullable String primaryImg, @Nullable String secondaryImg,
-                 Boolean isAdopted, Boolean isFostered) {
+    public Doggo() {
+
+    }
+
+    public Doggo(String id, String name, String breed, String description, String remarks, Boolean isAdopted, Boolean isFostered) {
+        this.id = id;
+        this.name = name;
+        this.breed = breed;
+        this.description = description;
+        this.remarks = remarks;
+        this.isAdopted = isAdopted;
+        this.isFostered = isFostered;
+    }
+
+    public Doggo(String id, String name, String breed, String description, String remarks, @Nullable String primaryImg, @Nullable String secondaryImg, Boolean isAdopted, Boolean isFostered) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -62,6 +73,10 @@ public class Doggo {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getRemarks() {
         return remarks;
     }
@@ -75,16 +90,32 @@ public class Doggo {
         return primaryImg;
     }
 
+    public void setPrimaryImg(@Nullable String primaryImg) {
+        this.primaryImg = primaryImg;
+    }
+
     @Nullable
     public String getSecondaryImg() {
         return secondaryImg;
+    }
+
+    public void setSecondaryImg(@Nullable String secondaryImg) {
+        this.secondaryImg = secondaryImg;
     }
 
     public Boolean getAdopted() {
         return isAdopted;
     }
 
+    public void setAdopted(Boolean adopted) {
+        isAdopted = adopted;
+    }
+
     public Boolean getFostered() {
         return isFostered;
+    }
+
+    public void setFostered(Boolean fostered) {
+        isFostered = fostered;
     }
 }

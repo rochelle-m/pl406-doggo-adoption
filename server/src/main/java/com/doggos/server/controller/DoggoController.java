@@ -2,12 +2,15 @@ package com.doggos.server.controller;
 
 import com.doggos.server.model.Doggo;
 import com.doggos.server.repository.DoggoRepository;
+import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,17 +27,30 @@ public class DoggoController {
     }
 
     @PostMapping("/doggos")
-    public ResponseEntity<Doggo> createDoggo(@RequestBody Doggo doggo) {
+    public ResponseEntity<Doggo> createDoggo(@RequestParam("id") String id,
+                                             @RequestParam("name") String name,
+                                             @RequestParam("breed") String breed,
+                                             @RequestParam("description") String description,
+                                             @RequestParam("remarks") String remarks,
+                                             @RequestParam("adopted") Boolean adopted,
+                                             @RequestParam("fostered") Boolean fostered,
+                                             @RequestParam("primaryImg") MultipartFile primary,
+                                             @RequestParam("secondaryImg") MultipartFile secondary) {
+
         try {
-            Doggo _doggo = doggoRepository.save(new Doggo(doggo.getId(),
-                    doggo.getName(),
-                    doggo.getBreed(),
-                    doggo.getDescription(),
-                    doggo.getRemarks(),
-                    doggo.getPrimaryImg(),
-                    doggo.getSecondaryImg(),
-                    doggo.getAdopted(),
-                    doggo.getFostered()));
+            Doggo doggo = new Doggo(id, name, breed, description, remarks, adopted, fostered);
+
+            String primaryImgFilename = primary.getOriginalFilename();
+            String secImgFilename = secondary.getOriginalFilename();
+
+            if (!(primaryImgFilename != null && primaryImgFilename.isEmpty()))
+                doggo.setPrimaryImg(Base64.getEncoder().encodeToString(primary.getBytes()));
+
+            if (!(secImgFilename != null && secImgFilename.isEmpty()))
+                doggo.setSecondaryImg(Base64.getEncoder().encodeToString(secondary.getBytes()));
+
+            Doggo _doggo = doggoRepository.save(doggo);
+
             return new ResponseEntity<>(_doggo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
