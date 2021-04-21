@@ -1,8 +1,12 @@
 <script>
   import Banner from "./Banner.svelte";
+
+
+
   let message = "Foster";
   let imgSrc = "images/foster.jpg";
 </script>
+
 
 <div>
   <Banner {message} {imgSrc} />
