@@ -1,8 +1,15 @@
 <script>
   import Banner from "./Banner.svelte";
+
+  export let title = "Dog Adoption and Care · Events";
+
   let message = "Events";
   let imgSrc = "images/event2.jpg";
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 <div>
   <Banner {message} {imgSrc} />
