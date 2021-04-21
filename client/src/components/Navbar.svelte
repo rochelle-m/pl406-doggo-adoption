@@ -23,7 +23,7 @@
 </script>
 
 <nav class="px-3" id="navbar">
-  <Navbar color="" dark expand="md" >
+  <Navbar color="" dark expand="md">
     <NavbarBrand href="/">
       <img src="images/icons/logo-w.png" alt="logo" />
     </NavbarBrand>
@@ -48,8 +48,16 @@
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>Help</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem> <Link class="nav-link" to="food" > <p style="color: #302121; margin:0">Pet food</p></Link></DropdownItem>
-            <DropdownItem> <Link class="nav-link" to="vaccination"><p style="color: #302121; margin:0;">Vaccination Centre</p></Link></DropdownItem>
+            <DropdownItem>
+              <Link class="nav-link" to="food">
+                <p>Pet food</p></Link
+              ></DropdownItem
+            >
+            <DropdownItem>
+              <Link class="nav-link" to="vaccination"
+                ><p>Vaccination Centre</p></Link
+              ></DropdownItem
+            >
           </DropdownMenu>
         </UncontrolledDropdown>
       </Nav>
@@ -64,6 +72,12 @@
     z-index: 100;
     width: 100%;
   }
+
+  p {
+    color: #302121;
+    margin: 0;
+  }
+  
   @media (max-width: 772px) {
     nav {
       background: #302121d8;

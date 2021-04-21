@@ -24,6 +24,6 @@
   img {
     filter: brightness(40%);
     width: 100%;
-    height: 75vh;
+    height: 32vmax;
   }
 </style>
