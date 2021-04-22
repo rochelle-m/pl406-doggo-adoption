@@ -2,7 +2,8 @@ package com.doggos.server.controller;
 
 import com.doggos.server.model.Doggo;
 import com.doggos.server.repository.DoggoRepository;
-import com.sun.org.apache.xpath.internal.operations.Mult;
+import com.doggos.server.service.StorageException;
+import com.doggos.server.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +18,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class DoggoController {
+
+    private final StorageService storageService;
     @Autowired
     DoggoRepository doggoRepository;
+
+    @Autowired
+    public DoggoController(StorageService storageService) {
+        this.storageService = storageService;
+    }
 
     @GetMapping("/")
     public String henlo() {
@@ -40,19 +47,16 @@ public class DoggoController {
         try {
             Doggo doggo = new Doggo(id, name, breed, description, remarks, adopted, fostered);
 
-            String primaryImgFilename = primary.getOriginalFilename();
-            String secImgFilename = secondary.getOriginalFilename();
+            doggo.setPrimaryImg(primary.getOriginalFilename());
+            doggo.setSecondaryImg(secondary.getOriginalFilename());
 
-            if (!(primaryImgFilename != null && primaryImgFilename.isEmpty()))
-                doggo.setPrimaryImg(Base64.getEncoder().encodeToString(primary.getBytes()));
-
-            if (!(secImgFilename != null && secImgFilename.isEmpty()))
-                doggo.setSecondaryImg(Base64.getEncoder().encodeToString(secondary.getBytes()));
+            storageService.store(primary);
+            storageService.store(secondary);
 
             Doggo _doggo = doggoRepository.save(doggo);
 
             return new ResponseEntity<>(_doggo, HttpStatus.CREATED);
-        } catch (Exception e) {
+        } catch (Exception | StorageException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
