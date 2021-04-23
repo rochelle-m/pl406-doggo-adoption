@@ -32,13 +32,13 @@ public class StorageServiceImplementation implements StorageService {
     }
 
     @Override
-    public void store(MultipartFile multipartFile) throws StorageException {
+    public void store(MultipartFile multipartFile, String id) throws StorageException {
         try {
             if (multipartFile.isEmpty()) {
                 throw new StorageException("Failed to store file");
             }
             Path destinationFile = this.rootLocation.resolve(
-                    Paths.get(multipartFile.getOriginalFilename()))
+                    Paths.get(id + multipartFile.getOriginalFilename()))
                     .normalize().toAbsolutePath();
             if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
                 throw new StorageException(

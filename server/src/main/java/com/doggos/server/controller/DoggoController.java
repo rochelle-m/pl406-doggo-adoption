@@ -50,8 +50,8 @@ public class DoggoController {
             doggo.setPrimaryImg(primary.getOriginalFilename());
             doggo.setSecondaryImg(secondary.getOriginalFilename());
 
-            storageService.store(primary);
-            storageService.store(secondary);
+            storageService.store(primary, id);
+            storageService.store(secondary, id);
 
             Doggo _doggo = doggoRepository.save(doggo);
 
@@ -65,7 +65,7 @@ public class DoggoController {
     public ResponseEntity<List<Doggo>> getAllDoggos(@RequestParam(required = false) String name) {
 
         try {
-            List<Doggo> doggos = new ArrayList<Doggo>();
+            List<Doggo> doggos = new ArrayList<>();
 
             if (name == null) {
                 doggoRepository.findAll().forEach(doggos::add);
