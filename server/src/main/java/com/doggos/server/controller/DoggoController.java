@@ -6,10 +6,12 @@ import com.doggos.server.service.StorageException;
 import com.doggos.server.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,11 +49,11 @@ public class DoggoController {
         try {
             Doggo doggo = new Doggo(id, name, breed, description, remarks, adopted, fostered);
 
-            doggo.setPrimaryImg(primary.getOriginalFilename());
-            doggo.setSecondaryImg(secondary.getOriginalFilename());
+            String primaryImgUrl = storageService.store(primary, id);
+            String secondaryImgUrl = storageService.store(secondary, id);
 
-            storageService.store(primary, id);
-            storageService.store(secondary, id);
+            doggo.setPrimaryImg(primaryImgUrl);
+            doggo.setSecondaryImg(secondaryImgUrl);
 
             Doggo _doggo = doggoRepository.save(doggo);
 
@@ -81,6 +83,12 @@ public class DoggoController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(value = "/doggos/image/{id}/{name}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public @ResponseBody
+    byte[] getImage(@PathVariable(name = "id") String id, @PathVariable(name = "name") String name) throws IOException {
+        return storageService.get(id, name);
     }
 
     @GetMapping("/doggos/{id}")
