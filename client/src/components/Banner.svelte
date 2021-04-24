@@ -1,9 +1,14 @@
 <script>
+  import { fade, fly } from "svelte/transition";
   export let message;
   export let imgSrc;
 </script>
 
-<div class="d-flex justify-content-center">
+<div
+  class="d-flex justify-content-center"
+  in:fly={{ y: -100, duration: 2500 }}
+  out:fade
+>
   <img src={imgSrc} alt="banner" />
   <h2>{message}</h2>
 </div>
