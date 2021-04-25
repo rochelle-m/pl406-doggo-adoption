@@ -2,15 +2,22 @@
   import {onMount} from "svelte";
   import Banner from "./Banner.svelte";
   import Doggo from "../utils/Doggo.svelte"
+  import Loading from "../utils/Loading.svelte"
 
   export let title = "Dog Adoption and Care · Adopt";
 
   let doggos = []
+  let error = ""
   const URL = `http://localhost:5001/api/doggos`
 
   onMount(async function () {
-    const response = await fetch(URL)
-    doggos = await response.json();
+    try {
+      const response = await fetch(URL)
+      doggos = await response.json();
+    }
+    catch (err) {
+      error = err.message
+    }
   })
 
   let message = "Adopt";
@@ -23,7 +30,6 @@
 
 <div>
   <Banner {message} {imgSrc} />
-  <h3>⧛ Under construction ⌂ ⧛</h3>
   <div class="d-flex flex-wrap justify-content-around">
     {#each doggos as doggo}
       <Doggo src={doggo.primaryImg} {doggo}>
@@ -32,10 +38,11 @@
         <p slot="remarks">{doggo.remarks}</p>
       </Doggo>
       {:else}
-        <p>Loading... pawtience</p>
+       <Loading message = {error}/>
     {/each }
 
   </div>
+  <h3>⧛ Under construction ⌂ ⧛</h3>
 </div>
 
 <style>

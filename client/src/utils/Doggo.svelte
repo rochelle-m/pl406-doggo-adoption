@@ -1,5 +1,6 @@
 <script>
   export let src;
+  export let doggo;
 </script>
 
 <article class="border rounded-lg m-2 mx-3 w-20">
