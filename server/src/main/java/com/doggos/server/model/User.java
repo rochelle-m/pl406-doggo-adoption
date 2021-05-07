@@ -12,7 +12,7 @@ public class User {
     @Id
     private String id;
 
-    private String displayName;
+    private String username;
 
     private String email;
 
@@ -24,8 +24,8 @@ public class User {
     public User() {
     }
 
-    public User(String displayName, String email, String password) {
-        this.displayName = displayName;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -38,12 +38,12 @@ public class User {
         this.id = id;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
