@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @CrossOrigin("http://localhost:5000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/doggos")
 public class DoggoController {
 
     private final StorageService storageService;
@@ -30,12 +30,7 @@ public class DoggoController {
         this.storageService = storageService;
     }
 
-    @GetMapping("/")
-    public String henlo() {
-        return "Henlo fren";
-    }
-
-    @PostMapping("/doggos")
+    @PostMapping("/")
     public ResponseEntity<Doggo> createDoggo(@RequestParam("id") String id,
                                              @RequestParam("name") String name,
                                              @RequestParam("breed") String breed,
@@ -63,7 +58,7 @@ public class DoggoController {
         }
     }
 
-    @GetMapping("/doggos")
+    @GetMapping("/")
     public ResponseEntity<List<Doggo>> getAllDoggos(@RequestParam(required = false) String name) {
 
         try {
@@ -85,20 +80,20 @@ public class DoggoController {
         }
     }
 
-    @GetMapping(value = "/doggos/image/{id}/{name}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @GetMapping(value = "/image/{id}/{name}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE})
     public @ResponseBody
     byte[] getImage(@PathVariable(name = "id") String id, @PathVariable(name = "name") String name) throws IOException {
         return storageService.get(id, name);
     }
 
-    @GetMapping("/doggos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Doggo> getDoggoById(@PathVariable("id") String id) {
         Optional<Doggo> doggo = doggoRepository.findById(id);
 
         return doggo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/doggos/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteDoggo(@PathVariable("id") String id) {
         try {
             doggoRepository.deleteById(id);
