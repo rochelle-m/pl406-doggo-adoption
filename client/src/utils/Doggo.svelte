@@ -3,20 +3,35 @@
   export let doggo;
 </script>
 
-<article class="border rounded-lg m-2 mx-3 w-20">
-  <h4>
-    <slot name="name" />
-  </h4>
+<article class="border rounded-lg m-2 mx-3 w-20 card">
 
-  <img {src} alt="" />
+    
+  
 
-  <div>
-    <slot name="description" />
+  <img class="card-img-top
+  " src="/images/volunteer.jpg" alt="" />
+
+  <div class="card-body">
+
+    <h2 class="card-title">
+      <slot name="name" />
+    </h2>
+
+    <p class="card-text">
+      <slot name="description" />
+    </p>
+
+    <h class="list-group list-group-flush">
+     <slot name="remarks" />
+    </h>
+     
   </div>
 
-  <div>
-    <slot name="remarks" />
+  <div class="card-body">
+    <a href="#" class="card-link">Adopt</a>
+    <a href="#" class="card-link">Foster</a>
   </div>
+
 </article>
 
 <style>
