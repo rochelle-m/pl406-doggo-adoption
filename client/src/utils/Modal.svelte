@@ -1,13 +1,15 @@
 <script>
-  import { login, signup } from "../stores/store";
-  export let message;
+  import { close } from "../stores/store";
+  import formContent from "../modules/forms";
+  import { fade } from "svelte/transition";
 
-  let imgSrc = "/images/dog13.jpg";
-  let showSignUp = message == "Sign up";
+  export let token;
 
-  let alt = showSignUp ? "Login" : "Sign up";
-  let endpoint = showSignUp ? "signup" : "signin";
-  let url = `http://localhost:5001/api/${endpoint}/`;
+  let tokens = Object.keys(formContent);
+  let currentIndex = tokens.findIndex((i) => i == token);
+
+  let current = formContent[tokens[currentIndex]];
+  let baseUrl = `http://localhost:5001/api/`;
 
   let errors = {
     username: "",
@@ -15,49 +17,34 @@
     email: "",
   };
 
-  let close = () => {
-    login.update((_) => false);
-    signup.update((_) => false);
-  };
-
   let change = () => {
-    showSignUp = !showSignUp;
-
-    if (showSignUp) {
-      endpoint = "signup";
-      message = "Sign up";
-      alt = "Login";
-    } else {
-      endpoint = "signin";
-      message = "Login";
-      alt = "Sign up";
-    }
-    url = `http://localhost:5001/api/${endpoint}/`;
-    console.log(url);
+    currentIndex = +!currentIndex;
+    current = formContent[tokens[currentIndex]];
   };
 
-  let email = "";
-  let username = "";
-  let password = "";
+  let email;
+  let username;
+  let password;
 
   let sendRequest = function (event) {
     event.preventDefault();
     // display loading, disable button ...
     // send request
     // get result => suspend loading
+    console.log(current);
   };
 </script>
 
-<div class="modal">
-  <div class="backdrop" />
+<div class="modal" in:fade out:fade>
+  <div class="backdrop" on:dblclick={close} />
   <div class="content-wrapper">
     <div class="content">
       <div class="close" on:click={close}>×</div>
-      <img src={imgSrc} alt="banner" />
-      <h2 class="message">{message}</h2>
+      <img src={current.banner} alt="banner" />
+      <h2 class="message">{current.title}</h2>
       <div class="container">
         <form>
-          {#if showSignUp}
+          {#if currentIndex}
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -65,6 +52,7 @@
                 type="email"
                 class="form-control"
                 id="email"
+                required
               />
               <small id="emailError" class="text-warning"
                 >{errors["email"]}</small
@@ -79,6 +67,7 @@
               type="text"
               class="form-control"
               id="username"
+              required
             />
             <small id="usernameError" class="text-warning"
               >{errors["username"]}</small
@@ -92,6 +81,7 @@
               type="password"
               class="form-control"
               id="password"
+              required
             />
             <small id="passwordError" class="text-warning"
               >{errors["password"]}</small
@@ -99,8 +89,12 @@
           </div>
 
           <div class="form-group text-center">
-            <button type="submit" on:click={sendRequest}> {message}</button>
-            <span class="d-block mt-2" on:click={change}> <u>{alt}</u> </span>
+            <button type="submit" on:click={sendRequest}>
+              {current.title}</button
+            >
+            <span class="d-block mt-2" on:click={change}>
+              <u>{current.alt}</u>
+            </span>
           </div>
         </form>
       </div>
@@ -151,7 +145,7 @@
   h2.message {
     position: relative;
     z-index: 10;
-    top: -12vw;
+    top: -15vh;
     font-size: 5vmin;
     margin: auto;
     width: fit-content;
@@ -177,7 +171,7 @@
   img {
     filter: brightness(40%);
     width: 100%;
-    height: 15vmax;
+    height: 28vh;
   }
 
   div > span {
