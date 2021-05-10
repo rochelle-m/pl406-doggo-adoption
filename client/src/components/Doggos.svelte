@@ -8,7 +8,7 @@
 
   let doggos = []
   let error = ""
-  const URL = `http://localhost:5001/api/doggos`
+  const URL = `http://localhost:5001/api/doggos/`
 
   onMount(async function () {
     try {
