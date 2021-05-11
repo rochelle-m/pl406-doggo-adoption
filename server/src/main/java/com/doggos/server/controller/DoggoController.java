@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("http://localhost:5000")
+@CrossOrigin(origins="http://localhost:5000")
 @RestController
 @RequestMapping("/api/doggos")
 public class DoggoController {
