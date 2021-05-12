@@ -1,15 +1,14 @@
 <script>
   import { close } from "../stores/store";
   import formContent from "../modules/forms";
+  import post from "../modules/request";
   import { fade } from "svelte/transition";
 
   export let token;
-
   let tokens = Object.keys(formContent);
   let currentIndex = tokens.findIndex((i) => i == token);
-
   let current = formContent[tokens[currentIndex]];
-  let baseUrl = `http://localhost:5001/api/`;
+  let baseUrl = `http://localhost:5001/api/auth/`;
 
   let errors = {
     username: "",
@@ -17,21 +16,47 @@
     email: "",
   };
 
-  let change = () => {
-    currentIndex = +!currentIndex;
-    current = formContent[tokens[currentIndex]];
-  };
-
   let email;
   let username;
   let password;
+  
+  let message = ""
 
-  let sendRequest = function (event) {
-    event.preventDefault();
-    // display loading, disable button ...
-    // send request
-    // get result => suspend loading
-    console.log(current);
+  let change = () => {
+    email = username = password = message = ""
+    currentIndex ^= 1;
+    current = formContent[tokens[currentIndex]];
+  };
+
+
+  let sendRequest = async function () {
+    document
+      .getElementById("load")
+      .classList.add("spinner-grow", "spinner-grow-sm");
+
+    let data = {
+      email,
+      password,
+      username,
+      roles: ["user"]
+    };
+
+    const url = baseUrl + current.endpoint;
+
+    const response = await post(url, data);
+
+    if (response.ok){
+      message = ""
+      if(current.endpoint == "signin")
+        console.log(await response.json());
+    }
+    else {
+      message = current.title + " failed"
+    }
+
+    document
+      .getElementById("load")
+      .classList.remove("spinner-grow", "spinner-grow-sm");
   };
 </script>
 
@@ -40,10 +65,14 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="close" on:click={close}>×</div>
-      <img src={current.banner} alt="banner" />
+
+      <div class="img-bg">
+        <img src={current.banner} alt="banner" />
+      </div>
       <h2 class="message">{current.title}</h2>
       <div class="container">
-        <form>
+        <form on:submit|preventDefault={sendRequest}>
+        <div class="status text-danger">{message}</div>
           {#if currentIndex}
             <div class="form-group">
               <label for="email">Email</label>
@@ -54,9 +83,9 @@
                 id="email"
                 required
               />
-              <small id="emailError" class="text-warning"
-                >{errors["email"]}</small
-              >
+              <small id="emailError" class="text-warning">
+                {errors["email"]}
+              </small>
             </div>
           {/if}
 
@@ -69,8 +98,8 @@
               id="username"
               required
             />
-            <small id="usernameError" class="text-warning"
-              >{errors["username"]}</small
+            <small id="usernameError" class="text-warning">
+              {errors["username"]}</small
             >
           </div>
 
@@ -83,15 +112,16 @@
               id="password"
               required
             />
-            <small id="passwordError" class="text-warning"
-              >{errors["password"]}</small
-            >
+            <small id="passwordError" class="text-warning">
+              {errors["password"]}
+            </small>
           </div>
 
           <div class="form-group text-center">
-            <button type="submit" on:click={sendRequest}>
-              {current.title}</button
-            >
+            <button type="submit">
+              <span class="" id="load" />
+              {current.title}
+            </button>
             <span class="d-block mt-2" on:click={change}>
               <u>{current.alt}</u>
             </span>
@@ -123,7 +153,7 @@
 
   div.content-wrapper {
     z-index: 10;
-    max-width: 50vw;
+    max-width: 40vw;
     border-radius: 0.3rem;
     background-color: white;
     overflow: hidden;
@@ -166,6 +196,12 @@
     margin-bottom: -50px;
     color: white;
     z-index: 1033;
+  }
+
+  div.img-bg {
+    width: inherit;
+    height: 28vh;
+    background: gray;
   }
 
   img {
