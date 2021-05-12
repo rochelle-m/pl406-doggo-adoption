@@ -1,5 +1,7 @@
 <script>
   import { close } from "../stores/store";
+  import { user } from "../stores/user";
+
   import formContent from "../modules/forms";
   import post from "../modules/request";
   import { fade } from "svelte/transition";
@@ -48,7 +50,8 @@
     if (response.ok){
       message = ""
       if(current.endpoint == "signin")
-        console.log(await response.json());
+        user.add(await response.json())  
+      close()
     }
     else {
       message = current.title + " failed"

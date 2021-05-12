@@ -1,5 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
+  import { user } from "../stores/user";
 
   import {
     Collapse,
@@ -8,7 +9,6 @@
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -20,6 +20,26 @@
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
   }
+
+  import Modal from "../utils/Modal.svelte";
+  import { login, signup, openModal } from "../stores/store";
+
+  let showSignup, showLogin;
+
+  login.subscribe((newValue) => {
+    showLogin = newValue;
+  });
+  signup.subscribe((newValue) => {
+    showSignup = newValue;
+  });
+
+  let username = ""
+  let isLoggedIn
+
+  user.subscribe(n => {
+    username = n.username || ""
+    isLoggedIn = n.isLogged
+  })
 </script>
 
 <nav class="px-3" id="navbar">
@@ -28,10 +48,10 @@
       <img src="images/icons/logo-w.png" alt="logo" />
     </NavbarBrand>
     <NavbarToggler on:click={() => (isOpen = !isOpen)} />
-    <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
-      <Nav class="ml-auto" navbar>
-        <NavItem>
-          <Link class="nav-link" to="adopt">Adopt</Link>
+      <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
+        <Nav class="ml-auto" navbar>
+          <NavItem>
+            <Link class="nav-link" to="adopt">Adopt</Link>
         </NavItem>
         <NavItem>
           <Link class="nav-link" to="foster">Foster</Link>
@@ -50,20 +70,55 @@
           <DropdownMenu right>
             <DropdownItem>
               <Link class="nav-link" to="food">
-                <p>Pet food</p></Link
-              ></DropdownItem
-            >
+                <p>Pet food</p>
+              </Link>
+            </DropdownItem>
             <DropdownItem>
-              <Link class="nav-link" to="vaccination"
-                ><p>Vaccination Centre</p></Link
-              ></DropdownItem
-            >
+              <Link class="nav-link" to="vaccination">
+                <p>Vaccination Centre</p>
+              </Link>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            <i class="fa fa-user" aria-hidden="true"></i>  
+            { username }  
+          </DropdownToggle>
+          <DropdownMenu right>
+            {#if isLoggedIn}
+            <DropdownItem>
+              <!-- handle logout -->
+              <Link>
+                <p>Logout</p>
+              </Link>
+            </DropdownItem>
+            {:else}
+            <DropdownItem>
+              <Link on:click={() => openModal("login")}>
+                <p>Log in</p>
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link on:click={() => openModal("signup")}>
+                <p>Sign up</p>
+              </Link>
+            </DropdownItem>
+            {/if}
           </DropdownMenu>
         </UncontrolledDropdown>
       </Nav>
-    </Collapse>
-  </Navbar>
+   </Collapse>
+ </Navbar>
 </nav>
+
+{#if showLogin}
+  <Modal token="login" />
+{/if}
+{#if showSignup}
+  <Modal token="signup" />
+{/if}
 
 <style>
   nav {
