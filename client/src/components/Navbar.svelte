@@ -1,7 +1,9 @@
 <script>
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
-
+  import auth from "../modules/auth";
+  import Modal from "../utils/Modal.svelte";
+  import { login, signup, openModal } from "../stores/store";
   import {
     Collapse,
     Navbar,
@@ -16,15 +18,14 @@
   } from "sveltestrap";
 
   let isOpen = false;
-
+  let showSignup, showLogin;
+  let username = ""
+  let isLoggedIn = false
+  let roles = []
+  
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
   }
-
-  import Modal from "../utils/Modal.svelte";
-  import { login, signup, openModal } from "../stores/store";
-
-  let showSignup, showLogin;
 
   login.subscribe((newValue) => {
     showLogin = newValue;
@@ -33,12 +34,12 @@
     showSignup = newValue;
   });
 
-  let username = ""
-  let isLoggedIn
-
   user.subscribe(n => {
-    username = n.username || ""
-    isLoggedIn = n.isLogged
+    if (n) {
+      username = n.username || ""
+      isLoggedIn = n.isLoggedIn
+      roles = n.roles
+    }
   })
 </script>
 
@@ -89,21 +90,19 @@
           <DropdownMenu right>
             {#if isLoggedIn}
             <DropdownItem>
-              <!-- handle logout -->
-              <Link>
+              {#each roles as role}
+                <p> {role.substring(role.indexOf("_") + 1)} </p>
+              {/each}
+              <Link on:click={auth.logout}>
                 <p>Logout</p>
               </Link>
             </DropdownItem>
             {:else}
             <DropdownItem>
-              <Link on:click={() => openModal("login")}>
-                <p>Log in</p>
-              </Link>
+                <p on:click={() => openModal("login")}>Log in</p>
             </DropdownItem>
             <DropdownItem>
-              <Link on:click={() => openModal("signup")}>
-                <p>Sign up</p>
-              </Link>
+                <p on:click={() => openModal("signup")}>Sign up</p>
             </DropdownItem>
             {/if}
           </DropdownMenu>

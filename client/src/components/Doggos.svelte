@@ -32,11 +32,13 @@
   <Banner {message} {imgSrc} />
   <div class="d-flex flex-wrap justify-content-around">
     {#each doggos as doggo}
-      <Doggo src={doggo.primaryImg} {doggo}>
-        <p slot="name">{doggo.name}</p>
-        <p slot="description">{doggo.description}</p>
-        <p slot="remarks">{doggo.remarks}</p>
-      </Doggo>
+      {#if (!doggo.isAdopted && !doggo.isFostered)}
+        <Doggo src={doggo.primaryImg} {doggo}>
+          <p slot="name">{doggo.name}</p>
+          <p slot="description">{doggo.description}</p>
+          <p slot="remarks">{doggo.remarks}</p>
+        </Doggo>
+      {/if}
       {:else}
        <Loading message = {error}/>
     {/each }

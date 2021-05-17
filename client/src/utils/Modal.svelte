@@ -1,16 +1,14 @@
 <script>
+  import Loading from "./Loading.svelte"
+
   import { close } from "../stores/store";
-  import { user } from "../stores/user";
-
-  import formContent from "../modules/forms";
-  import post from "../modules/request";
+  import auth from "../modules/auth";
   import { fade } from "svelte/transition";
-
+  
   export let token;
-  let tokens = Object.keys(formContent);
+  let tokens = Object.keys(auth);
   let currentIndex = tokens.findIndex((i) => i == token);
-  let current = formContent[tokens[currentIndex]];
-  let baseUrl = `http://localhost:5001/api/auth/`;
+  let current = auth[tokens[currentIndex]];
 
   let errors = {
     username: "",
@@ -21,46 +19,31 @@
   let email;
   let username;
   let password;
-  
   let message = ""
+  let loading = false;
 
   let change = () => {
     email = username = password = message = ""
     currentIndex ^= 1;
-    current = formContent[tokens[currentIndex]];
+    current = auth[tokens[currentIndex]];
   };
 
-
   let sendRequest = async function () {
-    document
-      .getElementById("load")
-      .classList.add("spinner-grow", "spinner-grow-sm");
-
-    let data = {
+    loading = true
+    let status = await current.request({
       email,
-      password,
       username,
-      roles: ["user"]
-    };
-
-    const url = baseUrl + current.endpoint;
-
-    const response = await post(url, data);
-
-    if (response.ok){
-      message = ""
-      if(current.endpoint == "signin")
-        user.add(await response.json())  
+      password
+    });
+    if(status) {
       close()
     }
     else {
       message = current.title + " failed"
     }
-
-    document
-      .getElementById("load")
-      .classList.remove("spinner-grow", "spinner-grow-sm");
-  };
+    loading = false
+  }
+   
 </script>
 
 <div class="modal" in:fade out:fade>
@@ -68,12 +51,12 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="close" on:click={close}>×</div>
-
       <div class="img-bg">
         <img src={current.banner} alt="banner" />
       </div>
       <h2 class="message">{current.title}</h2>
       <div class="container">
+        {#if !loading}
         <form on:submit|preventDefault={sendRequest}>
         <div class="status text-danger">{message}</div>
           {#if currentIndex}
@@ -130,6 +113,9 @@
             </span>
           </div>
         </form>
+        {:else} 
+          <Loading alt={current.title + " in progress"}/>
+        {/if}
       </div>
     </div>
   </div>
@@ -156,7 +142,7 @@
 
   div.content-wrapper {
     z-index: 10;
-    max-width: 40vw;
+    width: 40vw;
     border-radius: 0.3rem;
     background-color: white;
     overflow: hidden;
@@ -215,5 +201,11 @@
 
   div > span {
     cursor: pointer;
+  }
+
+   @media (max-width: 792px) {  
+    div.content-wrapper {
+      width: 55vw;
+    }
   }
 </style>

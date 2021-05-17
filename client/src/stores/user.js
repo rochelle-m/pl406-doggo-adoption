@@ -1,13 +1,15 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
-function createUser () {
-    const { subscribe, set, update } = writable({});
+const userObj = JSON.parse(localStorage.getItem("user"));
 
-    return {
-		subscribe,
-		add: (newUser) => update(_ =>  ({...newUser, isLogged: true})),
-		reset: () => set({})
-	};
+function createUser() {
+  const { subscribe, set, update } = writable(userObj);
+
+  return {
+    subscribe,
+    add: (newUser) => update((_) => newUser),
+    reset: () => set({}),
+  };
 }
 
-export const user = createUser()
+export const user = createUser();

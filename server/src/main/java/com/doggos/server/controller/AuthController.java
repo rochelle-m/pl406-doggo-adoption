@@ -62,7 +62,6 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
-                userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles
@@ -117,5 +116,4 @@ public class AuthController {
 
         return ResponseEntity.ok("User registered");
     }
-
 }

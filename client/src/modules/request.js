@@ -8,6 +8,5 @@ export default async function post(url, user) {
       referrerPolicy: 'no-referrer',
       body: JSON.stringify(user) 
     })
-    
     return response
 }
