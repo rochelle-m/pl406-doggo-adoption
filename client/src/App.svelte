@@ -10,18 +10,6 @@
   import Vaccination from "./components/Vaccination.svelte";
   import Footer from "./components/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
-
-  import Modal from "./utils/Modal.svelte";
-  import { login, signup, openModal } from "./stores/store";
-
-  let showSignup, showLogin;
-
-  login.subscribe((newValue) => {
-    showLogin = newValue;
-  });
-  signup.subscribe((newValue) => {
-    showSignup = newValue;
-  });
 </script>
 
 <main>
@@ -35,17 +23,6 @@
     <Route path="events"><Events /></Route>
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
-
-    <!-- temp -->
-    <button on:click={() => openModal("login")}> Login </button>
-    <button on:click={() => openModal("signup")}> Signup </button>
-    {#if showLogin}
-      <Modal token="login" />
-    {/if}
-    {#if showSignup}
-      <Modal token="signup" />
-    {/if}
-
     <Footer />
   </Router>
 </main>

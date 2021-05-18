@@ -3,13 +3,17 @@ package com.doggos.server.controller;
 import com.doggos.server.model.ERole;
 import com.doggos.server.model.Role;
 import com.doggos.server.model.User;
+import com.doggos.server.payload.request.SigninRequest;
+import com.doggos.server.payload.request.SignupRequest;
 import com.doggos.server.payload.response.JwtResponse;
 import com.doggos.server.repository.RoleRepository;
 import com.doggos.server.repository.UserRepository;
 import com.doggos.server.security.jwt.JwtUtils;
 import com.doggos.server.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -40,13 +44,13 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
+            
     JwtUtils jwtUtils;
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> authenticate(@RequestParam("username") String username,
-                                          @RequestParam("password") String password) {
+    @PostMapping(value="/signin", consumes=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> authenticate(@RequestBody SigninRequest _user) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
+                new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword())
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -59,28 +63,24 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
-                userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles
         ));
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestParam("username") String username,
-                                    @RequestParam("password") String password,
-                                    @RequestParam("email") String email,
-                                    @RequestParam("roles") Set<String> roles) {
-        if (userRepository.existsByEmail(email)) {
+    @PostMapping(value="/signup", consumes= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> signup(@RequestBody SignupRequest _user) {
+        if (userRepository.existsByEmail(_user.getEmail())) {
             return ResponseEntity.badRequest().body("Error: Email is already in user");
         }
-        if (userRepository.existsByUsername(username)) {
+        if (userRepository.existsByUsername(_user.getUsername())) {
             return ResponseEntity.badRequest().body("Error: Username is already in user");
         }
 
-        User user = new User(username, email, passwordEncoder.encode(password));
+        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()));
 
-        Set<String> strRoles = roles;
+        Set<String> strRoles = _user.getRoles();
         Set<Role> userRoles = new HashSet<>();
 
         if (strRoles == null) {
@@ -118,4 +118,10 @@ public class AuthController {
         return ResponseEntity.ok("User registered");
     }
 
+    @PostMapping("logout")
+        @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
+        public ResponseEntity logout () {
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return ResponseEntity.ok("Logout successful");
+        }
 }

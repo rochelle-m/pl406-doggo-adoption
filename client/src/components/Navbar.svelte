@@ -1,6 +1,9 @@
 <script>
   import { Link } from "svelte-routing";
-
+  import { user } from "../stores/user";
+  import {logout} from "../modules/auth";
+  import Modal from "../utils/Modal.svelte";
+  import { login, signup, openModal } from "../stores/store";
   import {
     Collapse,
     Navbar,
@@ -8,7 +11,6 @@
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -16,10 +18,29 @@
   } from "sveltestrap";
 
   let isOpen = false;
-
+  let showSignup, showLogin;
+  let username = ""
+  let isLoggedIn = false
+  let roles = []
+  
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
   }
+
+  login.subscribe((newValue) => {
+    showLogin = newValue;
+  });
+  signup.subscribe((newValue) => {
+    showSignup = newValue;
+  });
+
+  user.subscribe(n => {
+    if (n) {
+      username = n.username || ""
+      isLoggedIn = n.isLoggedIn
+      roles = n.roles
+    }
+  })
 </script>
 
 <nav class="px-3" id="navbar">
@@ -28,10 +49,10 @@
       <img src="images/icons/logo-w.png" alt="logo" />
     </NavbarBrand>
     <NavbarToggler on:click={() => (isOpen = !isOpen)} />
-    <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
-      <Nav class="ml-auto" navbar>
-        <NavItem>
-          <Link class="nav-link" to="adopt">Adopt</Link>
+      <Collapse {isOpen} navbar expand="md" on:update={handleUpdate}>
+        <Nav class="ml-auto" navbar>
+          <NavItem>
+            <Link class="nav-link" to="adopt">Adopt</Link>
         </NavItem>
         <NavItem>
           <Link class="nav-link" to="foster">Foster</Link>
@@ -50,20 +71,53 @@
           <DropdownMenu right>
             <DropdownItem>
               <Link class="nav-link" to="food">
-                <p>Pet food</p></Link
-              ></DropdownItem
-            >
+                <p>Pet food</p>
+              </Link>
+            </DropdownItem>
             <DropdownItem>
-              <Link class="nav-link" to="vaccination"
-                ><p>Vaccination Centre</p></Link
-              ></DropdownItem
-            >
+              <Link class="nav-link" to="vaccination">
+                <p>Vaccination Centre</p>
+              </Link>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            <i class="fa fa-user" aria-hidden="true"></i>  
+            { username }  
+          </DropdownToggle>
+          <DropdownMenu right>
+            {#if isLoggedIn}
+            <DropdownItem>
+              {#each roles as role}
+                <p> {role.substring(role.indexOf("_") + 1)} </p>
+              {/each}
+              <Link on:click={logout}>
+                <p>Logout</p>
+              </Link>
+            </DropdownItem>
+            {:else}
+            <DropdownItem>
+                <p on:click={() => openModal("login")}>Log in</p>
+            </DropdownItem>
+            <DropdownItem>
+                <p on:click={() => openModal("signup")}>Sign up</p>
+            </DropdownItem>
+            {/if}
           </DropdownMenu>
         </UncontrolledDropdown>
       </Nav>
-    </Collapse>
-  </Navbar>
+   </Collapse>
+ </Navbar>
 </nav>
+
+{#if showLogin}
+  <Modal token="login" />
+{/if}
+{#if showSignup}
+  <Modal token="signup" />
+{/if}
 
 <style>
   nav {
