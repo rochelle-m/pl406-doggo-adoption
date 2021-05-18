@@ -2,19 +2,13 @@
   import Loading from "./Loading.svelte"
 
   import { close } from "../stores/store";
-  import auth from "../modules/auth";
+  import {logOn} from "../modules/auth";
   import { fade } from "svelte/transition";
   
   export let token;
-  let tokens = Object.keys(auth);
+  let tokens = Object.keys(logOn);
   let currentIndex = tokens.findIndex((i) => i == token);
-  let current = auth[tokens[currentIndex]];
-
-  let errors = {
-    username: "",
-    password: "",
-    email: "",
-  };
+  let current = logOn[tokens[currentIndex]];
 
   let email;
   let username;
@@ -25,7 +19,7 @@
   let change = () => {
     email = username = password = message = ""
     currentIndex ^= 1;
-    current = auth[tokens[currentIndex]];
+    current = logOn[tokens[currentIndex]];
   };
 
   let sendRequest = async function () {
@@ -69,9 +63,6 @@
                 id="email"
                 required
               />
-              <small id="emailError" class="text-warning">
-                {errors["email"]}
-              </small>
             </div>
           {/if}
 
@@ -84,9 +75,6 @@
               id="username"
               required
             />
-            <small id="usernameError" class="text-warning">
-              {errors["username"]}</small
-            >
           </div>
 
           <div class="form-group">
@@ -98,9 +86,6 @@
               id="password"
               required
             />
-            <small id="passwordError" class="text-warning">
-              {errors["password"]}
-            </small>
           </div>
 
           <div class="form-group text-center">

@@ -1,14 +1,14 @@
 const API_URL = 'http://localhost:5001/api/auth/';
-import post from "./request"
+import {authorize, create} from "./request"
 import { user } from "../stores/user";
 
-export default {
+let logOn = {
   login: {
     title: "Login",
     banner: "/images/dog13.jpg",
     alt: "Sign Up",
     request: async (newUser) => {
-        const response  = await post(
+        const response  = await create(
           API_URL + "signin",
           {
             username: newUser.username,
@@ -29,7 +29,7 @@ export default {
     banner: "/images/dog2.jpg",
     alt: "Login",
     request: async (newUser) => {
-      const response = await post(
+      const response = await create(
         API_URL + "signup",
         {
           username: newUser.username,
@@ -41,8 +41,19 @@ export default {
       return response.ok
     }
   },
-  logout: () => {
-    localStorage.removeItem('user');
+};
+
+let logout = async () => {
+  let type = JSON.parse(localStorage.getItem('user')).type
+  let token = JSON.parse(localStorage.getItem('user')).token
+  const response = await authorize(API_URL + "logout", type + " " + token)
+  if(response.ok){
+    localStorage.removeItem('user')
     user.reset()
   }
-};
+  else {
+    alert("There was an error")
+  }
+}
+
+export {logOn, logout};

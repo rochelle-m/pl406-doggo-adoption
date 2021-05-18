@@ -1,5 +1,5 @@
-export default async function post(url, user) {
-    const response = await fetch(url, {
+async function create(url, user) {
+    return fetch(url, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -8,5 +8,15 @@ export default async function post(url, user) {
       referrerPolicy: 'no-referrer',
       body: JSON.stringify(user) 
     })
-    return response
 }
+
+async function authorize(url, token) {
+    return fetch(url, {
+      method: 'POST', 
+      headers: {
+        'Authorization': token
+      }
+    })
+}
+
+export {create, authorize}

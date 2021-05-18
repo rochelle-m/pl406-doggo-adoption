@@ -13,6 +13,7 @@ import com.doggos.server.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -116,4 +117,11 @@ public class AuthController {
 
         return ResponseEntity.ok("User registered");
     }
+
+    @PostMapping("logout")
+        @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
+        public ResponseEntity logout () {
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return ResponseEntity.ok("Logout successful");
+        }
 }

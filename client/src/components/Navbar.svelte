@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
-  import auth from "../modules/auth";
+  import {logout} from "../modules/auth";
   import Modal from "../utils/Modal.svelte";
   import { login, signup, openModal } from "../stores/store";
   import {
@@ -93,7 +93,7 @@
               {#each roles as role}
                 <p> {role.substring(role.indexOf("_") + 1)} </p>
               {/each}
-              <Link on:click={auth.logout}>
+              <Link on:click={logout}>
                 <p>Logout</p>
               </Link>
             </DropdownItem>
