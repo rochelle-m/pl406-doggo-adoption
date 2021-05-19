@@ -1,10 +1,10 @@
 <script>
   import Loading from "./Loading.svelte"
 
-  import { close } from "../stores/store";
-  import {logOn} from "../modules/auth";
+  import { close, volunteerRole } from "../stores/store";
+  import { logOn } from "../modules/auth";
   import { fade } from "svelte/transition";
-  
+
   export let token;
   let tokens = Object.keys(logOn);
   let currentIndex = tokens.findIndex((i) => i == token);
@@ -15,6 +15,11 @@
   let password;
   let message = ""
   let loading = false;
+  let volunteer = null
+
+  volunteerRole.subscribe(n => {
+    volunteer = n
+  })
 
   let change = () => {
     email = username = password = message = ""
@@ -24,11 +29,14 @@
 
   let sendRequest = async function () {
     loading = true
+
+    let roles = volunteer ? ["volunteer"] : ["user"]
     let status = await current.request({
       email,
       username,
-      password
-    });
+      password,
+      roles
+    }, volunteer);
     if(status) {
       close()
     }
@@ -48,7 +56,13 @@
       <div class="img-bg">
         <img src={current.banner} alt="banner" />
       </div>
-      <h2 class="message">{current.title}</h2>
+      <h2 class="message">
+        {#if volunteer} 
+          <small style="font-size: 1vw;">{volunteer}</small>
+          <br/>
+        {/if}
+        {current.title}
+      </h2>
       <div class="container">
         {#if !loading}
         <form on:submit|preventDefault={sendRequest}>
@@ -90,12 +104,14 @@
 
           <div class="form-group text-center">
             <button type="submit">
-              <span class="" id="load" />
+              <span id="load" />
               {current.title}
             </button>
+            {#if !volunteer}
             <span class="d-block mt-2" on:click={change}>
               <u>{current.alt}</u>
             </span>
+            {/if}
           </div>
         </form>
         {:else} 

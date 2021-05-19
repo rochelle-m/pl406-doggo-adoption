@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:5001/api/auth/';
-import {authorize, create} from "./request"
+import { authorize, create } from "./request"
 import { user } from "../stores/user";
 
 let logOn = {
@@ -28,7 +28,8 @@ let logOn = {
     title: "Sign Up",
     banner: "/images/dog2.jpg",
     alt: "Login",
-    request: async (newUser) => {
+    request: async (newUser, vrole = null) => {
+      // TODO handle volunteer signup
       const response = await create(
         API_URL + "signup",
         {
@@ -44,8 +45,7 @@ let logOn = {
 };
 
 let logout = async () => {
-  let type = JSON.parse(localStorage.getItem('user')).type
-  let token = JSON.parse(localStorage.getItem('user')).token
+  let { type, token } = JSON.parse(localStorage.getItem('user'))
   const response = await authorize(API_URL + "logout", type + " " + token)
   if(response.ok){
     localStorage.removeItem('user')
