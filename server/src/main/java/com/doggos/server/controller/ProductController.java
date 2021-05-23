@@ -17,12 +17,39 @@ import java.io.IOException;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    @Value("/static/json/pet_products.json")
-    private String productsPath;
+    @Value("/static/json/carTravel.json")
+    private String travelProducts;
 
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    Object getProducts() throws IOException {
-        Resource resource = new ClassPathResource(productsPath);
+    @Value("/static/json/feed.json")
+    private String feedProducts;
+
+    @Value("/static/json/flea.json")
+    private String fleaProducts;
+
+    @Value("/static/json/health.json")
+    private String healthProducts;
+
+    @Value("/static/json/scooper.json")
+    private String scooperProducts;
+
+    @Value("/static/json/stain.json")
+    private String stainRemovalProducts;
+
+    @GetMapping(value = "/stain-removal", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getStainRemovalProducts() throws IOException {
+        return getObject(stainRemovalProducts);
+    }
+
+    // TODO more mappings
+
+    /**
+     *
+     * @param products
+     * @return Object
+     * @throws IOException
+     */
+    private Object getObject(String products) throws IOException {
+        Resource resource = new ClassPathResource(products);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(resource.getInputStream(), Object.class);
     }
