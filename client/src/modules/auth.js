@@ -29,14 +29,14 @@ let logOn = {
     banner: "/images/dog2.jpg",
     alt: "Login",
     request: async (newUser, vrole = null) => {
-      // TODO handle volunteer signup
       const response = await create(
         API_URL + "signup",
         {
           username: newUser.username,
           password: newUser.password,
           email: newUser.email,
-          roles: newUser.roles || ["user"]
+          roles: newUser.roles || ["user"],
+          volunteerRole: vrole
         }
       )
       return response.ok

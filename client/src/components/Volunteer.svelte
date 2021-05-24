@@ -8,11 +8,11 @@
   let message = "Volunteer";
   let imgSrc = "images/volunteer.jpg";
 
-  let isVolunteer
+  let showVolunteerSignUp = true
 
   user.subscribe(n => {
     if (n) {
-      isVolunteer = n.isLoggedIn && n.roles.some(role => role == "ROLE_VOLUNTEER")
+      showVolunteerSignUp = !(n.isLoggedIn) && n.roles.some(role => role != "ROLE_VOLUNTEER")
     }
   })
   
@@ -24,14 +24,14 @@
 
 <div>
   <Banner {message} {imgSrc} />
-  {#if !isVolunteer}
+  {#if showVolunteerSignUp}
   <h4 class="py-3">Register as a volunteer</h4>
   <div class="container d-flex justify-content-center flex-sm-wrap mb-4">
 
     <div class="card border m-2" on:click={() => openModal("signup", "Caretaker")}>
       <div class="card-body">
         <div>
-          <i class="fas fa-hand-holding-heart float-left md-2" />
+          <img src="/images/icons/icons8-dog-heart-64.png" class="float-left md-2" alt=""/>
         </div>
         <br/>
         <h5 class="card-title float-left pt-3">Caretaker</h5>
@@ -42,7 +42,7 @@
     <div class="card border m-2" on:click={() => openModal("signup", "Driver")}>
       <div class="card-body">
         <div>
-          <i class="fas fa-truck float-left md-2"/>
+          <img src="/images/icons/icons8-driver-50.png" class="float-left md-2" alt=""/>
         </div>
         <br/>
         <h5 class="card-title float-left pt-3">Driver</h5>
@@ -53,7 +53,7 @@
     <div class="card border m-2" on:click={() => openModal("signup", "Photographer")}>
       <div class="card-body">
         <div>
-          <i class="fas fa-camera-retro float-left md-2"/>
+          <img src="/images/icons/icons8-photographer.png" class="float-left md-2" alt=""/>
         </div>
         <br/>
         <h5 class="card-title float-left pt-3">Photographer</h5>
@@ -64,7 +64,7 @@
     <div class="card border m-2" on:click={() => openModal("signup", "Promoter")}>
       <div class="card-body">
         <div>
-          <i class="fas fa-user-tag float-left md-2"/>
+          <img src="/images/icons/noun_Business Promotion_2389771.png" class="float-left md-2 w-25" alt=""/>
         </div>
         <br/>
         <h5 class="card-title float-left pt-3">Promoter</h5>
@@ -89,9 +89,6 @@
     box-shadow: 0 10px 16px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.05);
   }
 
-  i {
-    font-size: larger;
-  }
 
   .card-text {
     display: inline-block;
@@ -102,6 +99,7 @@
 
   .card-title {
     font-size: 1.8vw;
+    clear: left;
   }
 
   @media (max-width: 589px) {  

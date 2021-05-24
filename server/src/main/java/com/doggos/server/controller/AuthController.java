@@ -78,7 +78,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Error: Username is already in user");
         }
 
-        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()));
+        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()), _user.getVolunteerRole());
 
         Set<String> strRoles = _user.getRoles();
         Set<Role> userRoles = new HashSet<>();
