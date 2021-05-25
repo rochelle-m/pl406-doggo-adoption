@@ -38,22 +38,22 @@ let logOn = {
           roles: newUser.roles || ["user"]
         }
       )
-      return response.ok
+      const userData = await response.json()
+      if(userData.token){
+        localStorage.setItem('user', JSON.stringify({...userData, isLoggedIn: true}));
+        user.add({...userData, isLoggedIn: true})
+        return true
+      }
+      return false
     }
   },
 };
 
 let logout = async () => {
-  let type = JSON.parse(localStorage.getItem('user')).type
-  let token = JSON.parse(localStorage.getItem('user')).token
-  const response = await authorize(API_URL + "logout", type + " " + token)
-  if(response.ok){
-    localStorage.removeItem('user')
-    user.reset()
-  }
-  else {
-    alert("There was an error")
-  }
+  let { type, token } = JSON.parse(localStorage.getItem('user'))
+  await authorize(API_URL + "logout", type + " " + token)
+  localStorage.removeItem('user')
+  user.reset() 
 }
 
-export {logOn, logout};
+export { logOn, logout };

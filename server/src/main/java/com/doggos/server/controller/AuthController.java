@@ -49,8 +49,12 @@ public class AuthController {
 
     @PostMapping(value="/signin", consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticate(@RequestBody SigninRequest _user) {
+        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
+    }
+
+    private ResponseEntity<JwtResponse> getJwtResponseResponseEntity(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword())
+                new UsernamePasswordAuthenticationToken(username, password)
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -115,7 +119,7 @@ public class AuthController {
         user.setRoles(userRoles);
         userRepository.save(user);
 
-        return ResponseEntity.ok("User registered");
+        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
     }
 
     @PostMapping("logout")
