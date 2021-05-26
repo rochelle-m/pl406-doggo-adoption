@@ -40,7 +40,31 @@ public class ProductController {
         return getObject(stainRemovalProducts);
     }
 
-    // TODO more mappings
+     @GetMapping(value = "/scooper", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getScooperProducts() throws IOException {
+        return getObject(scooperProducts);
+    }
+
+     @GetMapping(value = "/health", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getHealthProducts() throws IOException {
+        return getObject(healthProducts);
+    }
+
+     @GetMapping(value = "/flea", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getFleaProducts() throws IOException {
+        return getObject(fleaProducts);
+    }
+
+     @GetMapping(value = "/feed", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getFeedProducts() throws IOException {
+        return getObject(feedProducts);
+    }
+
+     @GetMapping(value = "/travel", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getTravelProducts() throws IOException {
+        return getObject(travelProducts);
+    }
+
 
     /**
      *
