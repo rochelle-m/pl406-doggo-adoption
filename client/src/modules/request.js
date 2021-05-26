@@ -19,4 +19,14 @@ async function authorize(url, token) {
     })
 }
 
-export {create, authorize}
+async function put (url, token) {
+    return fetch(url, {
+      method: 'PUT', 
+      headers: {
+        'Authorization': token
+      },
+      referrerPolicy: 'no-referrer'
+    })
+}
+
+export { create, authorize, put };

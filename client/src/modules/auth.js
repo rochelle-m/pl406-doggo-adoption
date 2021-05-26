@@ -1,5 +1,5 @@
 const API_URL = 'http://localhost:5001/api/auth/';
-import { authorize, create } from "./request"
+import { authorize, create, put } from "./request"
 import { user } from "../stores/user";
 
 let logOn = {
@@ -57,4 +57,11 @@ let logout = async () => {
   user.reset() 
 }
 
-export { logOn, logout };
+let update = async (role) => {
+  console.log(role, "f")
+  const { type, token, id } = JSON.parse(localStorage.getItem('user'))
+  const response = await put(`${API_URL}update/${id}/${role}`, type + " " + token)
+  console.log(response)
+}
+
+export {logOn, logout, update};

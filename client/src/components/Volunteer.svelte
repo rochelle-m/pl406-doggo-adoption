@@ -2,19 +2,26 @@
   import Banner from "./Banner.svelte";
   import { openModal } from "../stores/store";
   import { user } from "../stores/user";
+  import { update } from "../modules/auth";
 
   export let title = "Dog Adoption and Care · Volunteer";
 
   let message = "Volunteer";
   let imgSrc = "images/volunteer.jpg";
 
-  let showVolunteerSignUp = true
+  let isVolunteer = false
+  let isLoggedIn = false
 
   user.subscribe(n => {
     if (n) {
-      showVolunteerSignUp = !(n.isLoggedIn) && n.roles.some(role => role != "ROLE_VOLUNTEER")
+      isVolunteer = n.roles.some(role => role == "ROLE_VOLUNTEER")
+      isLoggedIn = n.isLoggedIn
     }
   })
+
+  const handleClick = async(role) => {
+    isLoggedIn ? await update(role) : openModal("signup", role)
+  }
   
 </script>
 
@@ -24,11 +31,11 @@
 
 <div>
   <Banner {message} {imgSrc} />
-  {#if showVolunteerSignUp}
+  {#if !isVolunteer}
   <h4 class="py-3">Register as a volunteer</h4>
   <div class="container d-flex justify-content-center flex-sm-wrap mb-4">
 
-    <div class="card border m-2" on:click={() => openModal("signup", "Caretaker")}>
+    <div class="card border m-2" on:click={() => handleClick("Caretaker")}>
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-dog-heart-64.png" class="float-left md-2" alt=""/>
@@ -39,7 +46,7 @@
       </div>
     </div>
 
-    <div class="card border m-2" on:click={() => openModal("signup", "Driver")}>
+    <div class="card border m-2" on:click={() => handleClick("Driver")}>
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-driver-50.png" class="float-left md-2" alt=""/>
@@ -50,7 +57,7 @@
       </div>
     </div>
 
-    <div class="card border m-2" on:click={() => openModal("signup", "Photographer")}>
+    <div class="card border m-2" on:click={() => handleClick("Photographer")}>
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-photographer.png" class="float-left md-2" alt=""/>
@@ -61,7 +68,7 @@
       </div>
     </div>
 
-    <div class="card border m-2" on:click={() => openModal("signup", "Promoter")}>
+    <div class="card border m-2" on:click={() => handleClick("Promoter")}>
       <div class="card-body">
         <div>
           <img src="/images/icons/noun_Business Promotion_2389771.png" class="float-left md-2 w-25" alt=""/>
