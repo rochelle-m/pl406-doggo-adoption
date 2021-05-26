@@ -39,21 +39,22 @@ let logOn = {
           volunteerRole: vrole
         }
       )
-      return response.ok
+      const userData = await response.json()
+      if(userData.token){
+        localStorage.setItem('user', JSON.stringify({...userData, isLoggedIn: true}));
+        user.add({...userData, isLoggedIn: true})
+        return true
+      }
+      return false
     }
   },
 };
 
 let logout = async () => {
   let { type, token } = JSON.parse(localStorage.getItem('user'))
-  const response = await authorize(API_URL + "logout", type + " " + token)
-  if(response.ok){
-    localStorage.removeItem('user')
-    user.reset()
-  }
-  else {
-    alert("There was an error")
-  }
+  await authorize(API_URL + "logout", type + " " + token)
+  localStorage.removeItem('user')
+  user.reset() 
 }
 
-export {logOn, logout};
+export { logOn, logout };

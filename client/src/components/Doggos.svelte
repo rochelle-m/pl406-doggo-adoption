@@ -14,6 +14,7 @@
     try {
       const response = await fetch(URL)
       doggos = await response.json();
+      console.log(doggos);
     }
     catch (err) {
       error = err.message
