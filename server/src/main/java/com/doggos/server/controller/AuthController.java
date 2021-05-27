@@ -133,14 +133,14 @@ public class AuthController {
 
     @PutMapping("update/{id}/{role}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity updateToVolunteer(@PathVariable("id") String id, @PathVariable String role){
+    public ResponseEntity<?> updateToVolunteer(@PathVariable("id") String id, @PathVariable String role){
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent()){
             User updatedUser = user.get();
             updatedUser.setVolunteerRole(role);
             updatedUser.getRoles().add(roleRepository.findByRole(ERole.ROLE_VOLUNTEER).get());
             userRepository.save(updatedUser);
-            return ResponseEntity.ok("Volunteer registration successful");
+            return new ResponseEntity<>(updatedUser.getRoles(), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
