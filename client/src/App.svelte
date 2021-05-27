@@ -10,7 +10,7 @@
   import Vaccination from "./components/Vaccination.svelte";
   import Footer from "./components/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
-
+  import AdoptionForm from "./components/AdoptionForm.svelte";
   import Post from "./components/Post.svelte";
 
 
@@ -45,7 +45,7 @@
     <Route path="events"><Events /></Route>
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
-
+    <Route path="adoptionform"><AdoptionForm /></Route>
     <Route path="post"><Post /></Route>
 
 
