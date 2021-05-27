@@ -8,7 +8,7 @@
   import Events from "./components/Events.svelte";
   import PetFood from "./components/PetFood.svelte";
   import Vaccination from "./components/Vaccination.svelte";
-  import Footer from "./components/Footer.svelte";
+  import Footer from "./utils/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
   import Message from "./utils/Message.svelte";
 </script>

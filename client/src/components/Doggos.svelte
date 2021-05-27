@@ -1,6 +1,6 @@
 <script>
   import {onMount} from "svelte";
-  import Banner from "./Banner.svelte";
+  import Banner from "../utils/Banner.svelte";
   import Doggo from "../utils/Doggo.svelte"
   import Loading from "../utils/Loading.svelte"
 
