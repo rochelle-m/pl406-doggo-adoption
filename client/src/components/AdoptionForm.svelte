@@ -1,18 +1,27 @@
 
+
 <div class="modal" in:fade out:fade>
   <div class="backdrop" on:dblclick={close} />
   <div class="content-wrapper">
     <div class="content">
       <div class="close" on:click={close}>×</div>
       <div class="img-bg">
-        <img src="images/dog1" alt="banner" />
+        <img src="images/dog2.jpg" alt="banner" />
       </div>
-      <h2 class="message">Adopt Form</h2>
+      <h2 class="message">Adoption Application</h2>
       <div class="container">
 
-        <form>
-        <p>abcd..................................</p>
-        </form>
+<form class="content">
+  <label>Name</label>
+  <input type="text" /><br>
+  <label>Phone number</label>
+  <input type="text"  /><br>
+  <label>Address</label>
+  <input type="text" /><br>
+  <button type="submit">
+    Submit
+  </button>
+</form>
        
       </div>
     </div>
@@ -106,4 +115,6 @@
       width: 55vw;
     }
   }
+
+
 </style>
