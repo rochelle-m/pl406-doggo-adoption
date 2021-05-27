@@ -10,6 +10,7 @@
   import Vaccination from "./components/Vaccination.svelte";
   import Footer from "./components/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
+
   import Post from "./components/Post.svelte";
 
 
@@ -28,6 +29,9 @@
   signup.subscribe((newValue) => {
     showSignup = newValue;
   });
+
+  import Message from "./utils/Message.svelte";
+
 </script>
 
 <main>
@@ -41,6 +45,7 @@
     <Route path="events"><Events /></Route>
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
+
     <Route path="post"><Post /></Route>
 
 
@@ -55,6 +60,9 @@
     {#if showSignup}
       <Modal token="signup" />
     {/if}
+
+
+    <Route><Message message="Page not found" /></Route>
 
     <Footer />
   </Router>

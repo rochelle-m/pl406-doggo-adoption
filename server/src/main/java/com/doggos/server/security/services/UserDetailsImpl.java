@@ -16,7 +16,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private String id;
 
-    private String displayName;
+    private String username;
 
     private String email;
 
@@ -27,7 +27,7 @@ public class UserDetailsImpl implements UserDetails {
 
     public UserDetailsImpl(String id, String displayName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.displayName = displayName;
+        this.username = displayName;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -54,7 +54,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return displayName;
+        return username;
     }
 
     @Override

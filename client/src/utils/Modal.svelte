@@ -1,38 +1,51 @@
 <script>
-  import { close } from "../stores/store";
-  import formContent from "../modules/forms";
+  import Loading from "./Loading.svelte"
+
+  import { close, volunteerRole } from "../stores/store";
+  import { logOn } from "../modules/auth";
   import { fade } from "svelte/transition";
 
   export let token;
-
-  let tokens = Object.keys(formContent);
+  let tokens = Object.keys(logOn);
   let currentIndex = tokens.findIndex((i) => i == token);
-
-  let current = formContent[tokens[currentIndex]];
-  let baseUrl = `http://localhost:5001/api/`;
-
-  let errors = {
-    username: "",
-    password: "",
-    email: "",
-  };
-
-  let change = () => {
-    currentIndex = +!currentIndex;
-    current = formContent[tokens[currentIndex]];
-  };
+  let current = logOn[tokens[currentIndex]];
 
   let email;
   let username;
   let password;
+  let message = ""
+  let loading = false;
+  let volunteer = null
 
-  let sendRequest = function (event) {
-    event.preventDefault();
-    // display loading, disable button ...
-    // send request
-    // get result => suspend loading
-    console.log(current);
+  volunteerRole.subscribe(n => {
+    volunteer = n
+  })
+
+  let change = () => {
+    email = username = password = message = ""
+    currentIndex ^= 1;
+    current = logOn[tokens[currentIndex]];
   };
+
+  let sendRequest = async function () {
+    loading = true
+
+    let roles = volunteer ? ["volunteer"] : ["user"]
+    let status = await current.request({
+      email,
+      username,
+      password,
+      roles
+    }, volunteer);
+    if(status) {
+      close()
+    }
+    else {
+      message = current.title + " failed"
+    }
+    loading = false
+  }
+   
 </script>
 
 <div class="modal" in:fade out:fade>
@@ -40,10 +53,20 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="close" on:click={close}>×</div>
-      <img src={current.banner} alt="banner" />
-      <h2 class="message">{current.title}</h2>
+      <div class="img-bg">
+        <img src={current.banner} alt="banner" />
+      </div>
+      <h2 class="message">
+        {#if volunteer} 
+          <small style="font-size: 1vw;">{volunteer}</small>
+          <br/>
+        {/if}
+        {current.title}
+      </h2>
       <div class="container">
-        <form>
+        {#if !loading}
+        <form on:submit|preventDefault={sendRequest}>
+        <div class="status text-danger">{message}</div>
           {#if currentIndex}
             <div class="form-group">
               <label for="email">Email</label>
@@ -54,9 +77,6 @@
                 id="email"
                 required
               />
-              <small id="emailError" class="text-warning"
-                >{errors["email"]}</small
-              >
             </div>
           {/if}
 
@@ -69,9 +89,6 @@
               id="username"
               required
             />
-            <small id="usernameError" class="text-warning"
-              >{errors["username"]}</small
-            >
           </div>
 
           <div class="form-group">
@@ -83,20 +100,23 @@
               id="password"
               required
             />
-            <small id="passwordError" class="text-warning"
-              >{errors["password"]}</small
-            >
           </div>
 
           <div class="form-group text-center">
-            <button type="submit" on:click={sendRequest}>
-              {current.title}</button
-            >
+            <button type="submit">
+              <span id="load" />
+              {current.title}
+            </button>
+            {#if !volunteer}
             <span class="d-block mt-2" on:click={change}>
               <u>{current.alt}</u>
             </span>
+            {/if}
           </div>
         </form>
+        {:else} 
+          <Loading alt={current.title + " in progress"}/>
+        {/if}
       </div>
     </div>
   </div>
@@ -123,7 +143,7 @@
 
   div.content-wrapper {
     z-index: 10;
-    max-width: 50vw;
+    width: 40vw;
     border-radius: 0.3rem;
     background-color: white;
     overflow: hidden;
@@ -168,6 +188,12 @@
     z-index: 1033;
   }
 
+  div.img-bg {
+    width: inherit;
+    height: 28vh;
+    background: gray;
+  }
+
   img {
     filter: brightness(40%);
     width: 100%;
@@ -176,5 +202,11 @@
 
   div > span {
     cursor: pointer;
+  }
+
+   @media (max-width: 792px) {  
+    div.content-wrapper {
+      width: 55vw;
+    }
   }
 </style>

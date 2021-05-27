@@ -1,5 +1,6 @@
 <script>
     export let message;
+    export let alt;
 </script>
 
 <svg class="sprite">
@@ -16,7 +17,7 @@
 </svg>
 
 <div class="loading">
-  <span> {message || 'Loading... please have pawtience'} </span>
+  <span> {message || alt || 'Loading... please have pawtience'} </span>
   {#if !message}
   <div class="load">
     <svg class="icon"><use xlink:href="#paw" /></svg>
@@ -28,7 +29,11 @@
 
 <style>
   .loading {
-    padding: 20px;
+    padding: 5px;
+  }
+
+  .loading span {
+    font-size: 1.2em;
   }
 
   .sprite {
