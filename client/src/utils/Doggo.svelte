@@ -7,7 +7,7 @@
 
 
   <img class="card-img-top
-  " src="/images/volunteer.jpg" alt="" />
+  " {src} alt="dog image" />
 
   <div class="card-body">
 
