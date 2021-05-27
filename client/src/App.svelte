@@ -10,6 +10,7 @@
   import Vaccination from "./components/Vaccination.svelte";
   import Footer from "./utils/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
+  import AdoptionForm from "./components/AdoptionForm.svelte";
   import Post from "./components/Post.svelte";
   import Message from "./utils/Message.svelte";
 </script>
@@ -25,6 +26,7 @@
     <Route path="events"><Events /></Route>
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
+    <Route path="adoptionform"><AdoptionForm /></Route>
     <Route path="post"><Post /></Route>
     <Route><Message message="Page not found" /></Route>
     <Footer />

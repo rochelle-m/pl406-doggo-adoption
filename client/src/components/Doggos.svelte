@@ -51,8 +51,9 @@
 </div>
 
 <BeforeYouAdopt {show} />
-
+<a href="adoptionform">Adoption Form</a>
 <style>
+ 
   .spacing {
     margin-top: 40px;
   }
