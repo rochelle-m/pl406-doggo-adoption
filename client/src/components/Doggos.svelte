@@ -3,18 +3,23 @@
   import Banner from "../utils/Banner.svelte";
   import Doggo from "../utils/Doggo.svelte"
   import Loading from "../utils/Loading.svelte"
+  import BeforeYouAdopt from "../utils/BeforeYouAdopt.svelte";
 
   export let title = "Dog Adoption and Care · Adopt";
 
   let doggos = []
   let error = ""
   const URL = `http://localhost:5001/api/doggos/`
+  let show = false;
 
   onMount(async function () {
     try {
       const response = await fetch(URL)
       doggos = await response.json();
-      console.log(doggos);
+
+      setTimeout(() => {
+        show = true;
+      }, 1500)
     }
     catch (err) {
       error = err.message
@@ -45,11 +50,6 @@
     {/each }
 
   </div>
-  <h3>⧛ Under construction ⌂ ⧛</h3>
 </div>
 
-<style>
-  h3 {
-    padding: 1em 0;
-  }
-</style>
+<BeforeYouAdopt {show}/>
