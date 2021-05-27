@@ -118,11 +118,6 @@
 
 </nav>
 
-
-   </Collapse>
- </Navbar>
-</nav>
-
 {#if showLogin}
   <Modal token="login" />
 {/if}
@@ -156,6 +151,8 @@
   color:white;
   float:right;
   font-size:12px;
+  border-radius:5px;
+  border:1px solid white;
 }
 
 </style>
