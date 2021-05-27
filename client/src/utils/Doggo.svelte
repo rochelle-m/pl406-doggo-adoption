@@ -5,8 +5,6 @@
 
 <article class="border rounded-lg m-2 mx-3 w-20 card">
 
-    
-  
 
   <img class="card-img-top
   " src="/images/volunteer.jpg" alt="" />
@@ -46,4 +44,5 @@
     width: 20vw;
     min-width: 10em;
   }
+  
 </style>

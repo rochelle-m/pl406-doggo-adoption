@@ -31,7 +31,7 @@
 
 <div>
   <Banner {message} {imgSrc} />
-  <div class="d-flex flex-wrap justify-content-around">
+  <div class="d-flex flex-wrap justify-content-around spacing">
     {#each doggos as doggo}
       <Doggo src={doggo.primaryImg} {doggo}>
         <p slot="name">{doggo.name}</p>
@@ -49,5 +49,9 @@
 <style>
   h3 {
     padding: 1em 0;
+  }
+
+  .spacing{
+  margin-top:40px;
   }
 </style>

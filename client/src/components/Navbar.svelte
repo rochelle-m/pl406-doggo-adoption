@@ -45,6 +45,9 @@
         <NavItem>
           <Link class="nav-link" to="events">Events</Link>
         </NavItem>
+        
+                
+      
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>Help</DropdownToggle>
           <DropdownMenu right>
@@ -63,7 +66,10 @@
       </Nav>
     </Collapse>
   </Navbar>
+<a class="addbtn nav-link"  href="post">Add Post</a>
+
 </nav>
+
 
 <style>
   nav {
@@ -83,4 +89,13 @@
       background: #302121d8;
     }
   }
+
+.addbtn{
+  width:85px;
+  background-color:grey;
+  color:white;
+  float:right;
+  font-size:12px;
+}
+
 </style>
