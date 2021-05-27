@@ -1,5 +1,6 @@
 package com.doggos.server.model;
 
+import com.mongodb.lang.Nullable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,6 +19,9 @@ public class User {
 
     private String password;
 
+    @Nullable
+    private String volunteerRole;
+
     @DBRef
     private Set<Role> roles = new HashSet<>();
 
@@ -28,6 +32,22 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String username, String email, String password, String volunteerRole) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.volunteerRole = volunteerRole;
+    }
+
+    @Nullable
+    public String getVolunteerRole() {
+        return volunteerRole;
+    }
+
+    public void setVolunteerRole(@Nullable String volunteerRole) {
+        this.volunteerRole = volunteerRole;
     }
 
     public String getId() {

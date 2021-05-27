@@ -2,12 +2,15 @@ import { writable } from "svelte/store";
 
 export const login = writable(false);
 export const signup = writable(false);
+export const volunteerRole = writable(null);
 
 let prevBodyPosition;
 let prevBodyOverflow;
 
-export const openModal = (type) => {
+export const openModal = (type, role=null) => {
   disableScroll();
+  volunteerRole.update(() => role) 
+   
   if (type === "login") {
     login.update((_) => true);
     signup.update((_) => false);

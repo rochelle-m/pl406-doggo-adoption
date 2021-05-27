@@ -1,5 +1,7 @@
 package com.doggos.server.payload.request;
 
+import org.springframework.lang.Nullable;
+
 import java.util.Set;
 
 public class SignupRequest {
@@ -10,6 +12,9 @@ public class SignupRequest {
     private Set<String> roles;
 
     private String password;
+
+    @Nullable
+    private String volunteerRole;
 
     public String getUsername() {
         return username;
@@ -25,5 +30,9 @@ public class SignupRequest {
 
     public Set<String> getRoles() {
         return this.roles;
+    }
+
+    public String getVolunteerRole() {
+        return volunteerRole;
     }
 }
