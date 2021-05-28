@@ -40,8 +40,8 @@
       {#if !doggo.isAdopted && !doggo.isFostered}
         <Doggo src={doggo.primaryImg} {doggo}>
           <p slot="name">{doggo.name}</p>
+          <p slot="breed">{doggo.breed}</p>
           <p slot="description">{doggo.description}</p>
-          <p slot="remarks">{doggo.remarks}</p>
         </Doggo>
       {/if}
     {:else}

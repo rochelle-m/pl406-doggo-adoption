@@ -1,35 +1,38 @@
 <script>
   export let src;
   export let doggo;
+
+  let handleError = (el) => {
+    el.target.error = null;
+    el.target.src = "/images/icons/logo-w.png";
+  };
 </script>
 
 <article class="border rounded-lg m-2 mx-3 w-20 card">
-
-
-  <img class="card-img-top
-  " {src} alt="dog image" />
+  <img class="card-img-top" {src} on:error={handleError} alt={doggo.name} />
 
   <div class="card-body">
-
-    <h2 class="card-title">
+    <h4 class="card-title">
       <slot name="name" />
-    </h2>
+    </h4>
+
+    <p class="card-text text-secondary">
+      <slot name="breed" />
+    </p>
 
     <p class="card-text">
       <slot name="description" />
     </p>
 
-    <h class="list-group list-group-flush">
-     <slot name="remarks" />
-    </h>
-     
+    <p class="list-group list-group-flush">
+      <slot name="remarks" />
+    </p>
   </div>
 
-  <div class="card-body">
-    <a href="#" class="card-link">Adopt</a>
-    <a href="#" class="card-link">Foster</a>
+  <div class="card-footer">
+    <a href="/" class="card-link">Adopt</a>
+    <a href="/" class="card-link">Foster</a>
   </div>
-
 </article>
 
 <style>
@@ -44,5 +47,4 @@
     width: 20vw;
     min-width: 10em;
   }
-  
 </style>
