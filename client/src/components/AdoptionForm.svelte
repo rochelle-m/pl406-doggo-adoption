@@ -32,14 +32,14 @@
 
 
             <label  for="ownpet"><b>Have you previously owned pets? </b></label>
-            <input type="radio" name="yes" value="Yes" /> Yes
-            <input type="radio" name="no" value="No" /> No
+            <input type="radio" name="ownpet" value="Yes" /> Yes
+            <input type="radio" name="ownpet" value="No" /> No
             <br>
             <br>
 
             <label  for="allergy"><b>Does anyone in the family have known allergy to dogs? </b></label>
-            <input type="radio" name="yes" value="Yes" /> Yes
-            <input type="radio" name="no" value="No" /> No
+            <input type="radio" name="allergy" value="Yes" /> Yes
+            <input type="radio" name="allergy" value="No" /> No
             <br>
             <br>
 
@@ -55,18 +55,18 @@
             <br>
 
             <label  for="household"><b>What type of home do you live in? </b></label><br>
-            <input type="radio" name="house" value="House" /> House
-            <input type="radio" name="flat" value="Flat" /> Flat
-            <input type="radio" name="Bunglow" value="Bunglow" /> Bunglow
-            <input type="radio" name="farm house" value="Farm house" /> Farm house
+            <input type="radio" name="home" value="House" /> House
+            <input type="radio" name="home" value="Flat" /> Flat
+            <input type="radio" name="home" value="Bunglow" /> Bunglow
+            <input type="radio" name="home" value="Farm house" /> Farm house
             <br>
             <br>
 
             <label  for="household"><b>Please describe your household: </b></label><br>
-            <input type="radio" name="active" value="Active" /> Active
-            <input type="radio" name="noisy" value="Noisy" /> Noisy
-            <input type="radio" name="quiet" value="Quiet" /> Quiet
-            <input type="radio" name="average" value="Average" /> Average
+            <input type="radio" name="household" value="Active" /> Active
+            <input type="radio" name="household" value="Noisy" /> Noisy
+            <input type="radio" name="household" value="Quiet" /> Quiet
+            <input type="radio" name="household" value="Average" /> Average
             <br>
             <br>
 
@@ -82,14 +82,14 @@
             <br>
 
             <label  for="time"><b>Do you have enough time to provide adwquate love and affection? </b></label>
-            <input type="radio" name="yes" value="Yes" /> Yes
-            <input type="radio" name="no" value="No" /> No
+            <input type="radio" name="time" value="Yes" /> Yes
+            <input type="radio" name="time" value="No" /> No
             <br>
             <br>
 
-            <label  for="ownpet"><b>Is everyone in agreement with the decision to adopt a dog? </b></label>
-            <input type="radio" name="yes" value="Yes" /> Yes
-            <input type="radio" name="no" value="No" /> No
+            <label  for="agreement"><b>Is everyone in agreement with the decision to adopt a dog? </b></label>
+            <input type="radio" name="agreement" value="Yes" /> Yes
+            <input type="radio" name="agreement" value="No" /> No
             <br>
             <br>
 
