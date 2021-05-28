@@ -20,6 +20,9 @@ public class ProductController {
     @Value("/static/json/carTravel.json")
     private String travelProducts;
 
+    @Value("/static/json/food.json")
+    private String foodProducts;
+
     @Value("/static/json/feed.json")
     private String feedProducts;
 
@@ -34,6 +37,11 @@ public class ProductController {
 
     @Value("/static/json/stain.json")
     private String stainRemovalProducts;
+
+    @GetMapping(value = "/food", produces = MediaType.APPLICATION_JSON_VALUE)
+    Object getFoodProducts() throws IOException {
+        return getObject(foodProducts);
+    }
 
     @GetMapping(value = "/stain-removal", produces = MediaType.APPLICATION_JSON_VALUE)
     Object getStainRemovalProducts() throws IOException {
