@@ -1,5 +1,5 @@
 <script>
-  import Banner from "./Banner.svelte";
+  import Banner from "../utils/Banner.svelte";
 
   export let title = "Dog Adoption and Care · Events";
 

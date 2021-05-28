@@ -1,5 +1,5 @@
 <script>
-  import Banner from "./Banner.svelte";
+  import Banner from "../utils/Banner.svelte";
   import { openModal } from "../stores/store";
   import { user } from "../stores/user";
   import { update } from "../modules/auth";
