@@ -1,8 +1,8 @@
 <script>
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
-  import {logout} from "../modules/auth";
   import Modal from "../utils/Modal.svelte";
+  import Profile from "../utils/Profile.svelte";
   import { login, signup, openModal } from "../stores/store";
   import {
     Collapse,
@@ -21,7 +21,6 @@
   let showSignup, showLogin;
   let username = ""
   let isLoggedIn = false
-  let roles = []
   
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
@@ -38,7 +37,6 @@
     if (n) {
       username = n.username || ""
       isLoggedIn = n.isLoggedIn
-      roles = n.roles
     }
   })
 </script>
@@ -67,8 +65,6 @@
           <Link class="nav-link" to="events">Events</Link>
         </NavItem>
         
-                
-      
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>Help</DropdownToggle>
           <DropdownMenu right>
@@ -92,14 +88,7 @@
           </DropdownToggle>
           <DropdownMenu right>
             {#if isLoggedIn}
-            <DropdownItem>
-              {#each roles as role}
-                <p> {role.substring(role.indexOf("_") + 1)} </p>
-              {/each}
-              <Link on:click={logout}>
-                <p>Logout</p>
-              </Link>
-            </DropdownItem>
+              <Profile/>
             {:else}
             <DropdownItem>
                 <p on:click={() => openModal("login")}>Log in</p>
