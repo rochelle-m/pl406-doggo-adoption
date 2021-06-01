@@ -15,7 +15,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-transparent">
         <li class="breadcrumb-item"><a href="/" class="text-white">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{message}</li>
+        <li class="breadcrumb-item active text-white" aria-current="page">{message}</li>
       </ol>
     </nav>
   </div>
