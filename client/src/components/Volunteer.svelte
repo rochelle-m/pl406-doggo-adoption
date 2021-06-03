@@ -35,7 +35,7 @@
   <h4 class="py-3">Register as a volunteer</h4>
   <div class="container d-flex justify-content-center flex-sm-wrap mb-4">
 
-    <div class="card border m-2" on:click={() => handleClick("Caretaker")}>
+    <div class="card border m-2" >
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-dog-heart-64.png" class="float-left md-2" alt=""/>
@@ -44,9 +44,13 @@
         <h5 class="card-title float-left pt-3">Caretaker</h5>
         <p class="card-text">Assist with daily activities - feeding dogs, bathing dogs and maintaining a clean shelter.</p>
       </div>
+      <div class="card-footer">
+        
+        <button on:click={() => handleClick("Caretaker")} class="btn">Volunteer</button>
+      </div>
     </div>
 
-    <div class="card border m-2" on:click={() => handleClick("Driver")}>
+    <div class="card border m-2">
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-driver-50.png" class="float-left md-2" alt=""/>
@@ -55,9 +59,12 @@
         <h5 class="card-title float-left pt-3">Driver</h5>
         <p class="card-text ">Transport dogs to and from the shelter and run other errands.</p>
       </div>
+      <div class="card-footer">
+        <button on:click={() => handleClick("Driver")} class="btn">Volunteer</button>
+      </div>
     </div>
 
-    <div class="card border m-2" on:click={() => handleClick("Photographer")}>
+    <div class="card border m-2">
       <div class="card-body">
         <div>
           <img src="/images/icons/icons8-photographer.png" class="float-left md-2" alt=""/>
@@ -66,16 +73,24 @@
         <h5 class="card-title float-left pt-3">Photographer</h5>
         <p class="card-text ">Capture the most amazing dog pictures to help them find their home.</p>
       </div>
+      <div class="card-footer">
+        <button on:click={() => handleClick("Photographer")} class="btn">Volunteer</button>
+      </div>
     </div>
 
-    <div class="card border m-2" on:click={() => handleClick("Promoter")}>
+    <div class="card border m-2">
       <div class="card-body">
         <div>
-          <img src="/images/icons/noun_Business Promotion_2389771.png" class="float-left md-2 w-25" alt=""/>
+          <img 
+            src="/images/icons/noun_Business Promotion_2389771.png" 
+            class="float-left md-2 w-25" alt=""/>
         </div>
         <br/>
         <h5 class="card-title float-left pt-3">Promoter</h5>
         <p class="card-text ">Gather support for the shelter and assist with events.</p>
+      </div>
+      <div class="card-footer">
+        <button on:click={() => handleClick("Promoter")} class="btn">Volunteer</button>
       </div>
     </div>
   </div>
@@ -86,7 +101,6 @@
   .card {
     box-shadow: 0 6px 10px rgba(0,0,0,.1), 0 0 6px rgba(0,0,0,.04);
     transition: .3s transform linear;
-    cursor: pointer;
     max-width: 18vw; 
     min-width:8em;
   }
@@ -95,7 +109,6 @@
     transform: scale(1.01);
     box-shadow: 0 10px 16px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.05);
   }
-
 
   .card-text {
     display: inline-block;

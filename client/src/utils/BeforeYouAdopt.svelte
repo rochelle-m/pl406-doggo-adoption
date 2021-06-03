@@ -32,7 +32,7 @@
   >
     <div class="card mb-3 w-75">
       <div class="card-header text-white">
-        <h5 class="d-inline float-left">Before You Adopt</h5>
+        <h6 class="d-inline float-left">Before You Adopt</h6>
         <span
           class="float-right px-1"
           title="Dismiss"
