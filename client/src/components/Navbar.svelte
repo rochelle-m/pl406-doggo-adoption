@@ -5,10 +5,7 @@
   import Profile from "../utils/Profile.svelte";
   import { login, signup, openModal } from "../stores/store";
 
-  import Post from "../utils/Post.svelte";
-  import { openForm } from "../stores/post";
-
-
+  
   import {
     Collapse,
     Navbar,
@@ -44,8 +41,6 @@
       isLoggedIn = n.isLoggedIn
     }
   })
-
-let isOpenPost = false
 
 
 </script>
@@ -112,10 +107,6 @@ let isOpenPost = false
 
     </Collapse>
   </Navbar>
-<slot name="trigger" {openForm}>
-  <button class="addbtn" on:click={openForm}>Add Post</button>
-</slot>
-
 </nav>
 
 {#if showLogin}
@@ -147,15 +138,7 @@ let isOpenPost = false
     }
   }
 
-.addbtn{
-  width:85px;
-  background-color:grey;
-  color:white;
-  float:right;
-  font-size:12px;
-  border-radius:5px;
-  border:1px solid white;
-}
+
 
 
 </style>
