@@ -4,6 +4,11 @@
   import {logout} from "../modules/auth";
   import Modal from "../utils/Modal.svelte";
   import { login, signup, openModal } from "../stores/store";
+
+  import Post from "../utils/Post.svelte";
+  import { openForm } from "../stores/post";
+
+
   import {
     Collapse,
     Navbar,
@@ -41,6 +46,10 @@
       roles = n.roles
     }
   })
+
+let isOpenPost = false
+
+
 </script>
 
 <nav class="px-3" id="navbar">
@@ -114,7 +123,9 @@
 
     </Collapse>
   </Navbar>
-<a class="addbtn nav-link"  href="post">Add Post</a>
+<slot name="trigger" {openForm}>
+  <button class="addbtn" on:click={openForm}>Add Post</button>
+</slot>
 
 </nav>
 
@@ -125,6 +136,8 @@
   <Modal token="signup" />
 {/if}
 
+
+ 
 
 <style>
   nav {
@@ -154,5 +167,6 @@
   border-radius:5px;
   border:1px solid white;
 }
+
 
 </style>
