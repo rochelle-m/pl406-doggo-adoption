@@ -8,6 +8,11 @@ let name
 let remark
 let description
 
+function closeForm(){
+
+    
+        document.getElementById("myForm").display.none;
+    }
 
 function ValidateSize(file) {
 
@@ -24,10 +29,10 @@ function ValidateSize(file) {
 
 <div id="myForm">
   <div class="modal" in:fade out:fade>
-    <div class="backdrop" on:dblclick={closeFrom} />
+    <div class="backdrop" />
       <div class="content-wrapper">
         <div class="content">
-          <div class="close" on:click={closeForm}>×</div>
+          <div class="close" > <a href="adopt">×</a></div>
           <img src="/images/post.jpg" alt="doggo" />
           <h2 class="message">{msg}</h2>
           <div class="container">
