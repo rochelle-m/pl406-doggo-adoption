@@ -7,6 +7,7 @@ let isOpenPost = false
 let name
 let remark
 let description
+let picture
 
 function ValidateSize(file) {
 
@@ -39,6 +40,7 @@ function ValidateSize(file) {
             </label>
 
             <input 
+            bind:value={name}
             type="text" 
             placeholder="Enter name" 
             name="name" 
@@ -53,6 +55,7 @@ function ValidateSize(file) {
             </label>
 
             <input 
+            bind:value={description}
             type="text" 
             placeholder="Describe" 
             name="description" 
@@ -65,7 +68,8 @@ function ValidateSize(file) {
             <b>Remark</b>
             </label>
 
-            <input 
+            <input
+            bind:value={remark} 
             type="text" 
             placeholder="Give remark" 
             name="remark" 
@@ -79,6 +83,7 @@ function ValidateSize(file) {
             </label>
              
             <input 
+            bind:value={picture}
             type="file" 
             name="photo"
             id="photo" 

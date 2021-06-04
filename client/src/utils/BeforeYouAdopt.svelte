@@ -60,7 +60,7 @@
         <p class="card-text">When it comes to adopting we request you to understand the commitment and responsibilities of bringng an animal home before looking for one to adopt.</p>
         <p class="card-text">While you may be working from home, the animal will be with you. When circumtances eventually go back to normal, who will be caring for your pet while you are at work all day?</p>
         <p class="card-text">All animals need a certain level of time, care and love. Its huge responsibility to have a pet at home, young, growing or old. All we request you is think of these situations not just for now but taking into account the future too.</p>
-        <p class="card-text">If you are not confident about the future, there is always the option of fostering whch allows you to have pet with you while you are able to dedicate the required time and attention and it also saves the foster pets life.</p>
+        <p class="card-text">If you are not confident about the future, there is always the option of fostering which allows you to have pet with you while you are able to dedicate the required time and attention and it also saves the foster pets life.</p>
       </div>
     </div>
   </div>
