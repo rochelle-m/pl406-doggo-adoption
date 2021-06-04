@@ -12,7 +12,7 @@
 
   user.subscribe((n) => {
     if (n) {
-      isStaff = n.roles.some((role) => role == "ROLE_STUFF");
+      isStaff = n.roles.some((role) => role == "ROLE_STAFF");
     }
   });
 
