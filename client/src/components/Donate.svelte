@@ -1,39 +1,23 @@
 <script>
-  import { onMount } from "svelte";
   import Banner from "./Banner.svelte";
-  import Product from "../utils/Product.svelte";
+  import DonationBasket from "../utils/DonationBasket.svelte";
   import { user } from "../stores/user";
 
   export let title = "Dog Adoption and Care · Donate";
 
-  const URL = "http://localhost:5001/api/products"
-
   const message = "Donate";
   const imgSrc = "images/donate.jpg";
 
-  let productList = []
-  let form
-
-  const productTypes = ["flea", "food", "travel", "feed", "health", "scooper", "stain-removal"]
-
-  onMount(async () => {
-    const responses = await Promise.all([
-      ...productTypes.map(type => fetch(`${URL}/${type}`))
-    ])
-    responses.forEach(async (response, i) => productList[i] = await response.json())
-    console.log(productList)  
-  })
-
   let isStaff = false;
 
-  user.subscribe(n => {
+  user.subscribe((n) => {
     if (n) {
-      isStaff = n.roles.some(role => role == "ROLE_STUFF")
+      isStaff = n.roles.some((role) => role == "ROLE_STUFF");
     }
-  })
+  });
 
-  let message1 = isStaff ? "Add Items" : "Donate Items"
-  let message2 = isStaff ? "View Donations" : "Make a monetary donation"
+  let message1 = isStaff ? "Add Items" : "Donate Items";
+  let message2 = isStaff ? "View Donations" : "Make a monetary donation";
 </script>
 
 <svelte:head>
@@ -58,39 +42,54 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card border-dark mb-3" data-toggle="modal" data-target="#payment" style="cursor: pointer;">
-        <div class="card-header">        
-            <span class="d-inline-block">{message2}</span>
-            <span class="d-inline-block btn float-right">
-              <i class="far fa-credit-card" />
-            </span>
+      <div
+        class="card border-dark mb-3"
+        data-toggle="modal"
+        data-target="#payment"
+        style="cursor: pointer;"
+      >
+        <div class="card-header">
+          <span class="d-inline-block">{message2}</span>
+          <span class="d-inline-block btn float-right">
+            <i class="far fa-credit-card" />
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="payment"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Choose your payment amount</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Choose your payment amount
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" id="modal-body">
           <a href="http://localhost:5001/api/checkout/299" class="nav-link">
             <div class="card mb-3">
-              <div class="card-header">
-                  ₹ 299    
-              </div>
+              <div class="card-header">₹ 299</div>
             </div>
           </a>
           <a href="http://localhost:5001/api/checkout/499" class="nav-link">
             <div class="card mb-3">
-              <div class="card-header">
-                  ₹ 499    
-              </div>
+              <div class="card-header">₹ 499</div>
             </div>
           </a>
         </div>
@@ -98,19 +97,12 @@
     </div>
   </div>
 
-  
   <div class="container">
     {#if isStaff}
-    {#each productList as products, index}   
-      <h4 class="text-capitalize">{productTypes[index]}</h4>
-      {#each products as product}
-         <Product {product}/>
-      {/each}
-    {/each}
+      <DonationBasket />
     {:else}
-      <h1></h1>
+      <p> items here </p>
     {/if}
   </div>
   <small> All donations are exempted under the 80g certificate. </small>
 </div>
-
