@@ -10,4 +10,6 @@ public interface StorageService {
     String store(MultipartFile multipartFile, String id) throws StorageException;
 
     byte[] get(String filename, String id) throws IOException;
+
+    byte[] getLogo() throws IOException;
 }

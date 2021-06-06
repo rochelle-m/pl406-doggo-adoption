@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 public class CheckoutController {
 
-    @Value("${STRIPE_PUBLIC_KEY}")
+    @Value("${stripe.public.key}")
     private String stripePublicKey;
 
     @RequestMapping("/checkout/299")

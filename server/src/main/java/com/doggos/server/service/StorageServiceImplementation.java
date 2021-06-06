@@ -2,6 +2,7 @@ package com.doggos.server.service;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,6 +16,9 @@ import java.nio.file.StandardCopyOption;
 
 @Service
 public class StorageServiceImplementation implements StorageService {
+
+    @Value("logo-w.png")
+    private String logoPath;
 
     private final Path rootLocation;
 
@@ -72,5 +76,11 @@ public class StorageServiceImplementation implements StorageService {
         Path destination = Paths.get(this.rootLocation.toString() + "\\" + id + "\\" + name);
 
         return IOUtils.toByteArray(destination.toUri());
+    }
+
+
+    @Override
+    public byte[] getLogo() throws IOException {
+        return IOUtils.toByteArray(Paths.get(logoPath).toUri());
     }
 }

@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class StripeService {
 
-    @Value("${STRIPE_SECRET_KEY}")
+    @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
     @PostConstruct
