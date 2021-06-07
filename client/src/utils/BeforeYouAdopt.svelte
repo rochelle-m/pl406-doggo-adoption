@@ -55,7 +55,7 @@
       <div class="card-body" style="height:70vh">
         <h5 class="card-title"><b>Adopt responsibly or save lives while you foster !</b></h5>
         <p class="card-text">We feel so blessed when people reach out to adopt indie!</p>
-        <img src={imgSrc} alt="doggo" />
+        <img src={imgSrc} alt="beforeadoptdoggo" />
         <p class="card-text">We try to understand sudden surges in adoptions and fostering of our rescues to ensure happy homes for them.</p>
         <p class="card-text">When it comes to adopting we request you to understand the commitment and responsibilities of bringng an animal home before looking for one to adopt.</p>
         <p class="card-text">While you may be working from home, the animal will be with you. When circumtances eventually go back to normal, who will be caring for your pet while you are at work all day?</p>
