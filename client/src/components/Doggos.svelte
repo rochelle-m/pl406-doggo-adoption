@@ -27,6 +27,7 @@
 
   let message = "Adopt";
   let imgSrc = "images/dog11.jpg";
+
 </script>
 
 <svelte:head>

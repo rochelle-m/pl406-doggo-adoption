@@ -1,6 +1,25 @@
 <script>
 import { fade } from "svelte/transition";
+import { onMount } from "svelte";
+import { notesStore } from "../stores/store.js";
 
+  let doggos = [];
+  let error = "";
+  const URL = `http://localhost:5001/api/doggos/`;
+  let show = false;
+
+  onMount(async function () {
+    try {
+      const response = await fetch(URL);
+      doggos = await response.json();
+
+      setTimeout(() => {
+        show = true;
+      }, 1500);
+    } catch (err) {
+      error = err.message;
+    }
+  });
 const msg = 'Add Post';
 
 let isOpenPost = false
@@ -8,18 +27,52 @@ let name
 let remark
 let description
 let picture
+let src = '';
 
-function ValidateSize(file) {
-
-    
-        if (!document.getElementById("photo").value ) {
-            event.preventDefault();
-            alert("Please choose a file!");
-        }
-        else {
-
-        }
+  function onChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        src = e.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
     }
+  }
+
+
+  let posts = []
+
+  let post = {
+      name: '',
+      remark: '',
+      description: '',
+      picture: '',
+      id: null
+  };
+
+  let addPost = () =>{
+
+    const newNote = {
+
+      id: posts.length + 1,
+      name: post.name,
+      remark: post.remark,
+      description: post.description,
+      picture: post.picture
+    };
+
+    notesStore.createNote(newNote);
+
+    post = {
+      id: null,
+      name: '',
+      remark: '',
+      description: '',
+      picture: ''
+  };
+
+
+  };
 </script>
 
 <div id="myForm">
@@ -40,7 +93,7 @@ function ValidateSize(file) {
             </label>
 
             <input 
-            bind:value={name}
+            bind:value={post.name}
             type="text" 
             placeholder="Enter name" 
             name="name" 
@@ -55,7 +108,7 @@ function ValidateSize(file) {
             </label>
 
             <input 
-            bind:value={description}
+            bind:value={post.description}
             type="text" 
             placeholder="Describe" 
             name="description" 
@@ -69,7 +122,7 @@ function ValidateSize(file) {
             </label>
 
             <input
-            bind:value={remark} 
+            bind:value={post.remark} 
             type="text" 
             placeholder="Give remark" 
             name="remark" 
@@ -83,20 +136,25 @@ function ValidateSize(file) {
             </label>
              
             <input 
-            bind:value={picture}
+            bind:value={post.picture}
             type="file" 
             name="photo"
             id="photo" 
             accept=".jpg,.jpeg,.png"
-            onchange="ValidateSize(this)"
+            
+            on:change={onChange}
             />
 
+            {#if src}
+            <img class="uploadimg" {src} />
+            {/if}
             <br>
             <br>
 
             <button 
             type="submit" 
-            class="" >
+            on:click|preventDefault = {addPost}
+            class="btn btn-primary" >
             Post
             </button>
 
@@ -188,5 +246,10 @@ function ValidateSize(file) {
 
   .close{
     color:white;
+  }
+
+  .uploadimg{
+  width:100px;
+  height:100px;
   }
 </style>
