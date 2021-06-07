@@ -16,6 +16,7 @@
   }
 
   let showComments = false; 
+  let comment = ""
 
   const open = () => {
     showComments = true
@@ -43,7 +44,7 @@
       <div class="text-muted small"> {tempPost.time} </div>
     </div>
   </div>
-  <img src="images/3.jpg" class="card-img-top" alt="...">
+  <img src="images/3.jpg" class="card-img-top img-fluid" alt="...">
   <div class="card-body text-left">
     <p> {tempPost.caption} </p>
   </div>
@@ -71,7 +72,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroupPrepend3"><i class="far fa-comment"></i></span>
       </div>
-      <input type="text" class="form-control" placeholder="Write a comment or a query" aria-describedby="inputGroupPrepend3" required>
+      <input type="text" class="form-control" bind:value={comment} placeholder="Write a comment or a query" aria-describedby="inputGroupPrepend3" required>
     </div>
   </div>
 
@@ -81,5 +82,11 @@
   .fav {
     color: yellow;
     font-size: x-large;
+  }
+
+  img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
   }
 </style>
