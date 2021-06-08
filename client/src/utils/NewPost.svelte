@@ -52,6 +52,7 @@
           class="input-group-text pointer"
           id="inputGroupPrepend3"
           on:click={show}><i class="fas fa-image" />
+          </span>
       </div>
 
       {#if showImageUploading}
