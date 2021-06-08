@@ -10,7 +10,15 @@ import { notesStore } from "../stores/store.js";
 
   onMount(async function () {
     try {
-      const response = await fetch(URL);
+      const response = await fetch(url, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json'
+      },
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(user) 
+    });
       doggos = await response.json();
 
       setTimeout(() => {
@@ -26,6 +34,8 @@ let isOpenPost = false
 let name
 let remark
 let description
+let breed
+let location
 let picture
 let src = '';
 
@@ -46,6 +56,8 @@ let src = '';
       name: '',
       remark: '',
       description: '',
+      breed: '',
+      location: '',
       picture: '',
       id: null
   };
@@ -58,6 +70,8 @@ let src = '';
       name: post.name,
       remark: post.remark,
       description: post.description,
+      breed: post.breed,
+      location: post.location,
       picture: post.picture
     };
 
@@ -68,6 +82,8 @@ let src = '';
       name: '',
       remark: '',
       description: '',
+      breed: '',
+      location: '',
       picture: ''
   };
 
@@ -103,6 +119,20 @@ let src = '';
             <br><br>
 
             <label 
+            for="breed">
+            <b>Breed</b>
+            </label>
+
+            <input 
+            bind:value={post.breed}
+            type="text" 
+            placeholder="Enter dogs breed" 
+            name="breed" 
+            required>
+
+            <br><br>
+
+            <label 
             for="description">
             <b>Description</b>
             </label>
@@ -126,6 +156,21 @@ let src = '';
             type="text" 
             placeholder="Give remark" 
             name="remark" 
+            required>
+
+            <br>
+            <br>
+
+            <label 
+            for="location">
+            <b>Location</b>
+            </label>
+
+            <input
+            bind:value={post.location} 
+            type="text" 
+            placeholder="Enter dogs location" 
+            name="location" 
             required>
 
             <br>
