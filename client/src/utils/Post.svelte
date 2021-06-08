@@ -1,77 +1,69 @@
 <script>
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
-
-  let tempPost = {
-    username: "linda",
-    time: "3 days ago",
-    comments: [
-      {
-        username: "karen",
-        comment: "Oh so cute",
-      },
-      {
-        username: "linda",
-        comment: "The goooooodest",
-      },
-    ],
-    caption: "caption caption",
-  };
+  
+  export let tempPost;
 
   let showComments = false;
   let comment = "";
 
+  // get from posts
+  let liked = false;
+
   let sendBtnVisible = comment != "";
 
-  let currentUser = {}
-  
-  user.subscribe(updatedUser => {
+  let currentUser = {};
+
+  user.subscribe((updatedUser) => {
     if (updatedUser) {
-      currentUser = updatedUser
+      currentUser = updatedUser;
     }
-  })
+  });
 
   const open = () => {
     showComments = true;
   };
 
-  const favourite = function (e) {
-    const element = e.target;
-    if (element.classList.contains("fas")) {
-      element.classList.add("far");
-      element.classList.remove("fas");
+  let interval, interval2;
+
+  const favourite = function () {
+    if (!currentUser.isLoggedIn) {
+      openModal("login");
+      interval2 = setInterval(() => {
+        if (currentUser.isLoggedIn) {
+          liked = !liked;
+          clearInterval(interval2);
+        }
+      }, 4000);
     } else {
-      element.classList.add("fas");
-      element.classList.remove("far");
+      liked = !liked;
     }
   };
 
-  let interval 
-  const checkAuth = () => {
+  const checkAuth = (action) => {
     interval = setInterval(() => {
       if (currentUser.isLoggedIn) {
-        post()
+        action();
       }
-    }, 4000)
-  }
+    }, 4000);
+  };
 
   const post = () => {
     tempPost.comments.push({
-        username: currentUser.username,
-        comment,
-      });
-      tempPost = tempPost;
-      comment = "";
-      clearInterval(interval)
-  }
+      username: currentUser.username,
+      comment,
+    });
+    tempPost = tempPost;
+    comment = "";
+    clearInterval(interval);
+  };
 
   const postComment = () => {
     if (!currentUser.isLoggedIn) {
-        openModal("login")
-        checkAuth()
-    }
-    else {
-      post()
+      openModal("login");
+      checkAuth(post);
+    } else {
+      post();
     }
   };
 
@@ -80,23 +72,41 @@
   };
 </script>
 
+<style>
+  .fav {
+    color: yellow;
+    font-size: x-large;
+  }
+
+  img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+  }
+</style>
+
 <div class="card col-8 p-4 col-lg-6 my-2">
   <div class="mb-4 text-left">
     <div class="media-body">
-      <i class="far fa-star float-right fav pointer" on:click={favourite} />
+      <i
+        class={liked ? 'fas fa-star float-right pointer fav' : 'far fa-star float-right pointer fav'}
+        on:click={favourite} />
       <span class="mb-2">@ {tempPost.username}</span>
       <div class="text-muted small">{tempPost.time}</div>
     </div>
   </div>
-  <img src="images/3.jpg" class="card-img-top img-fluid" alt="..." />
+
+  {#if tempPost.src}
+    <img src={tempPost.src} class="card-img-top img-fluid" alt="..." />
+  {/if}
   <div class="card-body text-left">
     <p>{tempPost.caption}</p>
   </div>
 
   <div class="card-footer text-left">
     <small class="align-left pointer" on:click={open}>
-      <strong> {tempPost.comments.length} </strong>
-      Comments
+      <strong> {tempPost.comments?.length} </strong>
+      Comment(s)
     </small>
 
     {#if showComments}
@@ -137,17 +147,3 @@
     </form>
   </div>
 </div>
-
-
-<style>
-  .fav {
-    color: yellow;
-    font-size: x-large;
-  }
-
-  img {
-    width: 400px;
-    height: 300px;
-    object-fit: cover;
-  }
-</style>
