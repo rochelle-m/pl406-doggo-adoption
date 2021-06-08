@@ -21,6 +21,10 @@ nav img {
   width: 10vmin;
 }
 
+.pointer {  
+  cursor: pointer;
+}
+
 a {
   color: rgb(207, 207, 207);
   text-decoration: none;
