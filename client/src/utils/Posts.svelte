@@ -2,11 +2,11 @@
   import Post from "./Post.svelte";
   import NewPost from "./NewPost.svelte";
 
-  import { subscribe, update, set } from "../stores/posts";
+  import { subscribe } from "../stores/posts";
   let posts = [];
 
   subscribe((newPosts) => {
-    posts = newPosts;
+    posts = newPosts.reverse();
   });
 </script>
 

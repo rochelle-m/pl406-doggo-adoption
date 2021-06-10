@@ -1,7 +1,8 @@
 <script>
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
-  
+  import moment from "moment";
+
   export let tempPost;
 
   let showComments = false;
@@ -92,7 +93,7 @@
         class={liked ? 'fas fa-star float-right pointer fav' : 'far fa-star float-right pointer fav'}
         on:click={favourite} />
       <span class="mb-2">@ {tempPost.username}</span>
-      <div class="text-muted small">{tempPost.time}</div>
+      <div class="text-muted small">{moment(tempPost.time).fromNow()}</div>
     </div>
   </div>
 

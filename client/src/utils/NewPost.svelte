@@ -1,12 +1,34 @@
 <script>
-  let preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-  const tags = ["adoption", "help", "foster", "food"]
+  import { user } from "../stores/user";
+  import moment from "moment";
+  import { openModal } from "../stores/store";
+  import { subscribe, update } from "../stores/posts";
+
+  let preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+  const tags = ["adoption", "help", "foster", "food"];
 
   let newPost = {
-    caption: "",
+    caption: null,
     selectedTags: [],
-    fileInput: ""
-  }
+    fileInput: null,
+    username: null,
+    comments: [],
+    time: null,
+  };
+
+  let posts = [];
+
+  subscribe((newPosts) => {
+    posts = newPosts;
+  });
+
+  let currentUser = {};
+
+  user.subscribe((updatedUser) => {
+    if (updatedUser) {
+      currentUser = updatedUser;
+    }
+  });
 
   let showImageUploading = false;
 
@@ -23,9 +45,26 @@
     };
   };
 
+  const post = () => {
+    newPost.username = currentUser.username;
+    newPost.time = moment().format("LLL");
+
+    // ! fix order of posts
+    posts.push(newPost);
+    update(() => posts);
+    setTimeout(() => {
+      newPost = {...newPost}
+      newPost.selectedTags = []
+      newPost.caption = ""
+    }, 3000);
+  };
+
   const handleSubmit = () => {
-    // prompt user for login if not logged in
-    // send request
+    if (currentUser.isLoggedIn) {
+      post();
+    } else {
+      openModal("login");
+    }
   };
 </script>
 
@@ -51,8 +90,9 @@
         <span
           class="input-group-text pointer"
           id="inputGroupPrepend3"
+          title="Add an image"
           on:click={show}><i class="fas fa-image" />
-          </span>
+        </span>
       </div>
 
       {#if showImageUploading}
@@ -81,16 +121,17 @@
         {#each tags as tag}
           <div class="mx-2 d-inline">
             <label>
-              <input type=checkbox bind:group={newPost.selectedTags} value={tag}>
-              #{tag} 
+              <input
+                type="checkbox"
+                bind:group={newPost.selectedTags}
+                value={tag} />
+              #{tag}
             </label>
           </div>
         {/each}
       </div>
 
-      <div class="text-right">
-        <button class="mt-4">Post</button>
-      </div>
+      <div class="text-right"><button class="mt-4">Post</button></div>
     </form>
   </div>
 </div>
