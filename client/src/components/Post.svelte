@@ -100,9 +100,12 @@ let src = '';
           <img src="/images/post.jpg" alt="doggo" />
           <h2 class="message">{msg}</h2>
           <div class="container">
-          
+          <div class="modal-body mx-3">
+        
             <form id="myForm">
              
+
+            
             <label 
             for="name">
             <b>Name</b>
@@ -111,11 +114,10 @@ let src = '';
             <input 
             bind:value={post.name}
             type="text" 
-            placeholder="Enter name" 
+            placeholder="Enter dog name" 
             name="name" 
-            required
-            >
-
+            required>
+            
             <br><br>
 
             <label 
@@ -126,7 +128,7 @@ let src = '';
             <input 
             bind:value={post.breed}
             type="text" 
-            placeholder="Enter dogs breed" 
+            placeholder="Enter dog breed" 
             name="breed" 
             required>
 
@@ -206,7 +208,7 @@ let src = '';
             <br><br><br>
 
             </form>
-            
+          </div> 
           </div>
         </div>
       </div>

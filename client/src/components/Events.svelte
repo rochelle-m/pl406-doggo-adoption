@@ -19,25 +19,40 @@
 
 <div>
 <div  class="event">
-<h class="title camp"> <b>Dog Adoption Camp</b></h><br>
+<h class="title "> <b>Dog Adoption Camp</b></h><br>
 <img class="logo" src="/images/camp.png" alt="doggo" />
 <br>
 <h class="title">5th july 2021</h><br><h class="title">Adoption Centre, Goa - 231458</h>
 <br>
 <br>
-<button class="btn btn-primary">Register </button>
+
+<a class="btn btn-primary register" href="" >Register</a>
 </div>
 
 <div  class="event">
-<h class="title train"> <b>Tranning Camp</b></h><br>
+<h class="title "> <b>Tranning Camp</b></h><br>
 <img class="logo" src="/images/train.png" alt="doggo" />
 <br>
 <h class="title">20th july 2021 - 30th july 2021</h><br><h class="title">View ground, Goa - 231458</h>
 <br>
 <br>
-<button class="btn btn-primary">Register </button>
+<a class="btn btn-primary register" href="" >Register</a>
 </div>
+
+<div  class="event">
+<h class="title "> <b>Pet Food Expo</b></h><br>
+<img class="logo" src="/images/download.png" alt="doggo" />
+<br>
+<h class="title">12th july 2021 - 14th july 2021</h><br><h class="title">Doggo club, Goa - 456558</h>
+<br>
+<br>
+<a class="btn btn-primary register" href="" >Register</a>
 </div>
+
+</div>
+
+
+
 
 <style>
   h3 {
@@ -60,13 +75,8 @@
   .title{
   font-size:23px;
   }
-
-  .camp{
-  color: #54e346;
-  }
-
-  .train{
-  color: #fb9300;
-  }
-
+.register{
+	color:white;
+}
+  
   </style>
