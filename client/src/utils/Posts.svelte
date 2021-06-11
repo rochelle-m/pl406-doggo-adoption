@@ -1,9 +1,18 @@
 <script>
-  import Post from "./Post.svelte"
-  import NewPost from "./NewPost.svelte"
+  import Post from "./Post.svelte";
+  import NewPost from "./NewPost.svelte";
+
+  import { subscribe } from "../stores/posts";
+  let posts = [];
+
+  subscribe((newPosts) => {
+    posts = newPosts.reverse();
+  });
 </script>
 
 <div class=" mx-4 d-flex flex-column">
-  <NewPost/>
-  <Post/>
+  <NewPost />
+  {#each posts as tempPost}
+    <Post {tempPost} />
+  {/each}
 </div>
