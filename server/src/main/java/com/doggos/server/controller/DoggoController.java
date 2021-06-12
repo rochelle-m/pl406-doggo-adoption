@@ -45,8 +45,8 @@ public class DoggoController {
         try {
             Doggo doggo = new Doggo(id, name, breed, description, remarks, location, adopted, fostered);
 
-            String primaryImgUrl = storageService.store(primary, id);
-            String secondaryImgUrl = storageService.store(secondary, id);
+            String primaryImgUrl = storageService.store(primary, id, "doggos");
+            String secondaryImgUrl = storageService.store(secondary, id, "doggos");
 
             doggo.setPrimaryImg(primaryImgUrl);
             doggo.setSecondaryImg(secondaryImgUrl);
