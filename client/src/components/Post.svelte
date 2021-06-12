@@ -92,7 +92,7 @@ let src = '';
 </script>
 
 <div id="myForm">
-  <div class="modal" in:fade out:fade>
+  <div class="modal" fade>
     <div class="backdrop" />
       <div class="content-wrapper">
         <div class="content">
@@ -103,9 +103,7 @@ let src = '';
           <div class="modal-body mx-3">
         
             <form id="myForm">
-             
-
-            
+                         
             <label 
             for="name">
             <b>Name</b>
