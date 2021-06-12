@@ -7,7 +7,7 @@ import java.io.IOException;
 public interface StorageService {
     void init();
 
-    String store(MultipartFile multipartFile, String id) throws StorageException;
+    String store(MultipartFile multipartFile, String id, String slug) throws StorageException;
 
     byte[] get(String filename, String id) throws IOException;
 }

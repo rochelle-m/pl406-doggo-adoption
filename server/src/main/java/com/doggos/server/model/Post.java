@@ -3,9 +3,9 @@ package com.doggos.server.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class Post {
     @DBRef
     private User user;
 
-    private String comment;
+    private String caption;
 
     private List<String> tags;
 
@@ -32,10 +32,19 @@ public class Post {
 
     private Date createdDate;
 
-    public Post(String id, User user, String comment, List<String> tags, List<Comment> comments, List<User> favourites, @Nullable String imagePath, Date createdDate) {
-        this.id = id;
+    public Post(User user, String caption, List<String> tags, @Nullable String imagePath, Date createdDate) {
         this.user = user;
-        this.comment = comment;
+        this.caption = caption;
+        this.tags = tags;
+        this.imagePath = imagePath;
+        this.createdDate = createdDate;
+        this.comments = new ArrayList<>();
+        this.favourites = new ArrayList<>();
+    }
+
+    public Post(User user, String caption, List<String> tags, List<Comment> comments, List<User> favourites, @Nullable String imagePath, Date createdDate) {
+        this.user = user;
+        this.caption = caption;
         this.tags = tags;
         this.comments = comments;
         this.favourites = favourites;
@@ -59,12 +68,12 @@ public class Post {
         this.user = user;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCaption() {
+        return caption;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCaption(String caption) {
+        this.caption = caption;
     }
 
     public List<String> getTags() {

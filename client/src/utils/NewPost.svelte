@@ -3,18 +3,21 @@
   import moment from "moment";
   import { openModal } from "../stores/store";
   import { subscribe, update } from "../stores/posts";
+  import axios from "axios";
+
+  const URL = `http://localhost:5001/api/posts/new`;
 
   let preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
   const tags = ["adoption", "help", "foster", "food"];
 
   let newPost = {
     caption: null,
-    selectedTags: [],
-    fileInput: null,
+    tags: [],
     username: null,
-    comments: [],
-    time: null,
+    date: null,
   };
+
+  let image = null;
 
   let posts = [];
 
@@ -45,17 +48,45 @@
     };
   };
 
-  const post = () => {
+  const post = async function () {
     newPost.username = currentUser.username;
-    newPost.time = moment().format("LLL");
+    newPost.date = moment().format("LLL");
 
     // ! fix order of posts
-    posts.push(newPost);
+    // posts.push(newPost);
+
+    let formData = new FormData();
+
+    formData.append(
+      "post",
+      new Blob([JSON.stringify(newPost)], {
+        type: "application/json",
+      })
+    );
+    formData.append("image", image?.files[0]);
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: URL,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: currentUser.type + " " + currentUser.token,
+        },
+      });
+    } 
+    catch (err) {
+      console.log(err)
+    }
+
     update(() => posts);
     setTimeout(() => {
-      newPost = {...newPost}
-      newPost.selectedTags = []
-      newPost.caption = ""
+      newPost = { ...newPost };          
+      newPost.tags = [];
+      newPost.caption = "";
+      preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+      showImageUploading = false
     }, 3000);
   };
 
@@ -105,7 +136,7 @@
               alt="example placeholder"
               title="Tap to add or change image"
               on:click={() => {
-                newPost.fileInput.click();
+                image.click();
               }} />
           </div>
           <input
@@ -113,7 +144,7 @@
             type="file"
             accept=".jpg, .jpeg, .png"
             on:change={(e) => onFileSelected(e)}
-            bind:this={newPost.fileInput} />
+            bind:this={image} />
         </div>
       {/if}
 
@@ -121,10 +152,7 @@
         {#each tags as tag}
           <div class="mx-2 d-inline">
             <label>
-              <input
-                type="checkbox"
-                bind:group={newPost.selectedTags}
-                value={tag} />
+              <input type="checkbox" bind:group={newPost.tags} value={tag} />
               #{tag}
             </label>
           </div>

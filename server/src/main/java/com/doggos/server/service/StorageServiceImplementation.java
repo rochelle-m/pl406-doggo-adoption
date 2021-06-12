@@ -33,7 +33,7 @@ public class StorageServiceImplementation implements StorageService {
     }
 
     @Override
-    public String store(MultipartFile multipartFile, String id) throws StorageException {
+    public String store(MultipartFile multipartFile, String id, String slug) throws StorageException {
         try {
             if (multipartFile.isEmpty()) {
                 throw new StorageException("Failed to store file");
@@ -59,7 +59,7 @@ public class StorageServiceImplementation implements StorageService {
                         StandardCopyOption.REPLACE_EXISTING);
             }
             return ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/doggos/image/" + id + "/")
+                    .path("/api/" + slug +"/image/" + id + "/")
                     .path(multipartFile.getOriginalFilename())
                     .toUriString();
         } catch (IOException e) {
