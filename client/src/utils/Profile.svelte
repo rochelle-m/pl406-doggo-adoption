@@ -21,10 +21,10 @@
             <p class="card-text">{role.substring(role.indexOf("_") + 1)}</p>
         {/each}
 
-        <Link on:click={logout} class="nav-link text-dark">
+        <p on:click={logout} class="nav-link text-dark pointer">
             <i class="fa fa-sign-out" aria-hidden="true" />
             <span>Logout</span>
-        </Link>
+        </p>
     </div>
   </div>
 </div>

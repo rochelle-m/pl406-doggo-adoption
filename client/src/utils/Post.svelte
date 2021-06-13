@@ -86,7 +86,7 @@
   }
 </style>
 
-<div class="card col-8 p-4 col-lg-6 my-2">
+<div class="card col-10 p-4 my-2">
   <div class="mb-4 text-left">
     <div class="media-body">
       <i
@@ -98,7 +98,7 @@
   </div>
 
   {#if tempPost.src}
-    <img src={tempPost.src} class="card-img-top img-fluid" alt="..." />
+    <img src={tempPost.src} class=" img-fluid" alt="..." />
   {/if}
   <div class="card-body text-left">
     <p>{tempPost.caption}</p>

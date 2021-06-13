@@ -91,15 +91,13 @@
   };
 
   const handleSubmit = () => {
-    if (currentUser.isLoggedIn) {
-      post();
-    } else {
-      openModal("login");
-    }
+    currentUser.isLoggedIn && post();
   };
 </script>
 
-<div class="card col-8 p-4 col-lg-6 my-2">
+<div class="card col-10 p-4 my-2">
+
+  {#if currentUser.isLoggedIn}
   <div class="text-left">
     <h5 class="text-left">Create a post</h5>
     <p class="text-muted">Share a thought or ask for help</p>
@@ -162,4 +160,9 @@
       <div class="text-right"><button class="mt-4">Post</button></div>
     </form>
   </div>
+  {:else}
+
+  <div class="text-right"><button class="mt-4 col-4" on:click={()=>openModal("login")}>Login to post</button></div>
+
+  {/if}
 </div>

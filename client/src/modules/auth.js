@@ -12,7 +12,8 @@ let logOn = {
         username: newUser.username,
         password: newUser.password,
       });
-      const userData = await response.json();
+      try {
+        const userData = await response.json();
       if (userData.token) {
         localStorage.setItem(
           "user",
@@ -20,6 +21,10 @@ let logOn = {
         );
         user.add({ ...userData, isLoggedIn: true });
         return true;
+      }
+      }
+      catch (err) {
+        return false
       }
       return false;
     },
@@ -29,21 +34,26 @@ let logOn = {
     banner: "/images/dog2.jpg",
     alt: "Login",
     request: async (newUser, vrole = null) => {
-      const response = await create(API_URL + "signup", {
-        username: newUser.username,
-        password: newUser.password,
-        email: newUser.email,
-        roles: newUser.roles || ["user"],
-        volunteerRole: vrole,
-      });
-      const userData = await response.json();
-      if (userData.token) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ ...userData, isLoggedIn: true })
-        );
-        user.add({ ...userData, isLoggedIn: true });
-        return true;
+      try {
+        const response = await create(API_URL + "signup", {
+          username: newUser.username,
+          password: newUser.password,
+          email: newUser.email,
+          roles: newUser.roles || ["user"],
+          volunteerRole: vrole,
+        });
+        const userData = await response.json();
+        if (userData.token) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ ...userData, isLoggedIn: true })
+          );
+          user.add({ ...userData, isLoggedIn: true });
+          return true;
+        }
+      }
+      catch (err) {
+        return false;
       }
       return false;
     },
@@ -52,9 +62,15 @@ let logOn = {
 
 let logout = async () => {
   let { type, token } = JSON.parse(localStorage.getItem("user"));
-  await authorize(API_URL + "logout", type + " " + token);
-  localStorage.removeItem("user");
-  user.reset();
+  try {
+    await authorize(API_URL + "logout", type + " " + token);
+    localStorage.removeItem("user");
+    user.reset();
+  }
+  catch (err) {
+    return false
+  }
+  return true
 };
 
 let update = async (role) => {

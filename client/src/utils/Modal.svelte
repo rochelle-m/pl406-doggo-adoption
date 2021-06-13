@@ -66,7 +66,11 @@
       <div class="container">
         {#if !loading}
         <form on:submit|preventDefault={sendRequest}>
-        <div class="status text-danger">{message}</div>
+          {#if message}
+          <div class="alert alert-warning" role="alert">
+            {message}
+          </div>
+          {/if}
           {#if currentIndex}
             <div class="form-group">
               <label for="email">Email</label>

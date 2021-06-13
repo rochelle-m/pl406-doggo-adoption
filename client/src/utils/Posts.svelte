@@ -10,7 +10,7 @@
   });
 </script>
 
-<div class=" mx-4 d-flex flex-column">
+<div class=" mx-5 d-flex col-lg-8 flex-column">
   <NewPost />
   {#each posts as tempPost}
     <Post {tempPost} />
