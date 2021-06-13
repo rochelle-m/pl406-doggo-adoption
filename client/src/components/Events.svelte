@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="/images/gallary3.jpg" target="_blank">
+        <a href="/images/gallary3.jpg" target="_blank" class="img-thumbnail">
           <img src="/images/gallary3.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
@@ -77,8 +77,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="/images/gallary6.jpg" target="_blank">
-          <img src="/images/gallary6.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+        <a href="/images/gallary15.jpg" target="_blank">
+          <img src="/images/gallary15.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -117,8 +117,8 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="/images/gallary8.jpg" target="_blank">
-          <img src="/images/gallary8.jpg" alt="Nature" style="width:100%">
+        <a href="/images/gallary13.jpg" target="_blank">
+          <img src="/images/gallary13.jpg" alt="Nature" style="width:100%">
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -127,8 +127,38 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="/images/gallary12.jpg" target="_blank">
-          <img src="/images/gallary12.jpg" alt="Nature" style="width:100%">
+        <a href="/images/gallary8.jpg" target="_blank">
+          <img src="/images/gallary8.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div> 
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary11.jpg" target="_blank">
+          <img src="/images/gallary11.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary14.jpg" target="_blank">
+          <img src="/images/gallary14.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary9.jpg" target="_blank">
+          <img src="/images/gallary9.jpg" alt="Nature" style="width:100%">
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -147,8 +177,18 @@
     </div>
     <div class="col-md-4">
       <div class="thumbnail">
-        <a href="/images/gallary9.jpg" target="_blank">
-          <img src="/images/gallary9.jpg" alt="Fjords" style="width:100%">
+        <a href="/images/gallary5.jpg" target="_blank">
+          <img src="/images/gallary5.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/12.jpg" target="_blank">
+          <img src="/images/gallary12.jpg" alt="Fjords" style="width:100%">
           <div class="caption">
             <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
           </div>
@@ -156,7 +196,7 @@
       </div>
     </div>
   </div>
-</div>
+ </div>
 
 <style>
   h3 {
