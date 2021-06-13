@@ -12,33 +12,35 @@ public class Doggo {
     private String breed;
     private String description;
     private String remarks;
+    private String location;
     @Nullable
     private String primaryImg;
     @Nullable
     private String secondaryImg;
     private Boolean isAdopted;
     private Boolean isFostered;
-
     public Doggo() {
 
     }
 
-    public Doggo(String id, String name, String breed, String description, String remarks, Boolean isAdopted, Boolean isFostered) {
+    public Doggo(String id, String name, String breed, String description, String remarks, String location, Boolean isAdopted, Boolean isFostered) {
         this.id = id;
         this.name = name;
         this.breed = breed;
         this.description = description;
         this.remarks = remarks;
+        this.location = location;
         this.isAdopted = isAdopted;
         this.isFostered = isFostered;
     }
 
-    public Doggo(String id, String name, String breed, String description, String remarks, @Nullable String primaryImg, @Nullable String secondaryImg, Boolean isAdopted, Boolean isFostered) {
+    public Doggo(String id, String name, String breed, String description, String remarks, String location, @Nullable String primaryImg, @Nullable String secondaryImg, Boolean isAdopted, Boolean isFostered) {
         this.id = id;
         this.name = name;
         this.breed = breed;
         this.description = description;
         this.remarks = remarks;
+        this.location = location;
         this.primaryImg = primaryImg;
         this.secondaryImg = secondaryImg;
         this.isAdopted = isAdopted;
@@ -84,6 +86,11 @@ public class Doggo {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
 
     @Nullable
     public String getPrimaryImg() {

@@ -36,13 +36,14 @@ public class DoggoController {
                                              @RequestParam("breed") String breed,
                                              @RequestParam("description") String description,
                                              @RequestParam("remarks") String remarks,
+                                             @RequestParam("location") String location,
                                              @RequestParam("adopted") Boolean adopted,
                                              @RequestParam("fostered") Boolean fostered,
                                              @RequestParam("primaryImg") MultipartFile primary,
                                              @RequestParam("secondaryImg") MultipartFile secondary) {
 
         try {
-            Doggo doggo = new Doggo(id, name, breed, description, remarks, adopted, fostered);
+            Doggo doggo = new Doggo(id, name, breed, description, remarks, location, adopted, fostered);
 
             String primaryImgUrl = storageService.store(primary, id, "doggos");
             String secondaryImgUrl = storageService.store(secondary, id, "doggos");

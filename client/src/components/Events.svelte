@@ -17,7 +17,8 @@
   
 </div>
 
-<div>
+
+
 <div  class="event">
 <h class="title "> <b>Dog Adoption Camp</b></h><br>
 <img class="logo" src="/images/camp.png" alt="doggo" />
@@ -26,7 +27,7 @@
 <br>
 <br>
 
-<a class="btn btn-primary register" href="" >Register</a>
+<a class="btn btn-primary register" href="registerevent" >Register</a>
 </div>
 
 <div  class="event">
@@ -49,14 +50,159 @@
 <a class="btn btn-primary register" href="" >Register</a>
 </div>
 
-</div>
 
 
-
+<div class="container">
+<h3><b>Events Gallary</b></h3>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary10.jpg" target="_blank">
+          <img src="/images/gallary10.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary3.jpg" target="_blank" class="img-thumbnail">
+          <img src="/images/gallary3.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary15.jpg" target="_blank">
+          <img src="/images/gallary15.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary7.jpg" target="_blank">
+          <img src="/images/gallary7.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary1.jpg" target="_blank">
+          <img src="/images/gallary1.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary2.jpg" target="_blank">
+          <img src="/images/gallary2.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary13.jpg" target="_blank">
+          <img src="/images/gallary13.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary8.jpg" target="_blank">
+          <img src="/images/gallary8.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div> 
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary11.jpg" target="_blank">
+          <img src="/images/gallary11.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary14.jpg" target="_blank">
+          <img src="/images/gallary14.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary9.jpg" target="_blank">
+          <img src="/images/gallary9.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary6.jpg" target="_blank">
+          <img src="/images/gallary6.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/gallary5.jpg" target="_blank">
+          <img src="/images/gallary5.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/images/12.jpg" target="_blank">
+          <img src="/images/gallary12.jpg" alt="Fjords" style="width:100%">
+          <div class="caption">
+            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+ </div>
 
 <style>
   h3 {
-    padding: 4em 0;
+    padding: 2em 0;
+    font-size:25px;
+    color:orange;
   }
 
   .event{
@@ -78,5 +224,5 @@
 .register{
 	color:white;
 }
-  
-  </style>
+</style>
+
