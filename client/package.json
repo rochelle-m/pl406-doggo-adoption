@@ -25,9 +25,7 @@
     "sirv-cli": "^1.0.0"
   },
   "proxy": {
-    "/api": {
-      "target": "http://localhost:5001",
-      "ws": true
-    }
+    "target": "http://localhost:5001",
+    "ws": true
   }
 }
