@@ -29,7 +29,7 @@
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
     <Route path="post"><Post /></Route>
-    <Route path="adoptionform"><AdoptionForm /></Route>
+    <Route path="adoption-form"><AdoptionForm /></Route>
     <Route path="registerevent"><RegisterEvent /></Route>
     <Route><Message message="Page not found" /></Route>
     <Footer />

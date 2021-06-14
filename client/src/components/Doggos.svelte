@@ -52,7 +52,7 @@
 </div>
 
 <BeforeYouAdopt {show} />
-<a class="addbtn" href="adoptionform"><b>Adoption Form</b></a>
+
 <a class="addbtn" href="post" ><b>Add Post</b></a>
 
 <style>
