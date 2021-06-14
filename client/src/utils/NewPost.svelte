@@ -5,7 +5,7 @@
   import { subscribe, update } from "../stores/posts";
   import axios from "axios";
 
-  const URL = `http://localhost:5001/api/posts/new`;
+  const URL = `/api/posts/new`;
 
   let preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
   const tags = ["adoption", "help", "foster", "food"];
