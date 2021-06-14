@@ -25,6 +25,6 @@
     "sirv-cli": "^1.0.0"
   },
   "proxy": {
-    "target": "https://blooming-basin-78634.herokuapp.com/",
+    "target": "https://blooming-basin-78634.herokuapp.com/"
   }
 }
