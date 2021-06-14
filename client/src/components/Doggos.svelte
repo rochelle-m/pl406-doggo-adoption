@@ -9,7 +9,7 @@
 
   let doggos = [];
   let error = "";
-  const URL = `http://localhost:5001/api/doggos/`;
+  const URL = `/api/doggos/`;
   let show = false;
 
   onMount(async function () {

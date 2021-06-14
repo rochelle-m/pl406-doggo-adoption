@@ -1,6 +1,5 @@
 <script>
   import { user } from "../stores/user";
-  import { Link } from "svelte-routing";
   import { logout } from "../modules/auth";
 
   let currentUser;
