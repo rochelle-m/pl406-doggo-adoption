@@ -31,18 +31,10 @@ public class DoggoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Doggo> createDoggo(@RequestParam("id") String id,
-                                             @RequestParam("name") String name,
-                                             @RequestParam("breed") String breed,
-                                             @RequestParam("description") String description,
-                                             @RequestParam("remarks") String remarks,
-                                             @RequestParam("location") String location,
-                                             @RequestParam("adopted") Boolean adopted,
-                                             @RequestParam("fostered") Boolean fostered,
-                                             @RequestParam("primaryImg") MultipartFile primary,
-                                             @RequestParam("secondaryImg") MultipartFile secondary) {
+    public ResponseEntity<Doggo> createDoggo(String id, String name, String breed, String description, String remarks, String location, Boolean adopted, Boolean fostered, MultipartFile primary, MultipartFile secondary) {
 
         try {
+
             Doggo doggo = new Doggo(id, name, breed, description, remarks, location, adopted, fostered);
 
             String primaryImgUrl = storageService.store(primary, id, "doggos");
