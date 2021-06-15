@@ -32,6 +32,8 @@ public class Post {
 
     private Date createdDate;
 
+    public Post () {}
+
     public Post(User user, String caption, List<String> tags, @Nullable String imagePath, Date createdDate) {
         this.user = user;
         this.caption = caption;

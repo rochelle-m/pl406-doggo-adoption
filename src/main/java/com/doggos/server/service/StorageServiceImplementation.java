@@ -58,10 +58,7 @@ public class StorageServiceImplementation implements StorageService {
                 Files.copy(inputStream, destinationFile,
                         StandardCopyOption.REPLACE_EXISTING);
             }
-            return ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/" + slug +"/image/" + id + "/")
-                    .path(multipartFile.getOriginalFilename())
-                    .toUriString();
+            return "/api/" + slug +"/image/" + id + "/"+ (multipartFile.getOriginalFilename());
         } catch (IOException e) {
             throw new StorageException("Failed to store file.", e);
         }

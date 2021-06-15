@@ -6,7 +6,7 @@
   let posts = [];
 
   subscribe((newPosts) => {
-    posts = newPosts.reverse();
+    posts = newPosts;
   });
 </script>
 
