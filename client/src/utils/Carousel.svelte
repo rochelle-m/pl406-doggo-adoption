@@ -34,7 +34,7 @@
     <div class="carousel-item">
       <img src="images/dog3.jpg" alt="dog3" width="100%" >
       <div class="carousel-caption">
-		    <h3>text for volunteer</h3>
+		    <h3>Start in Your Own Neighborhood.</h3>
 		    <br>
 		     <form action="#volunteer">
     				<input type="submit" value="Volunteer" />
