@@ -14,11 +14,10 @@
     caption: null,
     tags: [],
     username: null,
-    date: null,
+    createdDate: null,
   };
 
   let image = null;
-
   let posts = [];
 
   subscribe((newPosts) => {
@@ -26,10 +25,9 @@
   });
 
   let currentUser = {};
-
   user.subscribe((updatedUser) => {
     if (updatedUser) {
-      currentUser = updatedUser;
+      currentUser = updatedUser;  
     }
   });
 
@@ -46,14 +44,11 @@
     reader.onload = (e) => {
       preview = e.target.result;
     };
-  };
+  };  
 
   const post = async function () {
     newPost.username = currentUser.username;
-    newPost.date = moment().format("LLL");
-
-    // ! fix order of posts
-    // posts.push(newPost);
+    newPost.createdDate = moment().format("LLL");
 
     let formData = new FormData();
 
@@ -75,19 +70,22 @@
           Authorization: currentUser.type + " " + currentUser.token,
         },
       });
-    } 
-    catch (err) {
-      console.log(err)
-    }
 
-    update(() => posts);
-    setTimeout(() => {
-      newPost = { ...newPost };          
-      newPost.tags = [];
-      newPost.caption = "";
-      preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
-      showImageUploading = false
-    }, 3000);
+      const createdPost = response.data
+      
+      if (createdPost.id) {
+        update((_) => [createdPost, ...posts]);
+      }
+
+      newPost = { ...newPost };
+        newPost.tags = [];
+        newPost.caption = "";
+        preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+        showImageUploading = false;
+
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = () => {
@@ -96,73 +94,73 @@
 </script>
 
 <div class="card col-10 p-4 my-2">
-
   {#if currentUser.isLoggedIn}
-  <div class="text-left">
-    <h5 class="text-left">Create a post</h5>
-    <p class="text-muted">Share a thought or ask for help</p>
-  </div>
-  <div class="mb-3">
-    <form on:submit|preventDefault={handleSubmit}>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend3">
-            <i class="far fa-closed-captioning" />
+    <div class="text-left">
+      <h5 class="text-left">Create a post</h5>
+      <p class="text-muted">Share a thought or ask for help</p>
+    </div>
+    <div class="mb-3">
+      <form on:submit|preventDefault={handleSubmit}>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend3">
+              <i class="far fa-closed-captioning" />
+            </span>
+          </div>
+          <textarea
+            class="form-control"
+            bind:value={newPost.caption}
+            placeholder="Type a caption"
+            aria-describedby="inputGroupPrepend3"
+            required />
+          <span
+            class="input-group-text pointer"
+            id="inputGroupPrepend3"
+            title="Add an image"
+            on:click={show}><i class="fas fa-image" />
           </span>
         </div>
-        <textarea
-          class="form-control"
-          bind:value={newPost.caption}
-          placeholder="Type a caption"
-          aria-describedby="inputGroupPrepend3"
-          required />
-        <span
-          class="input-group-text pointer"
-          id="inputGroupPrepend3"
-          title="Add an image"
-          on:click={show}><i class="fas fa-image" />
-        </span>
-      </div>
 
-      {#if showImageUploading}
-        <div class="input-group">
-          <div class="z-depth-1-half my-4">
-            <img
-              src={preview}
-              style="cursor:copy;"
-              class="img-fluid"
-              alt="example placeholder"
-              title="Tap to add or change image"
-              on:click={() => {
-                image.click();
-              }} />
+        {#if showImageUploading}
+          <div class="input-group">
+            <div class="z-depth-1-half my-4">
+              <img
+                src={preview}
+                style="cursor:copy;"
+                class="img-fluid"
+                alt="example placeholder"
+                title="Tap to add or change image"
+                on:click={() => {
+                  image.click();
+                }} />
+            </div>
+            <input
+              style="display:none"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              on:change={(e) => onFileSelected(e)}
+              bind:this={image} />
           </div>
-          <input
-            style="display:none"
-            type="file"
-            accept=".jpg, .jpeg, .png"
-            on:change={(e) => onFileSelected(e)}
-            bind:this={image} />
+        {/if}
+
+        <div class="my-2">
+          {#each tags as tag}
+            <div class="mx-2 d-inline">
+              <label>
+                <input type="checkbox" bind:group={newPost.tags} value={tag} />
+                #{tag}
+              </label>
+            </div>
+          {/each}
         </div>
-      {/if}
 
-      <div class="my-2">
-        {#each tags as tag}
-          <div class="mx-2 d-inline">
-            <label>
-              <input type="checkbox" bind:group={newPost.tags} value={tag} />
-              #{tag}
-            </label>
-          </div>
-        {/each}
-      </div>
-
-      <div class="text-right"><button class="mt-4">Post</button></div>
-    </form>
-  </div>
+        <div class="text-right"><button class="mt-4">Post</button></div>
+      </form>
+    </div>
   {:else}
-
-  <div class="text-right"><button class="mt-4 col-4" on:click={()=>openModal("login")}>Login to post</button></div>
-
+    <div class="text-right">
+      <button class="mt-4 col-4" on:click={() => openModal('login')}>Login to
+        post</button>
+    </div>
   {/if}
 </div>

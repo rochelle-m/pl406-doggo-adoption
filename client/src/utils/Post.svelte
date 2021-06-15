@@ -8,7 +8,6 @@
   let showComments = false;
   let comment = "";
 
-  // get from posts
   let liked = false;
 
   let sendBtnVisible = comment != "";
@@ -92,13 +91,15 @@
       <i
         class={liked ? 'fas fa-star float-right pointer fav' : 'far fa-star float-right pointer fav'}
         on:click={favourite} />
-      <span class="mb-2">@ {tempPost.username}</span>
-      <div class="text-muted small">{moment(tempPost.time).fromNow()}</div>
+      <span class="mb-2">@ {tempPost.user.username}</span>
+      <div class="text-muted small">
+        {moment(tempPost.createdDate).fromNow()}
+      </div>
     </div>
   </div>
 
-  {#if tempPost.src}
-    <img src={tempPost.src} class=" img-fluid" alt="..." />
+  {#if tempPost.imagePath}
+    <img src={tempPost.imagePath} class=" img-fluid" alt="..." />
   {/if}
   <div class="card-body text-left">
     <p>{tempPost.caption}</p>
@@ -106,7 +107,7 @@
 
   <div class="card-footer text-left">
     <small class="align-left pointer" on:click={open}>
-      <strong> {tempPost.comments?.length} </strong>
+      <strong> {tempPost.comments?.length || 0} </strong>
       Comment(s)
     </small>
 

@@ -10,7 +10,7 @@ public class PostRequest {
 
     private  String username;
 
-    private String date;
+    private String createdDate;
 
     public String getCaption() {
         return caption;
@@ -36,11 +36,11 @@ public class PostRequest {
         this.username = username;
     }
 
-    public String getDate() {
-        return date;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 }

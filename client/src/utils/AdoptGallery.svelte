@@ -5,7 +5,7 @@
   let allDoggos = [];
   let first3 = []; 
   let error = "";
-  const URL = `http://localhost:5001/api/doggos/`;
+  const URL = `/api/doggos/`;
 
   onMount(async function () {
     try {
