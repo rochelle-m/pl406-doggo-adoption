@@ -48,13 +48,34 @@
     }, 4000);
   };
 
-  const post = () => {
+  const post = async () => {
+    
+    const response = await fetch('/api/posts/comment/', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        Authorization: currentUser.type + " " + currentUser.token,
+      },
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify({
+        comment,
+        username: currentUser.username,
+        postId: tempPost.id
+      }) 
+    })
+
+    const c = await response.json()
     tempPost.comments.push({
-      username: currentUser.username,
-      comment,
-    });
+      comment: c.comment,
+      user: {
+        username: c.username
+      }
+    })
     tempPost = tempPost;
+
     comment = "";
+    sendBtnVisible = false
     clearInterval(interval);
   };
 
@@ -115,7 +136,7 @@
       {#each tempPost.comments as comment}
         <div>
           <small>
-            <strong>@{comment.username}</strong>
+            <strong>@{comment.user.username}</strong>
             <em>{comment.comment}</em>
           </small>
         </div>

@@ -21,7 +21,6 @@ public class Post {
 
     private List<String> tags;
 
-    @DBRef
     private List<Comment> comments;
 
     @DBRef
