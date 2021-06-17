@@ -24,7 +24,7 @@
     <div class="carousel-item">
       <img src="images/dog14.jpg" alt="dog14" width="100%" >
       <div class="carousel-caption">
-		    <h3>text for foster</h3>
+		    <h3>When i needed a hand, i found your paw!</h3>
 		    <br>
 		     <form action="#foster">
     				<input type="submit" value="Foster" />
@@ -44,7 +44,7 @@
     <div class="carousel-item">
       <img src="images/dog12.jpg" alt="dog1" width="100%" id="item4" >
       <div class="carousel-caption">
-		    <h3>text for donate</h3>
+		    <h3>Care they need, love they deserve.</h3>
 		    <br>
 		     <form action="#donate">
     				<input type="submit" value="Donate" />
