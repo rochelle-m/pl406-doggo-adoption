@@ -27,7 +27,7 @@
 		    <h3>When i needed a hand, i found your paw!</h3>
 		    <br>
 		     <form action="#foster">
-    				<input type="submit" value="Foster" />
+    				<input class="cbtn" type="submit" value="Foster" />
 			</form>
   		</div>
     </div>
@@ -37,7 +37,7 @@
 		    <h3>Start in Your Own Neighborhood.</h3>
 		    <br>
 		     <form action="#volunteer">
-    				<input type="submit" value="Volunteer" />
+    				<input class="cbtn" type="submit" value="Volunteer" />
 			</form>
   		</div>
     </div>
@@ -47,7 +47,7 @@
 		    <h3>Care they need, love they deserve.</h3>
 		    <br>
 		     <form action="#donate">
-    				<input type="submit" value="Donate" />
+    				<input class="cbtn" type="submit" value="Donate" />
 			</form>
   		</div>
     </div>
