@@ -16,7 +16,7 @@
 		    <h3>will you be my hooman? ♡</h3>
 		    <br>
 		    <form action="#adopt">
-    				<input type="submit" value="Adopt" />
+    				<input class="cbtn" type="submit" value="Adopt" />
 			</form>
   		</div>
   		
@@ -76,4 +76,11 @@
  #item4 {
    filter: brightness(50%);
  }
+
+ .cbtn{
+  opacity:70%;
+  border-radius:5px;
+  width:100px;
+ }
+
 </style>

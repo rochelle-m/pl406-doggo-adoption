@@ -60,7 +60,7 @@
         <a href="/images/gallary10.jpg" target="_blank">
           <img src="/images/gallary10.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Tranning camp, July 2018, Vasco</p>
           </div>
         </a>
       </div>
@@ -70,7 +70,7 @@
         <a href="/images/gallary3.jpg" target="_blank" class="img-thumbnail">
           <img src="/images/gallary3.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Pet food exibition, Feb 2019, Ponda</p>
           </div>
         </a>
       </div>
@@ -80,7 +80,7 @@
         <a href="/images/gallary15.jpg" target="_blank">
           <img src="/images/gallary15.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Dogs show, September 2019</p>
           </div>
         </a>
       </div>
@@ -90,7 +90,7 @@
         <a href="/images/gallary7.jpg" target="_blank">
           <img src="/images/gallary7.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Pet food exibition 2018, Panjim</p>
           </div>
         </a>
       </div>
@@ -100,7 +100,7 @@
         <a href="/images/gallary1.jpg" target="_blank">
           <img src="/images/gallary1.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Tranning camp 2018</p>
           </div>
         </a>
       </div>
@@ -110,7 +110,7 @@
         <a href="/images/gallary2.jpg" target="_blank">
           <img src="/images/gallary2.jpg" alt="Lights" style="width:100%" class=".img-thumbnail">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Pet food exibition, January 2018, Margao</p>
           </div>
         </a>
       </div>
@@ -120,7 +120,7 @@
         <a href="/images/gallary13.jpg" target="_blank">
           <img src="/images/gallary13.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Adoption camp, March 2019</p>
           </div>
         </a>
       </div>
@@ -130,7 +130,7 @@
         <a href="/images/gallary8.jpg" target="_blank">
           <img src="/images/gallary8.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Pet food exibition, Dec 2020, Mapusa</p>
           </div>
         </a>
       </div>
@@ -140,7 +140,7 @@
         <a href="/images/gallary11.jpg" target="_blank">
           <img src="/images/gallary11.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Adoption camp, March 2021, Porvorim</p>
           </div>
         </a>
       </div>
@@ -150,7 +150,7 @@
         <a href="/images/gallary14.jpg" target="_blank">
           <img src="/images/gallary14.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Adoption camp, January 2021, Bicholim </p>
           </div>
         </a>
       </div>
@@ -160,7 +160,7 @@
         <a href="/images/gallary9.jpg" target="_blank">
           <img src="/images/gallary9.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Dogs Show, November 2020, Porvorim</p>
           </div>
         </a>
       </div>
@@ -170,7 +170,7 @@
         <a href="/images/gallary6.jpg" target="_blank">
           <img src="/images/gallary6.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Tranning camp, Dec 2020, Vasco</p>
           </div>
         </a>
       </div>
@@ -180,7 +180,7 @@
         <a href="/images/gallary5.jpg" target="_blank">
           <img src="/images/gallary5.jpg" alt="Nature" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Dog food exibition,August 2020, Anjuna</p>
           </div>
         </a>
       </div>
@@ -190,7 +190,7 @@
         <a href="/images/12.jpg" target="_blank">
           <img src="/images/gallary12.jpg" alt="Fjords" style="width:100%">
           <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+            <p>Adoption camp, March 2021, Panjim</p>
           </div>
         </a>
       </div>
