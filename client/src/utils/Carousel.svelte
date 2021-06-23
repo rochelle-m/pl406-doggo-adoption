@@ -16,7 +16,7 @@
 		    <h3>will you be my hooman? ♡</h3>
 		    <br>
 		    <form action="#adopt">
-    				<input type="submit" value="Adopt" />
+    				<input class="cbtn" type="submit" value="Adopt" />
 			</form>
   		</div>
   		
@@ -24,10 +24,10 @@
     <div class="carousel-item">
       <img src="images/dog14.jpg" alt="dog14" width="100%" >
       <div class="carousel-caption">
-		    <h3>text for foster</h3>
+		    <h3>When i needed a hand, i found your paw!</h3>
 		    <br>
 		     <form action="#foster">
-    				<input type="submit" value="Foster" />
+    				<input class="cbtn" type="submit" value="Foster" />
 			</form>
   		</div>
     </div>
@@ -37,17 +37,17 @@
 		    <h3>Start in Your Own Neighborhood.</h3>
 		    <br>
 		     <form action="#volunteer">
-    				<input type="submit" value="Volunteer" />
+    				<input class="cbtn" type="submit" value="Volunteer" />
 			</form>
   		</div>
     </div>
     <div class="carousel-item">
       <img src="images/dog12.jpg" alt="dog1" width="100%" id="item4" >
       <div class="carousel-caption">
-		    <h3>text for donate</h3>
+		    <h3>Care they need, love they deserve.</h3>
 		    <br>
 		     <form action="#donate">
-    				<input type="submit" value="Donate" />
+    				<input class="cbtn" type="submit" value="Donate" />
 			</form>
   		</div>
     </div>
@@ -76,4 +76,11 @@
  #item4 {
    filter: brightness(50%);
  }
+
+ .cbtn{
+  opacity:70%;
+  border-radius:5px;
+  width:100px;
+ }
+
 </style>
