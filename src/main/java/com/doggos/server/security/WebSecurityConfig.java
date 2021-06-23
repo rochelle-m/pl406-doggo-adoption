@@ -61,6 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/", "/build/bundle.js", "/global.js", "/build/bundle.js", "/favicon.png", "/images/**", "/global.css", "/build/bundle.css");
+        web.ignoring().antMatchers("/**", "/icons8-vet.png",  "/icons8-shop-50.png","/build/bundle.js", "/global.js", "/build/bundle.js", "/favicon.png", "/images/**", "/global.css", "/build/bundle.css");
     }
 }

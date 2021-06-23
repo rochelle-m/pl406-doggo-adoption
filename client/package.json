@@ -20,11 +20,8 @@
     "rollup-plugin-terser": "^7.0.0",
     "sirv-cli": "^1.0.0",
     "svelte": "^3.0.0",
-    "svelte-environment-variables": "^1.0.4",
     "svelte-routing": "^1.6.0",
-    "sveltestrap": "^3.14.1"
-  },
-  "dependencies": {
+    "sveltestrap": "^3.14.1",
     "mapbox-gl": "^2.3.0"
   }
 }
