@@ -42,3 +42,27 @@ const enableScroll = () => {
   document.body.style.overflow = prevBodyOverflow || "";
   window.scrollTo(0, scrollY);
 };
+
+export const store = () =>{
+  const state = []
+  const {subscribe, set, update} = writable(state);
+  const methods = {
+    createNote(post){
+      console.log("post:", post);
+      update(state =>{
+        state = state.concat(post);
+        console.log("store data:", state);
+        return state;
+
+      });
+    }
+  }
+  return {
+    subscribe,
+    set,
+    update,
+    ...methods
+  }
+}
+
+export const notesStore = store();

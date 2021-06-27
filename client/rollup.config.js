@@ -3,7 +3,12 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
+import { config } from 'dotenv';	
+
 import css from 'rollup-plugin-css-only';
+
+config();
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -37,6 +42,14 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		replace({     
+      __myapp: JSON.stringify({
+        env: {
+          isProd: production,
+          ...config().parsed
+        }
+      }),
+    }),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production

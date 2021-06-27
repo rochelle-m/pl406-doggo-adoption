@@ -4,6 +4,8 @@
   import Modal from "../utils/Modal.svelte";
   import Profile from "../utils/Profile.svelte";
   import { login, signup, openModal } from "../stores/store";
+
+  
   import {
     Collapse,
     Navbar,
@@ -39,6 +41,8 @@
       isLoggedIn = n.isLoggedIn
     }
   })
+
+
 </script>
 
 <nav class="px-3" id="navbar">
@@ -103,8 +107,6 @@
 
     </Collapse>
   </Navbar>
-<a class="addbtn nav-link"  href="post">Add Post</a>
-
 </nav>
 
 {#if showLogin}
@@ -114,6 +116,8 @@
   <Modal token="signup" />
 {/if}
 
+
+ 
 
 <style>
   nav {
@@ -134,14 +138,7 @@
     }
   }
 
-.addbtn{
-  width:85px;
-  background-color:grey;
-  color:white;
-  float:right;
-  font-size:12px;
-  border-radius:5px;
-  border:1px solid white;
-}
+
+
 
 </style>

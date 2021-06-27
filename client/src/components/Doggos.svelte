@@ -9,7 +9,7 @@
 
   let doggos = [];
   let error = "";
-  const URL = `http://localhost:5001/api/doggos/`;
+  const URL = `/api/doggos/`;
   let show = false;
 
   onMount(async function () {
@@ -27,6 +27,7 @@
 
   let message = "Adopt";
   let imgSrc = "images/dog11.jpg";
+
 </script>
 
 <svelte:head>
@@ -36,7 +37,7 @@
 <div>
   <Banner {message} {imgSrc} />
   <div class="d-flex flex-wrap justify-content-around spacing">
-    {#each doggos as doggo}
+      {#each doggos as doggo}
       {#if !doggo.isAdopted && !doggo.isFostered}
         <Doggo src={doggo.primaryImg} {doggo}>
           <p slot="name">{doggo.name}</p>
@@ -51,10 +52,22 @@
 </div>
 
 <BeforeYouAdopt {show} />
-<a href="adoptionform">Adoption Form</a>
+
+<a class="addbtn" href="post" ><b>Add Post</b></a>
+
 <style>
  
   .spacing {
-    margin-top: 40px;
+    margin: 40px 0px;
   }
+
+  .addbtn{
+  height:40px;
+  padding:3px;
+  background-color:grey;
+  color:white;
+  font-size:15px;
+  border-radius:4px;
+  border:1px solid darkgrey;
+}
 </style>

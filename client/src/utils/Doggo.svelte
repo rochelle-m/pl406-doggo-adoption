@@ -1,4 +1,6 @@
 <script>
+  import { Link } from "svelte-routing";
+
   export let src;
   export let doggo;
 
@@ -30,7 +32,7 @@
   </div>
 
   <div class="card-footer">
-    <a href="/" class="card-link">Adopt</a>
+    <Link class="card-link" to="adoption-form">Adopt</Link>
     <a href="/" class="card-link">Foster</a>
   </div>
 </article>

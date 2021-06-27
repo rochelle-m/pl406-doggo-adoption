@@ -12,6 +12,8 @@
   import Navbar from "./components/Navbar.svelte";
   import AdoptionForm from "./components/AdoptionForm.svelte";
   import Post from "./components/Post.svelte";
+  import RegisterEvent from "./components/RegisterEvent.svelte";
+  
   import Message from "./utils/Message.svelte";
 </script>
 
@@ -26,8 +28,9 @@
     <Route path="events"><Events /></Route>
     <Route path="food"><PetFood /></Route>
     <Route path="vaccination"><Vaccination /></Route>
-    <Route path="adoptionform"><AdoptionForm /></Route>
     <Route path="post"><Post /></Route>
+    <Route path="adoption-form"><AdoptionForm /></Route>
+    <Route path="registerevent"><RegisterEvent /></Route>
     <Route><Message message="Page not found" /></Route>
     <Footer />
   </Router>
