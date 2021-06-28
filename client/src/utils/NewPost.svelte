@@ -159,7 +159,7 @@
     </div>
   {:else}
     <div class="text-right">
-      <button class="mt-4 col-4" on:click={() => openModal('login')}>Login to
+      <button class="mt-4 col-4 btn" on:click={() => openModal('login')}>Login to
         post</button>
     </div>
   {/if}
