@@ -44,7 +44,7 @@
         <h5 class="card-title float-left pt-3">Caretaker</h5>
         <p class="card-text">Assist with daily activities - feeding dogs, bathing dogs and maintaining a clean shelter.</p>
       </div>
-      <div class="card-footer">
+      <div class="footer">
         
         <button on:click={() => handleClick("Caretaker")} class="btn">Volunteer</button>
       </div>
@@ -59,7 +59,7 @@
         <h5 class="card-title float-left pt-3">Driver</h5>
         <p class="card-text ">Transport dogs to and from the shelter and run other errands.</p>
       </div>
-      <div class="card-footer">
+      <div class="footer">
         <button on:click={() => handleClick("Driver")} class="btn">Volunteer</button>
       </div>
     </div>
@@ -73,7 +73,7 @@
         <h5 class="card-title float-left pt-3">Photographer</h5>
         <p class="card-text ">Capture the most amazing dog pictures to help them find their home.</p>
       </div>
-      <div class="card-footer">
+      <div class="footer">
         <button on:click={() => handleClick("Photographer")} class="btn">Volunteer</button>
       </div>
     </div>
@@ -89,7 +89,7 @@
         <h5 class="card-title float-left pt-3">Promoter</h5>
         <p class="card-text ">Gather support for the shelter and assist with events.</p>
       </div>
-      <div class="card-footer">
+      <div class="footer">
         <button on:click={() => handleClick("Promoter")} class="btn">Volunteer</button>
       </div>
     </div>
