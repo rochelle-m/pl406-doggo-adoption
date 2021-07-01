@@ -48,7 +48,7 @@
    
 </script>
 
-<div class="modal" in:fade out:fade>
+<div class="modal d-flex justify-content-around align-items-center" in:fade out:fade>
   <div class="backdrop" on:dblclick={close} />
   <div class="content-wrapper">
     <div class="content">
@@ -107,7 +107,7 @@
           </div>
 
           <div class="form-group text-center">
-            <button type="submit">
+            <button type="submit" class="btn">
               <span id="load" />
               {current.title}
             </button>
@@ -133,9 +133,6 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   div.backdrop {
