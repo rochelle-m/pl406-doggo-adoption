@@ -39,7 +39,7 @@ public class StorageServiceImplementation implements StorageService {
                 throw new StorageException("Failed to store file");
             }
 
-            Path folderPath = Paths.get(rootLocation.toString() + "\\" + id);
+            Path folderPath = Paths.get(rootLocation.toString() + "/" + id);
 
             try {
                 Files.createDirectories(folderPath);
@@ -66,7 +66,7 @@ public class StorageServiceImplementation implements StorageService {
 
     @Override
     public byte[] get(String id, String name) throws IOException {
-        Path destination = Paths.get(this.rootLocation.toString() + "\\" + id + "\\" + name);
+        Path destination = Paths.get(this.rootLocation.toString() + "/" + id + "/" + name);
 
         return IOUtils.toByteArray(destination.toUri());
     }
