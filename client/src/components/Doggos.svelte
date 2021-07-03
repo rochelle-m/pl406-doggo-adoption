@@ -31,15 +31,6 @@
 </script>
 
 <style>
-  .addbtn {
-    height: 40px;
-    padding: 3px;
-    background-color: grey;
-    color: white;
-    font-size: 15px;
-    border-radius: 4px;
-    border: 1px solid darkgrey;
-  }
 
   .fab-container {
   display: flex;
@@ -47,7 +38,7 @@
   justify-content: flex-end;
   align-items: center;
   user-select: none;
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
 }
@@ -74,7 +65,7 @@
 }
 
 .fab-content .material-icons {
-  font-size: 36px;
+  font-size: 32px;
 }
 </style>
 
@@ -108,7 +99,7 @@
       <div class="fab shadow">
         <div class="fab-content">
           <span class="material-icons">
-            <i class="fa fa-plus" aria-hidden="true">.</i>
+            <i class="fa fa-plus" aria-hidden="true"></i>
             <i class='fas fa-dog'></i>
           </span>
         </div>
