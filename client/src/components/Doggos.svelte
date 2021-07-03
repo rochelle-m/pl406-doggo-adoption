@@ -31,6 +31,9 @@
 </script>
 
 <style>
+.add{
+  color:#302121;
+}
 
   .fab-container {
   display: flex;
@@ -95,12 +98,12 @@
 
 
 <div class="fab-container">
-    <Link class="addbtn" to="post">
+    <Link to="post">
       <div class="fab shadow">
         <div class="fab-content">
           <span class="material-icons">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <i class='fas fa-dog'></i>
+            <i class="fa fa-plus add" aria-hidden="true"></i>
+            <i class='fas fa-dog add'></i>
           </span>
         </div>
       </div>
