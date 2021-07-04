@@ -105,15 +105,24 @@
 			</div>
 		</div>
 
-	<div class="card border-info mb-3" style="max-width: 18rem;">
-	  		<div class="card-header">Mandovi Pet medical</div>
+		<div class="card border-info mb-3" style="max-width: 18rem;">
+	  		<div class="card-header">79 The Pet Shop</div>
 	  		<div class="card-body text-info">
-			   <p class="card-text">Panaji, Goa</p>
-			   <p class="card-text">Opens 9AM </p>
-			   <p class="card-text">094044 44449</p>
+			   <p class="card-text">Nova Cidade Commercial Complex</p>
+			   <p class="card-text">Penha de França, Goa</p>
 			   <p class="card-text">In-store shopping</p>
 			</div>
 		</div>	
+
+		<div class="card border-info mb-3" style="max-width: 18rem;">
+	  		<div class="card-header">Mascot Pet Lifestyle Store</div>
+	  		<div class="card-body text-info">
+			   <p class="card-text">Margao, Goa</p>
+			   <p class="card-text">Opens 9AM </p>
+			   <p class="card-text"> 075076 47687</p>
+			   <p class="card-text">In-store shopping</p>
+			</div>
+		</div>
 
 	</div>
 </div>
