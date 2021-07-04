@@ -17,7 +17,6 @@ let currentUser = {};
 
 const msg = 'Add Post';
 
-
 let src = '';
 let image ;
   function onChange(event) {
@@ -30,9 +29,7 @@ let image ;
       }
       reader.readAsDataURL(event.target.files[0]);
     }
-
   }
-
 
   let posts = []
 
@@ -79,9 +76,7 @@ let image ;
     } catch (err) {
       console.log(err);
     }
-
   }
-  
   };
 </script>
 
