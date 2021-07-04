@@ -5,7 +5,7 @@
 
   export let title = "Dog Adoption and Care · Vaccination";
 
-  let message = "Vaccination Centre";
+  let message = "Vaccination Center";
   let imgSrc = "images/vaccine.jpg";
 </script>
 
