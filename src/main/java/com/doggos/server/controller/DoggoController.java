@@ -1,18 +1,25 @@
 package com.doggos.server.controller;
 
 import com.doggos.server.model.Doggo;
+import com.doggos.server.model.Post;
+import com.doggos.server.model.User;
+import com.doggos.server.payload.request.DoggoRequest;
+import com.doggos.server.payload.request.PostRequest;
 import com.doggos.server.repository.DoggoRepository;
+import com.doggos.server.repository.UserRepository;
 import com.doggos.server.service.StorageException;
 import com.doggos.server.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,27 +33,30 @@ public class DoggoController {
     DoggoRepository doggoRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     public DoggoController(StorageService storageService) {
         this.storageService = storageService;
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Doggo> createDoggo(String id, String name, String breed, String description, String remarks, String location, Boolean adopted, Boolean fostered, MultipartFile primary, MultipartFile secondary) {
-
+    @PostMapping(value = "/", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+    @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
+    public ResponseEntity<Doggo> create(@RequestPart(name = "doggo") DoggoRequest doggoRequest, @RequestPart(name = "image", required = false) MultipartFile file) {
         try {
+            User user = userRepository.findByUsername(doggoRequest.getUsername()).get();
 
-            Doggo doggo = new Doggo(id, name, breed, description, remarks, location, adopted, fostered);
+            String imgPath = null;
+            if (file != null) {
+                imgPath = storageService.store(file, doggoRequest.getName(), "doggos");
+            }
 
-            String primaryImgUrl = storageService.store(primary, id, "doggos");
-            String secondaryImgUrl = storageService.store(secondary, id, "doggos");
+                Doggo newDoggo = new Doggo(doggoRequest.getName(), doggoRequest.getBreed(), doggoRequest.getDescription(), doggoRequest.getRemarks(), doggoRequest.getLocation(),imgPath,user);
 
-            doggo.setPrimaryImg(primaryImgUrl);
-            doggo.setSecondaryImg(secondaryImgUrl);
-
-            Doggo _doggo = doggoRepository.save(doggo);
-
-            return new ResponseEntity<>(_doggo, HttpStatus.CREATED);
+            Doggo _doggo = doggoRepository.save(newDoggo);
+            return new ResponseEntity<Doggo>(_doggo, HttpStatus.CREATED);
         } catch (Exception | StorageException e) {
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

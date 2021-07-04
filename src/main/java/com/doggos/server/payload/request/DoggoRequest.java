@@ -2,12 +2,17 @@ package com.doggos.server.payload.request;
 
 public class DoggoRequest {
 
+    private  String username;
     private String name;
     private String breed;
     private String description;
     private String remarks;
     private String location;
-    private String primaryImg;
+
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
 
     public String getBreed() {
         return breed;
@@ -39,14 +44,6 @@ public class DoggoRequest {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getPrimaryImg() {
-        return primaryImg;
-    }
-
-    public void setPrimaryImg(String primaryImg) {
-        this.primaryImg = primaryImg;
     }
 
     public String getName() {

@@ -41,28 +41,28 @@
             </Link>
           </li>
           <li class="d-inline">
-            <Link class="px-0" to="">
+            <Link class="px-0" to="foster">
               <a class="p-2 d-inline-block mb-1 rounded text-decoration-none" href="">Foster</a >
             </Link>
           </li>
           <li class="d-inline">
-            <Link class="px-0" to="">
+            <Link class="px-0" to="food">
               <a class="p-2 d-inline-block mb-1 rounded text-decoration-none" href="">Food</a>
             </Link
             >
           </li>
           <li class="d-inline">
-            <Link class="px-0" to="">
+            <Link class="px-0" to="vaccination">
               <a class="p-2 d-inline-block mb-1 rounded text-decoration-none" href="">Vet</a>
             </Link>
           </li>
           <li class="d-inline">
-            <Link class=" px-0" to="">
+            <Link class=" px-0" to="volunteer">
               <a class="p-2 d-inline-block mb-1 rounded text-decoration-none" href="">Volunteer</a>
             </Link>
           </li>
           <li class="d-inline">
-            <Link class="px-0" to="">
+            <Link class="px-0" to="events">
               <a class="p-2 d-inline-block mb-1 rounded text-decoration-none" href="">Event</a>
             </Link>
           </li>

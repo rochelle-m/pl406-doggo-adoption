@@ -1,45 +1,28 @@
 <script>
 import { fade } from "svelte/transition";
-import { onMount } from "svelte";
-import { notesStore } from "../stores/store.js";
+import { user } from "../stores/user";
+import axios from "axios";
+
+let currentUser = {};
+  user.subscribe((updatedUser) => {
+    if (updatedUser) {
+      currentUser = updatedUser;  
+    }
+});
 
   let doggos = [];
   let error = "";
-  const URL = `http://localhost:5001/api/doggos/`;
+  const URL = `/api/doggos/`;
   let show = false;
 
-  onMount(async function () {
-    try {
-      const response = await fetch(url, {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Accept': 'application/json'
-      },
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(user) 
-    });
-      doggos = await response.json();
-
-      setTimeout(() => {
-        show = true;
-      }, 1500);
-    } catch (err) {
-      error = err.message;
-    }
-  });
 const msg = 'Add Post';
 
-let isOpenPost = false
-let name
-let remark
-let description
-let breed
-let location
-let picture
-let src = '';
 
+let src = '';
+let image ;
   function onChange(event) {
+   image = event.target.files[0];
+
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
@@ -47,6 +30,7 @@ let src = '';
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+
   }
 
 
@@ -58,36 +42,46 @@ let src = '';
       description: '',
       breed: '',
       location: '',
-      picture: '',
-      id: null
+      username: null
   };
 
-  let addPost = () =>{
+  let addPost = async(event) =>{
+  event.preventDefault()
+  
 
-    const newNote = {
+  if(currentUser.isLoggedIn) {
+    post.username= currentUser.username
 
-      id: posts.length + 1,
-      name: post.name,
-      remark: post.remark,
-      description: post.description,
-      breed: post.breed,
-      location: post.location,
-      picture: post.picture
-    };
-
-    notesStore.createNote(newNote);
-
-    post = {
-      id: null,
-      name: '',
-      remark: '',
-      description: '',
-      breed: '',
-      location: '',
-      picture: ''
-  };
+       let formData = new FormData();
+      
+    formData.append(
+      "doggo",
+      new Blob([JSON.stringify(post)], {
+        type: "application/json",
+      })
+    );
+    formData.append("image", image);
 
 
+    try {
+      const response = await axios({
+        method: "post",
+        url: URL,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: currentUser.type + " " + currentUser.token,
+        },
+      });
+
+      const createdPost = response.data
+      
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+  
   };
 </script>
 
@@ -102,7 +96,7 @@ let src = '';
           <div class="container">
           <div class="modal-body mx-3">
         
-            <form id="myForm">
+            <form id="myForm" method="post">
                          
             <label 
             for="name">
@@ -181,7 +175,7 @@ let src = '';
             </label>
              
             <input 
-            bind:value={post.picture}
+            bind:value={src}
             type="file" 
             name="photo"
             id="photo" 
