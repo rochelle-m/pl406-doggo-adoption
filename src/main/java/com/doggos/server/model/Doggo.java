@@ -1,6 +1,7 @@
 package com.doggos.server.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.Nullable;
 
@@ -15,36 +16,32 @@ public class Doggo {
     private String location;
     @Nullable
     private String primaryImg;
-    @Nullable
-    private String secondaryImg;
+
     private Boolean isAdopted;
     private Boolean isFostered;
+
+    @DBRef
+    private User user;
     public Doggo() {
 
     }
 
-    public Doggo(String id, String name, String breed, String description, String remarks, String location, Boolean isAdopted, Boolean isFostered) {
-        this.id = id;
-        this.name = name;
-        this.breed = breed;
-        this.description = description;
-        this.remarks = remarks;
-        this.location = location;
-        this.isAdopted = isAdopted;
-        this.isFostered = isFostered;
-    }
-
-    public Doggo(String id, String name, String breed, String description, String remarks, String location, @Nullable String primaryImg, @Nullable String secondaryImg, Boolean isAdopted, Boolean isFostered) {
-        this.id = id;
+    public Doggo(String name, String breed, String description, String remarks, String location, @Nullable String primaryImg, User user) {
         this.name = name;
         this.breed = breed;
         this.description = description;
         this.remarks = remarks;
         this.location = location;
         this.primaryImg = primaryImg;
-        this.secondaryImg = secondaryImg;
-        this.isAdopted = isAdopted;
-        this.isFostered = isFostered;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getId() {
@@ -101,14 +98,6 @@ public class Doggo {
         this.primaryImg = primaryImg;
     }
 
-    @Nullable
-    public String getSecondaryImg() {
-        return secondaryImg;
-    }
-
-    public void setSecondaryImg(@Nullable String secondaryImg) {
-        this.secondaryImg = secondaryImg;
-    }
 
     public Boolean getAdopted() {
         return isAdopted;
