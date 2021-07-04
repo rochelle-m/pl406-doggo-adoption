@@ -11,7 +11,6 @@ import com.doggos.server.repository.UserRepository;
 import com.doggos.server.security.jwt.JwtUtils;
 import com.doggos.server.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,16 +44,13 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
+            
     JwtUtils jwtUtils;
 
     @PostMapping(value="/signin", consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticate(@RequestBody SigninRequest _user) {
-        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
-    }
-
-    private ResponseEntity<JwtResponse> getJwtResponseResponseEntity(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
+                new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword())
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -84,7 +79,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Error: Username is already in user");
         }
 
-        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()), _user.getVolunteerRole());
+        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()));
 
         Set<String> strRoles = _user.getRoles();
         Set<Role> userRoles = new HashSet<>();
@@ -121,30 +116,13 @@ public class AuthController {
         user.setRoles(userRoles);
         userRepository.save(user);
 
-        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
+        return ResponseEntity.ok("User registered");
     }
 
     @PostMapping("logout")
-    @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
-    public ResponseEntity logout () {
-        SecurityContextHolder.getContext().setAuthentication(null);
-        return ResponseEntity.ok("Logout successful");
-    }
-
-    @PutMapping("update/{id}/{role}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> updateToVolunteer(@PathVariable("id") String id, @PathVariable String role){
-        Optional<User> user = userRepository.findById(id);
-        if(user.isPresent()){
-            User updatedUser = user.get();
-            updatedUser.setVolunteerRole(role);
-            updatedUser.getRoles().add(roleRepository.findByRole(ERole.ROLE_VOLUNTEER).get());
-            userRepository.save(updatedUser);
-            return new ResponseEntity<>(updatedUser.getRoles(), HttpStatus.OK);
+        @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
+        public ResponseEntity logout () {
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return ResponseEntity.ok("Logout successful");
         }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }
 }
