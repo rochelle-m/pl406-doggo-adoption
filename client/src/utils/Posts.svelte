@@ -1,6 +1,7 @@
 <script>
   import Post from "./Post.svelte";
   import NewPost from "./NewPost.svelte";
+  import Loading from "../utils/Loading.svelte";
 
   import { subscribe } from "../stores/posts";
   let posts = [];
@@ -14,5 +15,7 @@
   <NewPost />
   {#each posts as tempPost}
     <Post {tempPost} />
+  {:else}
+    <Loading message={"Some error occured"} />
   {/each}
 </div>

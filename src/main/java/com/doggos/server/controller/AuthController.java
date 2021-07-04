@@ -26,8 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
-@CrossOrigin(origins="http://localhost:5000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:5000", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -44,10 +43,10 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-            
+
     JwtUtils jwtUtils;
 
-    @PostMapping(value="/signin", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticate(@RequestBody SigninRequest _user) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword())
@@ -70,7 +69,7 @@ public class AuthController {
         ));
     }
 
-    @PostMapping(value="/signup", consumes= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> signup(@RequestBody SignupRequest _user) {
         if (userRepository.existsByEmail(_user.getEmail())) {
             return ResponseEntity.badRequest().body("Error: Email is already in user");
@@ -120,9 +119,9 @@ public class AuthController {
     }
 
     @PostMapping("logout")
-        @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
-        public ResponseEntity logout () {
-            SecurityContextHolder.getContext().setAuthentication(null);
-            return ResponseEntity.ok("Logout successful");
-        }
+    @PreAuthorize("hasRole('USER') or hasRole('STAFF') or hasRole('VOLUNTEER')")
+    public ResponseEntity logout() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return ResponseEntity.ok("Logout successful");
+    }
 }
