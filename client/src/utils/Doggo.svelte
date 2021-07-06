@@ -1,5 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
+  import { user } from "../stores/user";
+  // import AdoptionForm from "../components/AdoptionForm.svelte";
 
   export let src;
   export let doggo;
@@ -8,10 +10,102 @@
     el.target.error = null;
     el.target.src = "/images/icons/logo-w.png";
   };
+
+  let isStaff = false;
+
+  user.subscribe((n) => {
+    if (n) {
+      isStaff = n.roles.some((role) => role == "ROLE_STAFF");
+    }
+  });
 </script>
 
+<style>
+  img {
+    width: 100%;
+    height: 25vh;
+  }
+  article {
+    box-shadow: 1px 1px 2px silver;
+  }
+  .w-20 {
+    width: 20vw;
+    min-width: 10em;
+  }
+
+  .fa {
+    position: absolute;
+    background: #333;
+    padding: 8px;
+    color: white;
+    border-radius: 4px;
+    opacity: 0.7;
+  }
+
+  .fa:hover {
+    opacity: 0.9;
+  }
+
+  [class*="gear"] {
+    right: 0em;
+    cursor: pointer;
+  }
+
+  [class*="home"],
+  [class*="marker"] {
+    left: 0em;
+  }
+</style>
+
 <article class="border rounded-lg m-2 mx-3 w-20 card">
-  <img class="card-img-top" {src} on:error={handleError} alt={doggo.name} />
+  {#if isStaff}
+    <i
+      class="fa fa-gear"
+      data-toggle="modal"
+      data-target="#delete"
+      aria-hidden="true" />
+
+    <div
+      class="modal fade"
+      id="delete"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Settings ·
+              {doggo.name}
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="btn-group">
+              <button type="button" class="btn-secondary mr-2">Mark as adopted</button>
+              <button type="button" class="btn-secondary mr-2">Mark as fosted</button>
+              <button type="button" class="btn-danger mr-2">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/if}
+
+  {#if doggo?.location}
+    <i class="fa fa-map-marker"> &nbsp; {doggo.location}</i>
+  {:else}
+    <i class="fa fa-home icon" aria-hidden="true" title="In Adoption Home" />
+  {/if}
+
+  <img class="card-img-top" {src} on:error={handleError} alt={doggo?.name} />
 
   <div class="card-body">
     <h4 class="card-title">
@@ -32,21 +126,22 @@
   </div>
 
   <div class="card-footer">
+    <!-- <div data-toggle="modal" data-target="#adopt">Adopt</div> -->
     <Link class="card-link" to="adoption-form">Adopt</Link>
     <a href="/" class="card-link">Foster</a>
   </div>
 </article>
 
-<style>
-  img {
-    width: 100%;
-    height: 25vh;
-  }
-  article {
-    box-shadow: 1px 1px 2px silver;
-  }
-  .w-20 {
-    width: 20vw;
-    min-width: 10em;
-  }
-</style>
+<!-- <div
+  class="modal fade"
+  id="adopt"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <AdoptionForm />
+    </div>
+  </div>
+</div> -->

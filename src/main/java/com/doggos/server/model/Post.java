@@ -23,9 +23,6 @@ public class Post {
 
     private List<Comment> comments;
 
-    @DBRef
-    private List<User> favourites;
-
     @Nullable
     private String imagePath;
 
@@ -40,15 +37,13 @@ public class Post {
         this.imagePath = imagePath;
         this.createdDate = createdDate;
         this.comments = new ArrayList<>();
-        this.favourites = new ArrayList<>();
     }
 
-    public Post(User user, String caption, List<String> tags, List<Comment> comments, List<User> favourites, @Nullable String imagePath, Date createdDate) {
+    public Post(User user, String caption, List<String> tags, List<Comment> comments, @Nullable String imagePath, Date createdDate) {
         this.user = user;
         this.caption = caption;
         this.tags = tags;
         this.comments = comments;
-        this.favourites = favourites;
         this.imagePath = imagePath;
         this.createdDate = createdDate;
     }
@@ -91,14 +86,6 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public List<User> getFavourites() {
-        return favourites;
-    }
-
-    public void setFavourites(List<User> favourites) {
-        this.favourites = favourites;
     }
 
     @Nullable
