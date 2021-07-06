@@ -1,30 +1,41 @@
 package com.doggos.server.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "applicant")
 public class Applicant {
 
     private String dogId;
-    private String name;
+    @DBRef
+    private User user;
+    @Id
+    private String applicantId;
+    private String applicantName;
     private String phoneNumber;
     private String address;
     private String occupation;
-    private String ownPet;
-    private String allergy;
-    private String noOfAdults;
-    private String noOfChildren;
+    private Boolean ownPet;
+    private Boolean allergy;
+    private Integer noOfAdults;
+    private Integer noOfChildren;
     private String typeOfHome;
     private String describeHome;
     private String reasonToAdopt;
-    private String haveTime;
-    private String agreement;
+    private Boolean haveTime;
+    private Boolean agreement;
 
     public Applicant() {
 
     }
 
 
-    public Applicant(String dogId, String name, String phoneNumber, String address, String occupation, String ownPet, String allergy, String noOfAdults, String noOfChildren, String typeOfHome, String describeHome, String reasonToAdopt, String haveTime, String agreement) {
+    public Applicant(String dogId, User user, String applicantId, String applicantName, String phoneNumber, String address, String occupation, Boolean ownPet, Boolean allergy, Integer noOfAdults, Integer noOfChildren, String typeOfHome, String describeHome, String reasonToAdopt, Boolean haveTime, Boolean agreement) {
         this.dogId = dogId;
-        this.name = name;
+        this.user= user;
+        this.applicantId = applicantId;
+        this.applicantName = applicantName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.occupation = occupation;
@@ -48,12 +59,28 @@ public class Applicant {
         this.dogId = dogId;
     }
 
-    public String getName() {
-        return name;
+    public User getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(String applicantId) {
+        this.applicantId = applicantId;
+    }
+
+    public String getApplicantName() {
+        return applicantName;
+    }
+
+    public void setApplicantName(String applicantName) {
+        this.applicantName = applicantName;
     }
 
     public String getPhoneNumber() {
@@ -84,7 +111,7 @@ public class Applicant {
         return ownPet;
     }
 
-    public void setOwnPet(String ownPet) {
+    public void setOwnPet(Boolean ownPet) {
         this.ownPet = ownPet;
     }
 
@@ -92,7 +119,7 @@ public class Applicant {
         return allergy;
     }
 
-    public void setAllergy(String allergy) {
+    public void setAllergy(Boolean allergy) {
         this.allergy = allergy;
     }
 
@@ -100,7 +127,7 @@ public class Applicant {
         return noOfAdults;
     }
 
-    public void setNoOfAdults(String noOfAdults) {
+    public void setNoOfAdults(Integer noOfAdults) {
         this.noOfAdults = noOfAdults;
     }
 
@@ -108,7 +135,7 @@ public class Applicant {
         return noOfChildren;
     }
 
-    public void setNoOfChildren(String noOfChildren) {
+    public void setNoOfChildren(Integer noOfChildren) {
         this.noOfChildren = noOfChildren;
     }
 
@@ -140,7 +167,7 @@ public class Applicant {
         return haveTime;
     }
 
-    public void setHaveTime(String haveTime) {
+    public void setHaveTime(Boolean haveTime) {
         this.haveTime = haveTime;
     }
 
@@ -148,7 +175,8 @@ public class Applicant {
         return agreement;
     }
 
-    public void setAgreement(String agreement) {
+    public void setAgreement(Boolean agreement) {
         this.agreement = agreement;
     }
+
 }
