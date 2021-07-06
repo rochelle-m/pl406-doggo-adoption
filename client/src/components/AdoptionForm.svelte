@@ -1,25 +1,77 @@
 <script>
   import Banner from "../utils/Banner.svelte";
-
+    import axios from "axios";
   export let title = "Dog Adoption and Care · Events";
-
   let message = "Apply for Adoption";
   let imgSrc = "images/dog2.jpg";
 
-let dogId=""
-let name = ""
-let phoneNumber = ""
-let address = ""
-let occupation = ""
-let ownPet = ""
-let allergy = ""
-let noOfAdults= ""
-let noOfChildren = ""
-let typeOfHome = ""
-let describeHome = ""
-let reasonToAdopt = ""
-let haveTime = ""
-let agreement = ""
+
+let currentUser = {};
+  user.subscribe((updatedUser) => {
+    if (updatedUser) {
+      currentUser = updatedUser;
+    }
+});
+
+  let applicants = [];
+  let error = "";
+  const URL = `/api/applicant/`;
+  let show = false;
+
+  let applicant = {
+        dogId: '',
+        applicantName = '',
+        phoneNumber = '',
+       address = '',
+       occupation = '',
+       ownPet = '',
+       allergy = '',
+       noOfAdults= '',
+      noOfChildren = '',
+       typeOfHome = '',
+       describeHome = '',
+       reasonToAdopt = '',
+      haveTime = '',
+       agreement = '',
+      username: null
+  };
+
+  let addApplicant = async(event) =>{
+  event.preventDefault()
+
+
+  if(currentUser.isLoggedIn) {
+    applicant.username= currentUser.username
+
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: URL
+        headers: {
+          Authorization: currentUser.type + " " + currentUser.token,
+        },
+         body: JSON.stringify(applicant)
+      });
+
+      const createdApplicant= response.data
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
+  };
+
+onMount(async function () {
+    try {
+      const response = await fetch(URL);
+      applicants = await response.json();
+    } catch (_) {
+      error = "Some error occured";
+    }
+  });
 
 
 </script>
@@ -39,8 +91,8 @@ let agreement = ""
 <div class="container">
     
     <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name"  bind:value={name}>
+      <label for="name">Applicant name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name"  bind:value={applicantName}>
     </div>
     <div class="form-group">
       <label for="phoneNumber">Phone number:</label>
