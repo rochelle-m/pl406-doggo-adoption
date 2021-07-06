@@ -68,23 +68,11 @@
         <NavItem>
           <Link class="nav-link" to="events">Events</Link>
         </NavItem>
+        <NavItem>
+          <Link class="nav-link" to="help">Help</Link>
+        </NavItem>
+      
         
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>Help</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>
-              <Link class="nav-link" to="food">
-                <p>Pet food</p>
-              </Link>
-            </DropdownItem>
-            <DropdownItem>
-              <Link class="nav-link" to="vaccination">
-                <p>Vaccination Centre</p>
-              </Link>
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
             <i class="fa fa-user" aria-hidden="true"></i>  
