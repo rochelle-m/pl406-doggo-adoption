@@ -4,9 +4,10 @@
   import Doggo from "../utils/Doggo.svelte";
   import Loading from "../utils/Loading.svelte";
   import BeforeYouAdopt from "../utils/BeforeYouAdopt.svelte";
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
+  import NewDoggo from "../components/Post.svelte";
 
   let isStaff = false;
   let currentUser = {};
@@ -19,7 +20,7 @@
 
       currentUser.isLoggedIn &&
         openAddDogDialog &&
-        window.open("/post", "_self");
+        navigate("/post", { replace: true });
     }
   });
 
@@ -125,17 +126,15 @@
 <BeforeYouAdopt {show} />
 
 <div class="fab-container">
-  {#if !currentUser.isLoggedIn}
-    <Link to="post">
-      <div class="fab shadow">
-        <div class="fab-content">
-          <span class="material-icons">
-            <i class="fa fa-plus add" aria-hidden="true" />
-            <i class="fas fa-dog add" />
-          </span>
-        </div>
+  {#if currentUser.isLoggedIn}
+    <div class="fab shadow" data-toggle="modal" data-target="#post">
+      <div class="fab-content">
+        <span class="material-icons">
+          <i class="fa fa-plus add" aria-hidden="true" />
+          <i class="fas fa-dog add" />
+        </span>
       </div>
-    </Link>
+    </div>
   {:else}
     <div class="fab shadow" on:click={showLoginDialog}>
       <div class="fab-content">
@@ -147,3 +146,30 @@
     </div>
   {/if}
 </div>
+
+  <div
+    class="modal fade"
+    id="post"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Put a dog up for adoption
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <NewDoggo />
+        </div>
+      </div>
+    </div>
+  </div>

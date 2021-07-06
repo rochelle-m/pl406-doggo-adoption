@@ -3,6 +3,8 @@
   import Product from "./Product.svelte";
   import { user } from "../stores/user";
 
+  let currentUser = {}
+
   user.subscribe((n) => {
     if (n) currentUser = n;
   });

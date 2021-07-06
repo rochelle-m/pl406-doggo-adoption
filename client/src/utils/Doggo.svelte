@@ -1,6 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
+  import { openModal } from "../stores/store";
   // import AdoptionForm from "../components/AdoptionForm.svelte";
 
   export let src;
@@ -12,10 +13,12 @@
   };
 
   let isStaff = false;
+  let isLoggedIn = false;
 
   user.subscribe((n) => {
     if (n) {
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
+      isLoggedIn = n.isLoggedIn;
     }
   });
 </script>
@@ -112,7 +115,7 @@
       <slot name="name" />
     </h4>
 
-    <p class="card-text text-secondary">
+    <p class="card-text text-secondary" style="text-transform: lowercase">
       <slot name="breed" />
     </p>
 
@@ -127,8 +130,15 @@
 
   <div class="card-footer">
     <!-- <div data-toggle="modal" data-target="#adopt">Adopt</div> -->
-    <Link class="card-link" to="adoption-form">Adopt</Link>
-    <a href="/" class="card-link">Foster</a>
+    {#if isLoggedIn}
+     <Link class="card-link" to="adoption-form">Adopt</Link>
+     <a href="/" class="card-link">Foster</a>
+    {:else}
+        <div class="text-right">
+          <button class="mt-4" on:click={() => openModal('login')}>Login
+            to adopt/foster</button>
+        </div>
+    {/if}
   </div>
 </article>
 

@@ -104,6 +104,7 @@ public class PostController {
         }
     }
 
+    @PreAuthorize("hasRole('STAFF')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deletePost(@PathVariable("id") String id) {
         try {
