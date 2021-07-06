@@ -95,3 +95,7 @@ footer {
   background-color: #302121;
   color: rgb(223, 223, 223);
 }
+
+.badge:hover {
+    opacity: 0.8;
+}

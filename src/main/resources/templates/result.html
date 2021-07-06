@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10;url=http://localhost:5000/donate"/>
+    <title>Status · Donate</title>
+</head>
+<body>
+<div style='border: 1px solid silver; padding: 4vh; margin: 2vw;'>
+    <h3 th:if='${error}' th:text='${error}' style='color: red;'></h3>
+    <div th:unless='${error}'>
+        <h3 style='color: green;'>Success!</h3>
+        <div>Id.: <span th:text='${id}'/></div>
+        <div>Status: <span th:text='${status}'/></div>
+        <div>Charge id.: <span th:text='${chargeId}'/></div>
+        <div>Balance transaction id.: <span th:text='${balance_transaction}'/></div>
+        <h4 style='font-weight: 500;'>Thank you for your donation</h4>
+    </div>
+</div>
+</body>
+</html>

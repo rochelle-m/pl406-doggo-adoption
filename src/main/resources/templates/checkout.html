@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
+    <title>Donate · Stripe</title>
+</head>
+<body>
+<div style='border: 1px solid silver; display:grid; place-items: center; padding: 4vh; margin: 2vw;'>
+    <form action='/api/charge' method='POST' id='checkout-form'>
+        <input type='hidden' th:value='${amount}' name='amount'/>
+        <label>Donate: ₹ <span th:text='${amount/100}'/></label>
+        <br/><br/>
+        <script
+                src='https://checkout.stripe.com/checkout.js'
+                class='stripe-button'
+                th:attr='data-key=${stripePublicKey},
+                     data-amount=${amount},
+                     data-currency=${currency}'
+                data-name='Donation'
+                data-description='Doggo Adoption Home'
+                data-image='/api/logo/'
+                data-locale='auto'
+                data-zip-code='false'>
+        </script>
+    </form>
+</div>
+</body>
+</html>
