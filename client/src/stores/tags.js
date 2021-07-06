@@ -1,0 +1,1 @@
+export const tags = ["adoption", "help", "foster", "food"];

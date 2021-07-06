@@ -4,11 +4,11 @@
   import { openModal } from "../stores/store";
   import { subscribe, update } from "../stores/posts";
   import axios from "axios";
+  import { tags } from "../stores/tags";
 
   const URL = `/api/posts/new`;
 
   let preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
-  const tags = ["adoption", "help", "foster", "food"];
 
   let newPost = {
     caption: null,
@@ -27,7 +27,7 @@
   let currentUser = {};
   user.subscribe((updatedUser) => {
     if (updatedUser) {
-      currentUser = updatedUser;  
+      currentUser = updatedUser;
     }
   });
 
@@ -44,7 +44,7 @@
     reader.onload = (e) => {
       preview = e.target.result;
     };
-  };  
+  };
 
   const post = async function () {
     newPost.username = currentUser.username;
@@ -71,18 +71,17 @@
         },
       });
 
-      const createdPost = response.data
-      
+      const createdPost = response.data;
+
       if (createdPost.id) {
         update((_) => [createdPost, ...posts]);
       }
 
       newPost = { ...newPost };
-        newPost.tags = [];
-        newPost.caption = "";
-        preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
-        showImageUploading = false;
-
+      newPost.tags = [];
+      newPost.caption = "";
+      preview = "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg";
+      showImageUploading = false;
     } catch (err) {
       console.log(err);
     }
@@ -159,8 +158,8 @@
     </div>
   {:else}
     <div class="text-right">
-      <button class="mt-4 col-4 btn" on:click={() => openModal('login')}>Login to
-        post</button>
+      <button class="mt-4 col-4 btn" on:click={() => openModal('login')}>Login
+        to post</button>
     </div>
   {/if}
 </div>
