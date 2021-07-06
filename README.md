@@ -53,7 +53,7 @@ Application where users can view dogs up for adoption/fostering, adopt/foster a 
 
   ```
 
-- In *client/* create a file *.env*, and in it enter your [Mapbox Acess Token](https://docs.mapbox.com/api/overview/)
+- In *client/* create a file *.env*, and in it enter your [Mapbox Access Token](https://docs.mapbox.com/api/overview/)
   ```properties
   API_MAPBOX_ACCESS_TOKEN=
 
@@ -67,11 +67,11 @@ Application where users can view dogs up for adoption/fostering, adopt/foster a 
    ```
 - Visit [localhost:8080](http://localhost:8080/).
 
-#### Production
-- To run the app in production, set the active profile to prod in  *src/main/resources/application.properties*
+#### Deployment
+- Set the active profile to prod in  *src/main/resources/application.properties*
   ```properties
   spring.profiles.active=prod
-
+- Set up [Config vars](https://devcenter.heroku.com/articles/config-vars) in [Heroku](https://www.heroku.com/)
 ## APIs
 
 Method |Endpoint|  Description| Authentication

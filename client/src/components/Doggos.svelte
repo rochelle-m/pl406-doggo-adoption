@@ -4,7 +4,7 @@
   import Doggo from "../utils/Doggo.svelte";
   import Loading from "../utils/Loading.svelte";
   import BeforeYouAdopt from "../utils/BeforeYouAdopt.svelte";
-  import { Link, navigate } from "svelte-routing";
+  import { navigate } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
   import NewDoggo from "../components/Post.svelte";

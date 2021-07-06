@@ -2,7 +2,7 @@
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
-  // import AdoptionForm from "../components/AdoptionForm.svelte";
+  import AdoptionForm from "../components/AdoptionForm.svelte";
 
   export let src;
   export let doggo;
@@ -58,6 +58,13 @@
   [class*="marker"] {
     left: 0em;
   }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 700px;
+      margin: 1rem auto;
+    }
+  }
 </style>
 
 <article class="border rounded-lg m-2 mx-3 w-20 card">
@@ -103,7 +110,7 @@
   {/if}
 
   {#if doggo?.location}
-    <i class="fa fa-map-marker"> &nbsp; {doggo.location}</i>
+    <i class="fa fa-map-marker" style="text-transform: capitalize"> &nbsp; {doggo.location}</i>
   {:else}
     <i class="fa fa-home icon" aria-hidden="true" title="In Adoption Home" />
   {/if}
@@ -129,9 +136,8 @@
   </div>
 
   <div class="card-footer">
-    <!-- <div data-toggle="modal" data-target="#adopt">Adopt</div> -->
     {#if isLoggedIn}
-     <Link class="card-link" to="adoption-form">Adopt</Link>
+     <span data-toggle="modal" data-target="#adopt" class="pointer">Adopt</span>
      <a href="/" class="card-link">Foster</a>
     {:else}
         <div class="text-right">
@@ -142,16 +148,29 @@
   </div>
 </article>
 
-<!-- <div
+<div
   class="modal fade"
   id="adopt"
   tabindex="-1"
   role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <AdoptionForm />
-    </div>
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+           Adopt {doggo.name}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+         <div class="modal-body" id="exampleModalLongTitle">
+              <AdoptionForm {doggo} />
+        </div>
+       </div>
   </div>
-</div> -->
+</div>

@@ -16,25 +16,34 @@ public class Applicant {
     private String phoneNumber;
     private String address;
     private String occupation;
-    private Boolean ownPet;
-    private Boolean allergy;
+    private String ownPet;
+    private String allergy;
     private Integer noOfAdults;
     private Integer noOfChildren;
     private String typeOfHome;
     private String describeHome;
-    private String reasonToAdopt;
-    private Boolean haveTime;
-    private Boolean agreement;
-
-    public Applicant() {
-
-    }
+    private String[] reasonToAdopt;
+    private String haveTime;
+    private String agreement;
 
 
-    public Applicant(String dogId, User user, String applicantId, String applicantName, String phoneNumber, String address, String occupation, Boolean ownPet, Boolean allergy, Integer noOfAdults, Integer noOfChildren, String typeOfHome, String describeHome, String reasonToAdopt, Boolean haveTime, Boolean agreement) {
+    public Applicant(String dogId,
+                     User user,
+                     String applicantName,
+                     String phoneNumber,
+                     String address,
+                     String occupation,
+                     String ownPet,
+                     String allergy,
+                     Integer noOfAdults,
+                     Integer noOfChildren,
+                     String typeOfHome,
+                     String describeHome,
+                     String[] reasonToAdopt,
+                     String haveTime,
+                     String agreement) {
         this.dogId = dogId;
-        this.user= user;
-        this.applicantId = applicantId;
+        this.user = user;
         this.applicantName = applicantName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -48,7 +57,6 @@ public class Applicant {
         this.reasonToAdopt = reasonToAdopt;
         this.haveTime = haveTime;
         this.agreement = agreement;
-
     }
 
     public String getDogId() {
@@ -111,7 +119,7 @@ public class Applicant {
         return ownPet;
     }
 
-    public void setOwnPet(Boolean ownPet) {
+    public void setOwnPet(String ownPet) {
         this.ownPet = ownPet;
     }
 
@@ -119,11 +127,11 @@ public class Applicant {
         return allergy;
     }
 
-    public void setAllergy(Boolean allergy) {
+    public void setAllergy(String allergy) {
         this.allergy = allergy;
     }
 
-    public String getNoOfAdults() {
+    public Integer getNoOfAdults() {
         return noOfAdults;
     }
 
@@ -131,7 +139,7 @@ public class Applicant {
         this.noOfAdults = noOfAdults;
     }
 
-    public String getNoOfChildren() {
+    public Integer getNoOfChildren() {
         return noOfChildren;
     }
 
@@ -155,11 +163,11 @@ public class Applicant {
         this.describeHome = describeHome;
     }
 
-    public String getReasonToAdopt() {
+    public String[] getReasonToAdopt() {
         return reasonToAdopt;
     }
 
-    public void setReasonToAdopt(String reasonToAdopt) {
+    public void setReasonToAdopt(String[] reasonToAdopt) {
         this.reasonToAdopt = reasonToAdopt;
     }
 
@@ -167,7 +175,7 @@ public class Applicant {
         return haveTime;
     }
 
-    public void setHaveTime(Boolean haveTime) {
+    public void setHaveTime(String haveTime) {
         this.haveTime = haveTime;
     }
 
@@ -175,8 +183,7 @@ public class Applicant {
         return agreement;
     }
 
-    public void setAgreement(Boolean agreement) {
+    public void setAgreement(String agreement) {
         this.agreement = agreement;
     }
-
 }

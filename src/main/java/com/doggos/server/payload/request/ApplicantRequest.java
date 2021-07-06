@@ -1,23 +1,21 @@
 package com.doggos.server.payload.request;
 
 public class ApplicantRequest {
-
     private String dogId;
-    private String userName;
+    private String username;
     private String applicantName;
     private String phoneNumber;
     private String address;
     private String occupation;
-    private Boolean ownPet;
-    private Boolean allergy;
+    private String ownPet;
+    private String allergy;
     private Integer noOfAdults;
     private Integer noOfChildren;
     private String typeOfHome;
     private String describeHome;
-    private String reasonToAdopt;
-    private Boolean haveTime;
-    private Boolean agreement;
-
+    private String[] reasonToAdopt;
+    private String haveTime;
+    private String agreement;
 
     public String getDogId() {
         return dogId;
@@ -27,12 +25,12 @@ public class ApplicantRequest {
         this.dogId = dogId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getApplicantName() {
@@ -71,15 +69,15 @@ public class ApplicantRequest {
         return ownPet;
     }
 
-    public void setOwnPet(Boolean ownPet) {
+    public void setOwnPet(String ownPet) {
         this.ownPet = ownPet;
     }
 
-    public Boolean getAllergy() {
+    public String getAllergy() {
         return allergy;
     }
 
-    public void setAllergy(Boolean allergy) {
+    public void setAllergy(String allergy) {
         this.allergy = allergy;
     }
 
@@ -115,27 +113,27 @@ public class ApplicantRequest {
         this.describeHome = describeHome;
     }
 
-    public String getReasonToAdopt() {
+    public String[] getReasonToAdopt() {
         return reasonToAdopt;
     }
 
-    public void setReasonToAdopt(String reasonToAdopt) {
+    public void setReasonToAdopt(String[] reasonToAdopt) {
         this.reasonToAdopt = reasonToAdopt;
     }
 
-    public Boolean getHaveTime() {
+    public String getHaveTime() {
         return haveTime;
     }
 
-    public void setHaveTime(Boolean haveTime) {
+    public void setHaveTime(String haveTime) {
         this.haveTime = haveTime;
     }
 
-    public Boolean getAgreement() {
+    public String getAgreement() {
         return agreement;
     }
 
-    public void setAgreement(Boolean agreement) {
+    public void setAgreement(String agreement) {
         this.agreement = agreement;
     }
 }
