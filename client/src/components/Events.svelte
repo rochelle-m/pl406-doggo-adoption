@@ -23,7 +23,7 @@
 <h class="title "> <b>Dog Adoption Camp</b></h><br>
 <img class="logo" src="/images/camp.png" alt="doggo" />
 <br>
-<h class="title">5th july 2021</h><br><h class="title">Adoption Centre, Goa - 231458</h>
+<h class="title">5th August 2021</h><br><h class="title">Adoption Centre, Goa - 231458</h>
 <br>
 <br>
 

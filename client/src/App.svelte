@@ -6,8 +6,7 @@
   import Foster from "./components/Foster.svelte";
   import Volunteer from "./components/Volunteer.svelte";
   import Events from "./components/Events.svelte";
-  import PetFood from "./components/PetFood.svelte";
-  import Vaccination from "./components/Vaccination.svelte";
+  import Help from "./components/Help.svelte";
   import Footer from "./utils/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
   import AdoptionForm from "./components/AdoptionForm.svelte";
@@ -26,8 +25,7 @@
     <Route path="foster"><Foster /></Route>
     <Route path="volunteer"><Volunteer /></Route>
     <Route path="events"><Events /></Route>
-    <Route path="food"><PetFood /></Route>
-    <Route path="vaccination"><Vaccination /></Route>
+    <Route path="help"><Help /></Route>
     <Route path="post"><Post /></Route>
     <Route path="adoption-form"><AdoptionForm /></Route>
     <Route path="registerevent"><RegisterEvent /></Route>

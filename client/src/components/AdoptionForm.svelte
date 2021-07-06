@@ -35,34 +35,28 @@ let agreement = ""
 
 
   <h2>Adoption Application</h2>
-  <form action="/action_page.php">
+  <form>
 <div class="container">
+    
     <div class="form-group">
-      <div id="dogId">
-      <label for="dogId"><b>Dog Id:</b></label>
-      <input type="text" class="form-control" id="dogId"  bind:value={dogId}>
-  </div>
-    </div>
-
-    <div class="form-group">
-      <label for="name"><b>Name:</b></label>
+      <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name"  bind:value={name}>
     </div>
     <div class="form-group">
-      <label for="phoneNumber"><b>Phone number:</b></label>
+      <label for="phoneNumber">Phone number:</label>
      <input type="text" class="form-control" placeholder="Phone number" bind:value={phoneNumber} required  pattern="[789][0-9]{9}">
     </div>
      <div class="form-group">
-      <label for="address"><b>Address:</b></label>
+      <label for="address">Address:</label>
        <input type="text" class="form-control" placeholder="Address" bind:value={address} required pattern="^[a-zA-Z]+([\s][a-zA-Z]+)+$">
     </div>
      <div class="form-group">
-      <label><b>Occupation:</b></label>
+      <label>Occupation:</label>
       <input type="text" class="form-control" placeholder="Occupation" bind:value={occupation} required> 
     </div>
     
 
-    <label  for="ownPet"><b>Have you previously owned pets? </b></label>
+    <label  for="ownPet">Have you previously owned pets? </label>
     <div class="form-check">
    
   <input class="form-check-input" type="radio" bind:group={ownPet} value="Yes" />
@@ -77,7 +71,7 @@ let agreement = ""
   </label>
 </div>
 
- <label  for="allergy"><b>Does anyone in the family have known allergy to dogs? </b></label>
+ <label  for="allergy">Does anyone in the family have known allergy to dogs? </label>
     <div class="form-check">
    
   <input class="form-check-input" type="radio" bind:group={allergy} value="Yes" />
@@ -93,17 +87,17 @@ let agreement = ""
 </div>
 
 <div class="form-group">
-       <label  for="noOfAdults"><b>How many adults are there in your family?(18+)</b></label>
+       <label  for="noOfAdults">How many adults are there in your family?(18+)</label>
       <input type="number" class="form-control" placeholder="Number of Adults" bind:value={noOfAdults} required> 
     </div>
 
 
     <div class="form-group">
-       <label  for="noOfChildren"><b>How many children are there in your family? </b></label>
+       <label  for="noOfChildren">How many children are there in your family? </label>
       <input type="number" class="form-control" placeholder="Number of Children" bind:value={noOfChildren} required> 
     </div>
 
- <label  for="typeOfHome"><b>What type of home do you live in? </b></label>
+ <label  for="typeOfHome">What type of home do you live in? </label>
     <div class="form-check">
   <input class="form-check-input" type="radio" bind:group={typeOfHome} value="House" />
   <label class="form-check-label" for="exampleRadios1">
@@ -130,7 +124,7 @@ let agreement = ""
   </label>
 </div>
 
-<label  for="describeHome"><b>Please describe your household: </b></label>
+<label  for="describeHome">Please describe your household:</label>
     <div class="form-check">
   <input class="form-check-input" type="radio" bind:group={describeHome} value="Active" />
   <label class="form-check-label" for="exampleRadios1">
@@ -157,7 +151,7 @@ let agreement = ""
   </label>
 </div>
 
- <label  for="reasonToAdopt"><b>Why do you want to adopt this pet? </b></label>
+ <label  for="reasonToAdopt">Why do you want to adopt this pet? </label>
 <div class="form-check ">
    <input class="form-check-input" type="checkbox" bind:group={reasonToAdopt} value="companionForSelf" /> 
   <label class="form-check-label" for="flexCheckDefault">
@@ -190,7 +184,7 @@ let agreement = ""
 </div>
 
 
-<label  for="haveTime"><b>Do you have enough time to provide adequate love and affection?  </b></label>
+<label  for="haveTime">Do you have enough time to provide adequate love and affection? </label>
     <div class="form-check">
    
   <input class="form-check-input" type="radio" bind:group={haveTime} value="Yes" />
@@ -205,7 +199,7 @@ let agreement = ""
   </label>
 </div>
 
-<label  for="agreement"><b>Is everyone in agreement with the decision to adopt a dog?   </b></label>
+<label  for="agreement">Is everyone in agreement with the decision to adopt a dog?</label>
     <div class="form-check">
    
   <input class="form-check-input" type="radio" bind:group={agreement} value="Yes" />
@@ -239,7 +233,7 @@ margin-left:10em;
 
 h2 {
     padding: 1em 0;
-    margin-left: 30%;
+    text-align: center;
   }
 
   form{
@@ -256,6 +250,7 @@ h2 {
 
        display: block;
        margin: 0 auto;
+       text-align: left;
   
 }
 </style>

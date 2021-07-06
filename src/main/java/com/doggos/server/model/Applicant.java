@@ -2,51 +2,50 @@ package com.doggos.server.model;
 
 public class Applicant {
 
-    private String dog_id;
+    private String dogId;
     private String name;
-    private String phone_number;
+    private String phoneNumber;
     private String address;
     private String occupation;
-    private String own_pet;
+    private String ownPet;
     private String allergy;
     private String noOfAdults;
     private String noOfChildren;
     private String typeOfHome;
-    private String describe_house;
-    private String whytoadopt;
-    private String have_time;
+    private String describeHome;
+    private String reasonToAdopt;
+    private String haveTime;
     private String agreement;
 
-    public Applicant(){
+    public Applicant() {
 
     }
 
 
-
-    public Applicant(String dog_id, String name, String phone_number, String address, String occupation, String own_pet, String allergy, String noOfAdults, String noOfChildren, String typeOfHome, String describe_house, String whytoadopt, String have_time, String agreement) {
-        this.dog_id = dog_id;
+    public Applicant(String dogId, String name, String phoneNumber, String address, String occupation, String ownPet, String allergy, String noOfAdults, String noOfChildren, String typeOfHome, String describeHome, String reasonToAdopt, String haveTime, String agreement) {
+        this.dogId = dogId;
         this.name = name;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.occupation = occupation;
-        this.own_pet =  own_pet;
+        this.ownPet = ownPet;
         this.allergy = allergy;
         this.noOfAdults = noOfAdults;
         this.noOfChildren = noOfChildren;
         this.typeOfHome = typeOfHome;
-        this.describe_house = describe_house;
-        this.whytoadopt = whytoadopt;
-        this.have_time = have_time;
+        this.describeHome = describeHome;
+        this.reasonToAdopt = reasonToAdopt;
+        this.haveTime = haveTime;
         this.agreement = agreement;
 
     }
 
-    public String getDog_id() {
-        return dog_id;
+    public String getDogId() {
+        return dogId;
     }
 
-    public void setDog_id(String dog_id) {
-        this.dog_id = dog_id;
+    public void setDogId(String dogId) {
+        this.dogId = dogId;
     }
 
     public String getName() {
@@ -57,12 +56,12 @@ public class Applicant {
         this.name = name;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {
@@ -81,12 +80,12 @@ public class Applicant {
         this.occupation = occupation;
     }
 
-    public String getOwn_pet() {
-        return own_pet;
+    public String getOwnPet() {
+        return ownPet;
     }
 
-    public void setOwn_pet(String own_pet) {
-        this.own_pet = own_pet;
+    public void setOwnPet(String ownPet) {
+        this.ownPet = ownPet;
     }
 
     public String getAllergy() {
@@ -108,6 +107,7 @@ public class Applicant {
     public String getNoOfChildren() {
         return noOfChildren;
     }
+
     public void setNoOfChildren(String noOfChildren) {
         this.noOfChildren = noOfChildren;
     }
@@ -120,28 +120,28 @@ public class Applicant {
         this.typeOfHome = typeOfHome;
     }
 
-    public String getDescribe_house() {
-        return describe_house;
+    public String getDescribeHome() {
+        return describeHome;
     }
 
-    public void setDescribe_house(String describe_house) {
-        this.describe_house = describe_house;
+    public void setDescribeHome(String describeHome) {
+        this.describeHome = describeHome;
     }
 
-    public String getWhytoadopt() {
-        return whytoadopt;
+    public String getReasonToAdopt() {
+        return reasonToAdopt;
     }
 
-    public void setWhytoadopt(String whytoadopt) {
-        this.whytoadopt = whytoadopt;
+    public void setReasonToAdopt(String reasonToAdopt) {
+        this.reasonToAdopt = reasonToAdopt;
     }
 
-    public String getHave_time() {
-        return have_time;
+    public String getHaveTime() {
+        return haveTime;
     }
 
-    public void setHave_time(String have_time) {
-        this.have_time = have_time;
+    public void setHaveTime(String haveTime) {
+        this.haveTime = haveTime;
     }
 
     public String getAgreement() {
@@ -151,5 +151,4 @@ public class Applicant {
     public void setAgreement(String agreement) {
         this.agreement = agreement;
     }
-
 }
