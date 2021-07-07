@@ -1,6 +1,7 @@
 <script>
   import Banner from "../utils/Banner.svelte";
   import { Link } from "svelte-routing";
+  import axios from "axios";
 
   export let title = "Dog Adoption and Care · Events";
 
@@ -31,9 +32,25 @@
         type: "application/json",
       })
     );
+
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: URL,
+        data: formData,
+        headers: {
+          "Content-Type": "form-data",
+        },
+      });
+
+      const createdPost = response.data
+      
+    } catch (err) {
+      console.log(err);
+    }
   };
 
- console.log(camp)
 </script>
 
 <svelte:head>
@@ -49,7 +66,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form name="my-form" method="">
+                        <form name="my-form" method="post">
                             <div class="form-group row">
                                 <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
                                 <div class="col-md-6">
