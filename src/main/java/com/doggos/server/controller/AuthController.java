@@ -45,13 +45,16 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-
     JwtUtils jwtUtils;
 
-    @PostMapping(value = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/signin", consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticate(@RequestBody SigninRequest _user) {
+        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
+    }
+
+    private ResponseEntity<JwtResponse> getJwtResponseResponseEntity(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword())
+                new UsernamePasswordAuthenticationToken(username, password)
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -71,7 +74,7 @@ public class AuthController {
         ));
     }
 
-    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/signup", consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> signup(@RequestBody SignupRequest _user) {
         if (userRepository.existsByEmail(_user.getEmail())) {
             return ResponseEntity.badRequest().body("Error: Email is already in user");
@@ -80,7 +83,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Error: Username is already in user");
         }
 
-        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()));
+        User user = new User(_user.getUsername(), _user.getEmail(), passwordEncoder.encode(_user.getPassword()), _user.getVolunteerRole());
 
         Set<String> strRoles = _user.getRoles();
         Set<Role> userRoles = new HashSet<>();
@@ -117,8 +120,9 @@ public class AuthController {
         user.setRoles(userRoles);
         userRepository.save(user);
 
-        return ResponseEntity.ok("User registered");
+        return getJwtResponseResponseEntity(_user.getUsername(), _user.getPassword());
     }
+
 
     @PutMapping("update/{id}/{role}")
     @PreAuthorize("hasRole('USER')")

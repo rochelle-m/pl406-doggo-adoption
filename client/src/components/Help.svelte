@@ -3,10 +3,10 @@
   import Map from '../utils/Map.svelte';
   import Marker from '../utils/Marker.svelte';
 
-  export let title = "Dog Adoption and Care · Pet Food";
+  export let title = "Dog Adoption and Care · Help";
 
   let message = "Help";
-  let imgSrc = "images/petfood.png";
+  let imgSrc = "images/petfood.jpg";
 </script>
 
 <svelte:head>
@@ -72,7 +72,7 @@
 		<div class="card border-info mb-3" style="max-width: 18rem;">
 	  		<div class="card-header">79 The Pet Stop</div>
 	  		<div class="card-body text-info">
-			   <p class="card-text">Margao, Goa</p>
+			   <p class="card-text">Shop no. 5-6, Ecoterre House, St Joaquim Road, next to Maxsan Fitness, Borda, Margao, Goa 403601</p>
 			   <p class="card-text">Opens 8AM </p>
 			   <p class="card-text">091587 97979</p>
 			   <p class="card-text">In-store shopping</p>
@@ -187,8 +187,22 @@
 	
 	<div class="p-4">
 	    <Map lat={15.49} lon={73.8} zoom={11.0}>
-	      <Marker lat={15.5166} lon={73.7689} label="Happy Paws" type="vet"/>
-	      <Marker lat={15.4650} lon={73.8657} label="Happy Paws" type="shop"/>
+	      <Marker lat={15.481711159796705} lon={73.81428593082853} label="Mandovi Pet medical" type="shop"/>
+	      <Marker lat={15.588449704691707} lon={73.81297477337098} label="79 The Pet Stop" type="shop"/>
+	      <Marker lat={15.288692303449519} lon={73.98157515871377} label="Mascot Pet Lifestyle Store" type="shop"/>
+	      <Marker lat={15.284131694204675} lon={73.97235851486901} label="79 The Pet Sto" type="shop"/>
+	      <Marker lat={15.54603974611285} lon={73.79517212729048} label="Happy Paws Pet Store" type="shop"/>
+	      <Marker lat={15.29638646695722} lon={73.99035604674032} label="FOUR TAILS PET FOOD & ACCESSORIES"/>
+	      <Marker lat={15.480103826001836} lon={73.81264761745565} label="One Stop Over"/>
+	      <Marker lat={15.488946182462858} lon={73.8186007403112} label="79 The Pet Stop" type="shop"/>
+	      <Marker lat={15.482488851558575} lon={73.8138375719653} label="Pet World" type="shop"/>
+	      <Marker lat={15.49453522443819} lon={73.93495564044075} label="PAWFECT PET SHOP" type="shop"/>
+	      <Marker lat={15.233395769270082} lon={73.94343283006128} label="L.N PET SHOP" type="shop"/>
+
+	      <Marker lat={15.540531145753283} lon={73.82587445888315} label="VETERINARY CLINIC" type="vet"/>
+	      <Marker lat={15.55719747583739} lon={73.81666401147676} label="PetZone Goa Veterinary Clinic" type="vet"/>
+	      <Marker lat={15.491282234762144} lon={73.81119234240045} label="PETLAND VETERINARY CLINIC" type="vet"/>
+	      <Marker lat={15.542162652792271} lon={73.82542504307868} label="Estibeiro Pet Clinic" type="vet"/>
 	    </Map>
   	</div>
 
