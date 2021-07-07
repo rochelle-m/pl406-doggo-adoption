@@ -1,7 +1,6 @@
 <script>
   import Banner from "../utils/Banner.svelte";
   import { Link } from "svelte-routing";
-  import axios from "axios";
 
   export let title = "Dog Adoption and Care · Events";
 
@@ -17,38 +16,27 @@
   contact:''
   };
 
-  console.log(camp)
-
-  let addParticipant = async(event) =>{
-  event.preventDefault()
  
-  console.log(camp)
-  
-  let formData = new FormData();
-    console.log(camp)   
-    formData.append(
-      "doggo",
-      new Blob([JSON.stringify(camp)], {
-        type: "application/json",
-      })
-    );
-
+let addParticipant = async(event) =>{
+  event.preventDefault()
 
     try {
-      const response = await axios({
+      const response = await fetch(URL, {
         method: "post",
-        url: URL,
-        data: formData,
         headers: {
-          "Content-Type": "form-data",
+           'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json'
         },
+         body: JSON.stringify(camp)
       });
 
-      const createdPost = response.data
-      
+      const createdParticipant= await response.json()
+      console.log(createdParticipant)
+
     } catch (err) {
       console.log(err);
     }
+
   };
 
 </script>
