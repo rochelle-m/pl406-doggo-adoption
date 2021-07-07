@@ -6,13 +6,19 @@
   let applicants = []
   onMount(async function () {
     try {
-      const response = await fetch(URL);
+      const response = await fetch(URL , {
+        method: "get",
+         headers: {
+         Authorization: currentUser.type + " " + currentUser.token,
+            'Accept': 'application/json'
+         } ,
       applicants = await response.json();
       console.log(applicants)
     } catch (err) {
         console.log(err)
     }
   });
+
 
 </script>
   <style>

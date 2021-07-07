@@ -102,6 +102,9 @@
 
 <div>
   <Banner {message} {imgSrc} />
+   {#if isStaff}
+          <a href="ApplicantList.svelte" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">View all applications</a>
+    {/if}
   <div class="d-flex flex-wrap justify-content-around my-4">
     {#each doggos as doggo}
       {#if !doggo.isAdopted && !doggo.isFostered}
