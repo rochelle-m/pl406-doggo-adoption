@@ -18,15 +18,14 @@
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
       currentUser = n;
 
-      currentUser.isLoggedIn &&
-        openAddDogDialog &&
-        navigate("/post", { replace: true });
+      //if(currentUser.isLoggedIn && openAddDogDialog) { }
     }
   });
 
   export let title = "Dog Adoption and Care · Adopt";
 
   let doggos = [];
+  let doggosToDisplay = []
   let error = "";
   const URL = `/api/doggos/`;
   let show = false;
@@ -35,7 +34,7 @@
     try {
       const response = await fetch(URL);
       doggos = await response.json();
-
+      doggosToDisplay = doggos
       setTimeout(() => {
         show = true;
       }, 1500);
@@ -49,8 +48,15 @@
 
   const showLoginDialog = () => {
     openModal("login");
-    openAddDogDialog = true;
+    //openAddDogDialog = true;
   };
+
+  let search = ""
+
+  let handleChange = function () {
+    doggosToDisplay = doggos.filter(doggo => doggo.location?.toLowerCase().startsWith(search.toLowerCase()))
+  }
+
 </script>
 
 <style>
@@ -102,9 +108,25 @@
 
 <div>
   <Banner {message} {imgSrc} />
+
+  <div class="input-group mt-2 px-4">
+    <input
+      type="search" placeholder="Search location"
+      class="form-control"
+      bind:value={search}
+      aria-describedby="inputGroupPrepend3"
+      on:input={handleChange}
+      required />
+     <span
+      class="input-group-text pointer"
+      id="inputGroupPrepend3"
+      ><i class="fas fa-search" />
+    </span>
+  </div>
+
   <div class="d-flex flex-wrap justify-content-around my-4">
-    {#each doggos as doggo}
-      {#if !doggo.isAdopted && !doggo.isFostered}
+    {#each doggosToDisplay as doggo}
+      {#if !Boolean(doggo.adopted || doggo.fostered)}
         <Doggo src={doggo.primaryImg} {doggo}>
           <p slot="name">{doggo.name}</p>
           <p slot="breed">{doggo.breed}</p>
@@ -112,7 +134,7 @@
         </Doggo>
       {:else if isStaff}
         <Doggo src={doggo.primaryImg} {doggo}>
-          <p slot="name">{doggo.name}</p>
+          <p slot="name">{doggo.name + "*"}</p>
           <p slot="breed">{doggo.breed}</p>
           <p slot="description">{doggo.description}</p>
         </Doggo>

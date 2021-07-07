@@ -2,6 +2,7 @@
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
+  import { update } from "../modules/doggo";
   import AdoptionForm from "../components/AdoptionForm.svelte";
 
   export let src;
@@ -99,8 +100,8 @@
           </div>
           <div class="modal-body">
             <div class="btn-group">
-              <button type="button" class="btn-secondary mr-2">Mark as adopted</button>
-              <button type="button" class="btn-secondary mr-2">Mark as fosted</button>
+              <button type="button" class="btn-secondary mr-2" on:click={()=>update("adopt", doggo.id)}>Mark as adopted</button>
+              <button type="button" class="btn-secondary mr-2" on:click={()=>update("foster", doggo.id)}>Mark as fosted</button>
               <button type="button" class="btn-danger mr-2">Delete</button>
             </div>
           </div>
@@ -118,7 +119,7 @@
   <img class="card-img-top" {src} on:error={handleError} alt={doggo?.name} />
 
   <div class="card-body">
-    <h4 class="card-title">
+    <h4 class="card-title" style="text-transform: capitalize">
       <slot name="name" />
     </h4>
 
