@@ -4,25 +4,19 @@
   import moment from "moment";
 
   export let tempPost;
-
   let showComments = false;
   let comment = "";
-
   let liked = false;
-
   let sendBtnVisible = comment != "";
-
   let currentUser = {};
 
   user.subscribe((updatedUser) => {
-    if (updatedUser) {
-      currentUser = updatedUser;
-    }
+      if (updatedUser) currentUser = updatedUser;
   });
 
-  const open = () => {
-    showComments = true;
-  };
+  const open = () => { showComments = true; };
+
+  let interval;
 
   const checkAuth = (action) => {
     interval = setInterval(() => {
@@ -33,32 +27,31 @@
   };
 
   const post = async () => {
-    const response = await fetch("/api/posts/comment/", {
-      method: "POST",
+
+    const response = await fetch('/api/posts/comment/', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
         Authorization: currentUser.type + " " + currentUser.token,
       },
-      referrerPolicy: "no-referrer",
+      referrerPolicy: 'no-referrer',
       body: JSON.stringify({
         comment,
         username: currentUser.username,
-        postId: tempPost.id,
-      }),
-    });
-
-    const c = await response.json();
+        postId: tempPost.id
+      })
+    })
+    const c = await response.json()
     tempPost.comments.push({
       comment: c.comment,
       user: {
-        username: c.username,
-      },
-    });
+        username: c.username
+      }
+    })
     tempPost = tempPost;
-
     comment = "";
-    sendBtnVisible = false;
+    sendBtnVisible = false
     clearInterval(interval);
   };
 
@@ -89,7 +82,7 @@
     <div class="media-body">
       <span class="mb-2">@ {tempPost.user.username}</span>
       <div class="text-muted small">
-        {moment(tempPost.createdDate).fromNow()}
+        {moment.utc(tempPost.createdDate).fromNow()}
       </div>
     </div>
   </div>
