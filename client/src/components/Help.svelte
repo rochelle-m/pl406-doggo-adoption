@@ -15,6 +15,9 @@
 
 <div>
  	<Banner {message} {imgSrc} />
+ 	
+
+
 	<div class="card-deck main">  
 		<div class="card border-info mb-3 " style="max-width: 18rem;">
 	  		<div class="card-header">79 The Pet Stop</div>
@@ -168,18 +171,39 @@
 			</div>
 		</div>
 	</div>
-	</div>
 
+	<div class="helpline">
+ 	<div class="card border-info mb-3" style="max-width: 30rem;">
+	  		<div class="card-header">Pet Helpline Number</div>
+	  		<div class="card-body text-info">
+			   <p class="card-text">If uou need to report a situation involving an animal in immediate danger, please call our emergency number:</p>
+			   <p class="card-text"><b>(0)9820122602<b> </p>
+			   <p class="card-text">If animal is injured, please remain with the animal until help is secured.</p>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
 	<div class="p-4">
 	    <Map lat={15.49} lon={73.8} zoom={11.0}>
 	      <Marker lat={15.5166} lon={73.7689} label="Happy Paws" type="vet"/>
 	      <Marker lat={15.4650} lon={73.8657} label="Happy Paws" type="shop"/>
 	    </Map>
   	</div>
-</div>
+
+
 
 <style>
   .main{
-  padding:30px 60px;
+  padding: 30px 60px;
+  }
+
+  .helpline{
+margin-right:20%;
+margin-left:30%;
+ width: auto;
+ padding-top: 2em;
+
   }
 </style>
