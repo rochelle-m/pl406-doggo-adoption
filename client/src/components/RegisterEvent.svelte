@@ -6,6 +6,34 @@
 
   let message = "Register";
   let imgSrc = "images/register.jpg";
+
+  const URL = `/api/AdoptionCampAug2021/`;
+
+  let camp = {
+
+  firstName:'',
+  lastName:'',
+  contact:''
+  };
+
+  console.log(camp)
+
+  let addParticipant = async(event) =>{
+  event.preventDefault()
+ 
+  console.log(camp)
+  
+  let formData = new FormData();
+    console.log(camp)   
+    formData.append(
+      "doggo",
+      new Blob([JSON.stringify(camp)], {
+        type: "application/json",
+      })
+    );
+  };
+
+ console.log(camp)
 </script>
 
 <svelte:head>
@@ -25,27 +53,42 @@
                             <div class="form-group row">
                                 <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="full_name" class="form-control" name="firstname">
+                                    <input type="text" 
+                                    	id="full_name" 
+                                    	class="form-control" 
+                                    	name="firstname"
+                                    	bind:value={camp.firstName}
+                                    >
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="lastname" class="col-md-4 col-form-label text-md-right">Last Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="full_name" class="form-control" name="lastname">
+                                    <input type="text" 
+                                    	id="full_name" 
+                                    	class="form-control" 
+                                    	name="lastname"
+                                    	bind:value={camp.lastName}
+                                    >
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="contact" class="col-md-4 col-form-label text-md-right">Contact No.</label>
                                 <div class="col-md-6">
-                                  	<input type="text" id="full_name" class="form-control" name="contact">
+                                  	<input type="text" 
+                                  		id="full_name" 
+                                  		class="form-control" 
+                                  		name="contact"
+                                  		bind:value={camp.contact}
+                                  	>
                                 </div>
                             </div>
 
                             <button
                               type="submit"
-                              on:click|preventDefault = {addPost}
+                              on:click|preventDefault = {addParticipant}
                               class="btn btn-primary" >
                               Post
                             </button>
