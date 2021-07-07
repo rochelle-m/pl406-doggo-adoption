@@ -9,7 +9,7 @@
   import Help from "./components/Help.svelte";
   import Footer from "./utils/Footer.svelte";
   import Navbar from "./components/Navbar.svelte";
-  import AdoptionForm from "./components/AdoptionForm.svelte";
+  import ApplicantList from "./components/ApplicantList.svelte";
   import Post from "./components/Post.svelte";
   import RegisterEvent from "./components/RegisterEvent.svelte";
   
@@ -27,7 +27,7 @@
     <Route path="events"><Events /></Route>
     <Route path="help"><Help /></Route>
     <Route path="post"><Post /></Route>
-    <Route path="adoption-form"><AdoptionForm /></Route>
+    <Route path="applicant-list"><ApplicantList /></Route>
     <Route path="registerevent"><RegisterEvent /></Route>
     <Route><Message message="Page not found" /></Route>
     <Footer />

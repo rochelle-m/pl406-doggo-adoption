@@ -1,21 +1,33 @@
 <script>
   import { onMount } from "svelte";
   import Banner from "../utils/Banner.svelte";
-  import Applicant from "../utils/Applicant.svelte";
+  import { user } from "../stores/user";
+
+  let currentUser = {}
+  user.subscribe((n) => {
+      if (n) currentUser = n;
+  });
 
   let applicants = []
   onMount(async function () {
-    try {
-      const response = await fetch(URL);
-      applicants = await response.json();
-      console.log(applicants)
-    } catch (err) {
-        console.log(err)
-    }
+      try {
+        const response = await fetch(`/api/applicant/`, {
+          method: "get",
+           headers: {
+              Authorization: currentUser.type + " " + currentUser.token
+           },
+        });
+        applicants = await response.json();
+
+
+      } catch (err) {
+          console.log(err)
+      }
   });
 
 </script>
-  <style>
+
+<style>
     .but{
       margin-left: 80%;
       display: inline-block;
@@ -28,10 +40,6 @@
     }
 
   </style>
-
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
 
   <h2>Adoption Applicants:</h2>
 <div class="list-group ">

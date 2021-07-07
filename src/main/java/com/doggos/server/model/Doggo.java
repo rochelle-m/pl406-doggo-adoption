@@ -17,8 +17,8 @@ public class Doggo {
     @Nullable
     private String primaryImg;
 
-    private Boolean isAdopted;
-    private Boolean isFostered;
+    private Boolean adopted;
+    private Boolean fostered;
 
     @DBRef
     private User user;
@@ -34,6 +34,8 @@ public class Doggo {
         this.location = location;
         this.primaryImg = primaryImg;
         this.user = user;
+        this.adopted = false;
+        this.fostered = false;
     }
 
     public User getUser() {
@@ -100,18 +102,18 @@ public class Doggo {
 
 
     public Boolean getAdopted() {
-        return isAdopted;
+        return adopted;
     }
 
     public void setAdopted(Boolean adopted) {
-        isAdopted = adopted;
+        this.adopted = adopted;
     }
 
     public Boolean getFostered() {
-        return isFostered;
+        return fostered;
     }
 
     public void setFostered(Boolean fostered) {
-        isFostered = fostered;
+        this.fostered = fostered;
     }
 }

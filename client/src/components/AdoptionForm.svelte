@@ -69,16 +69,6 @@
 
   };
 
-let applicants = []
-onMount(async function () {
-    try {
-      const response = await fetch(URL);
-      applicants = await response.json();
-      console.log(applicants)
-    } catch (err) {
-        console.log(err)
-    }
-  });
 
 
 </script>

@@ -1,6 +1,7 @@
 package com.doggos.server.controller;
 
 import com.doggos.server.model.Doggo;
+import com.doggos.server.model.ERole;
 import com.doggos.server.model.Post;
 import com.doggos.server.model.User;
 import com.doggos.server.payload.request.DoggoRequest;
@@ -51,7 +52,7 @@ public class DoggoController {
                 imgPath = storageService.store(file, doggoRequest.getName(), "doggos");
             }
 
-                Doggo newDoggo = new Doggo(doggoRequest.getName(), doggoRequest.getBreed(), doggoRequest.getDescription(), doggoRequest.getRemarks(), doggoRequest.getLocation(),imgPath,user);
+            Doggo newDoggo = new Doggo(doggoRequest.getName(), doggoRequest.getBreed(), doggoRequest.getDescription(), doggoRequest.getRemarks(), doggoRequest.getLocation(),imgPath,user);
 
             Doggo _doggo = doggoRepository.save(newDoggo);
             return new ResponseEntity<Doggo>(_doggo, HttpStatus.CREATED);
@@ -97,6 +98,7 @@ public class DoggoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('STAFF')")
     public ResponseEntity<HttpStatus> deleteDoggo(@PathVariable("id") String id) {
         try {
             doggoRepository.deleteById(id);
@@ -105,4 +107,23 @@ public class DoggoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("update/{type}/{id}")
+    @PreAuthorize("hasRole('STAFF')")
+    public ResponseEntity<Doggo> updateToAdopted(@PathVariable("id") String id, @PathVariable("type") String type){
+        Optional<Doggo > doggo = doggoRepository.findById(id);
+        if(doggo.isPresent()){
+            Doggo updatedDoggo = doggo.get();
+            if (type.equals("adopt"))
+                updatedDoggo.setAdopted(true);
+            if (type.equals("foster"))
+                updatedDoggo.setFostered(true);
+            Doggo _doggo = doggoRepository.save(updatedDoggo);
+            return new ResponseEntity<>(_doggo, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
