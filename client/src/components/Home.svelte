@@ -8,7 +8,6 @@
 
 <div>
   <Carousel />
-  <h3>⧛ Under construction ⌂ ⧛</h3>
   <AdoptGallery/>
   <Foster/>
   <Posts/>
@@ -16,7 +15,5 @@
 </div>
 
 <style>
-  h3 {
-    padding: 2em 0;
-  }
+ 
 </style>

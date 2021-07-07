@@ -6,7 +6,7 @@
   export let title = "Dog Adoption and Care · Help";
 
   let message = "Help";
-  let imgSrc = "images/petfood.jpg";
+  let imgSrc = "images/help.jpg";
 </script>
 
 <svelte:head>
