@@ -22,6 +22,25 @@
       isLoggedIn = n.isLoggedIn;
     }
   });
+
+  let currentUser = {};
+    user.subscribe((updatedUser) => {
+      if (updatedUser) {
+        currentUser = updatedUser;
+      }
+  });
+
+  const URL = `/api/doggos/${doggo.id}`;
+  async function deleteDog() {
+    const response = await fetch(URL, {
+        method: 'DELETE',
+        headers: {
+        Authorization: token,
+            Authorization: currentUser.type + " " + currentUser.token
+        }
+    });
+  }
+
 </script>
 
 <style>
@@ -100,9 +119,10 @@
           </div>
           <div class="modal-body">
             <div class="btn-group">
+
               <button type="button" class="btn-secondary mr-2" on:click={()=>update("adopt", doggo.id)}>Mark as adopted</button>
               <button type="button" class="btn-secondary mr-2" on:click={()=>update("foster", doggo.id)}>Mark as fosted</button>
-              <button type="button" class="btn-danger mr-2">Delete</button>
+              <button type="button" on:click={()=>deleteDog()} class="btn-danger mr-2">Delete</button>
             </div>
           </div>
         </div>

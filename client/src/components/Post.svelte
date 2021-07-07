@@ -1,14 +1,16 @@
 <script>
-import { fade } from "svelte/transition";
-import { user } from "../stores/user";
-import axios from "axios";
+  import { fade } from "svelte/transition";
+  import { user } from "../stores/user";
+  import axios from "axios";
 
-let currentUser = {};
+  let currentUser = {};
+  let isStaff = false;
   user.subscribe((updatedUser) => {
     if (updatedUser) {
-      currentUser = updatedUser;  
+      currentUser = updatedUser;
+      isStaff = updatedUser.roles.some((role) => role == "ROLE_STAFF");
     }
-});
+  });
 
   let doggos = [];
   let error = "";
@@ -150,6 +152,7 @@ let image ;
     </div>
   </div>
 
+{#if !isStaff}
   <div class="form-group">
     <label
     class="control-label col-sm-2"
@@ -166,6 +169,7 @@ let image ;
       required>
     </div>
   </div>
+  {/if}
 
   <div class="form-group">
     <label

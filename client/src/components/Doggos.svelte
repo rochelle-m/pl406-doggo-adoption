@@ -8,6 +8,7 @@
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
   import NewDoggo from "../components/Post.svelte";
+  import { Link } from "svelte-routing";
 
   let isStaff = false;
   let currentUser = {};
@@ -108,7 +109,6 @@
 
 <div>
   <Banner {message} {imgSrc} />
-
   <div class="input-group mt-2 px-4">
     <input
       type="search" placeholder="Search location"
@@ -124,6 +124,9 @@
     </span>
   </div>
 
+   {#if isStaff}
+          <Link to="applicant-list" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">View all applications</Link>
+    {/if}
   <div class="d-flex flex-wrap justify-content-around my-4">
     {#each doggosToDisplay as doggo}
       {#if !Boolean(doggo.adopted || doggo.fostered)}
