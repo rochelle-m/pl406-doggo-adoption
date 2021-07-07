@@ -21,6 +21,28 @@
       isLoggedIn = n.isLoggedIn;
     }
   });
+
+  let currentUser = {};
+    user.subscribe((updatedUser) => {
+      if (updatedUser) {
+        currentUser = updatedUser;
+      }
+  });
+   let doggos = [];
+    let error = "";
+    const URL = `/api/doggos/$(doggo.id}`;
+  async function deleteDog() {
+          const response = await fetch(URL, {
+              method: 'DELETE',
+              headers: {
+              Authorization: token,
+                  Authorization: currentUser.type + " " + currentUser.token
+              }
+          });
+          const resData = 'resource deleted...';
+      }
+  }
+
 </script>
 
 <style>
@@ -101,7 +123,7 @@
             <div class="btn-group">
               <button type="button" class="btn-secondary mr-2">Mark as adopted</button>
               <button type="button" class="btn-secondary mr-2">Mark as fosted</button>
-              <button type="button" class="btn-danger mr-2">Delete</button>
+              <button type="button" on:click={()=>deleteDog()} class="btn-danger mr-2">Delete</button>
             </div>
           </div>
         </div>
