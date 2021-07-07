@@ -80,138 +80,123 @@ let image ;
   };
 </script>
 
-<div id="myForm">
-  <div class="modal" fade>
-    <div class="backdrop" />
-      <div class="content-wrapper">
-        <div class="content">
-          <div class="close" ><a href="adopt" class="close">×</a></div>
-          <img src="/images/post.jpg" alt="doggo" />
-          <h2 class="message">{msg}</h2>
-          <div class="container">
-          <div class="modal-body mx-3">
-        
-            <form id="myForm"  method="post">
-              <div class="form-group">             
-                <label 
-                class="control-label col-sm-2"
-                for="name">
-                <b>Name:</b>
-                </label>
 
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input 
-                  bind:value={post.name}
-                  type="text" 
-                  placeholder="Enter dog name" 
-                  name="name"
-                  required>
-                </div>
-              </div>
+<form id="myForm"  method="post">
+  <div class="form-group mt-2">
+    <label
+    class="control-label col-sm-2"
+    for="name">
+    <b>Name:</b>
+    </label>
 
-              <div class="form-group">
-                <label 
-                class="control-label col-sm-2"
-                for="breed">
-                <b>Breed:</b>
-                </label>
-
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input 
-                  bind:value={post.breed}
-                  type="text" 
-                  placeholder="Enter dog breed" 
-                  name="breed" 
-                  required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label 
-                class="control-label col-sm-2"
-                for="description">
-                <b>Description:</b>
-                </label>
-
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input 
-                  bind:value={post.description}
-                  type="text" 
-                  placeholder="Describe" 
-                  name="description" 
-                  required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label 
-                class="control-label col-sm-2"
-                for="remark">
-                <b>Remark:</b>
-                </label>
-
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input
-                  bind:value={post.remark} 
-                  type="text" 
-                  placeholder="Give remark" 
-                  name="remark" 
-                  required>
-                </div>
-              </div>
-
-              <div class="form-group"> 
-                <label 
-                class="control-label col-sm-2"
-                for="location">
-                <b>Location:</b>
-                </label>
-
-                <div class="col-sm-offset-2 col-sm-10">
-                  <input
-                  bind:value={post.location} 
-                  type="text" 
-                  placeholder="Enter dogs location" 
-                  name="location" 
-                  required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label
-                class="control-label col-sm-8">
-                <b>Choose picture to upload:</b>
-                </label>
-                
-                <div class="col-sm-offset-2 col-sm-10"> 
-                  <input 
-                  bind:value={src}
-                  type="file" 
-                  name="photo"
-                  id="photo" 
-                  accept=".jpg,.jpeg,.png"
-                  on:change={onChange}
-                  />
-                 </div> 
-                {#if src}
-                <img class="uploadimg" {src} />
-                {/if}
-              </div>
-
-              <button 
-                type="submit" 
-                on:click|preventDefault = {addPost}
-                class="btn btn-primary" >
-                Post
-              </button>
-
-            </form>
-          </div> 
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={post.name}
+      type="text"
+      placeholder="Enter dog name"
+      name="name"
+      required>
     </div>
   </div>
+
+  <div class="form-group">
+    <label
+    class="control-label col-sm-2"
+    for="breed">
+    <b>Breed:</b>
+    </label>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={post.breed}
+      type="text"
+      placeholder="Enter dog breed"
+      name="breed"
+      required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label
+    class="control-label col-sm-2"
+    for="description">
+    <b>Description:</b>
+    </label>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={post.description}
+      type="text"
+      placeholder="Describe"
+      name="description"
+      required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label
+    class="control-label col-sm-2"
+    for="remark">
+    <b>Remark:</b>
+    </label>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={post.remark}
+      type="text"
+      placeholder="Give remark"
+      name="remark"
+      required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label
+    class="control-label col-sm-2"
+    for="location">
+    <b>Location:</b>
+    </label>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={post.location}
+      type="text"
+      placeholder="Enter dogs location"
+      name="location"
+      required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label
+    class="control-label col-sm-8">
+    <b>Choose picture to upload:</b>
+    </label>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <input
+      bind:value={src}
+      type="file"
+      name="photo"
+      id="photo"
+      accept=".jpg,.jpeg,.png"
+      on:change={onChange}
+      />
+     </div>
+    {#if src}
+    <img class="uploadimg" {src} />
+    {/if}
+  </div>
+
+  <button
+    type="submit"
+    on:click|preventDefault = {addPost}
+    class="btn btn-primary" >
+    Post
+  </button>
+
+</form>
+
 
 <style>
   div.modal {

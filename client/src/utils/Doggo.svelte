@@ -1,7 +1,8 @@
 <script>
   import { Link } from "svelte-routing";
   import { user } from "../stores/user";
-  // import AdoptionForm from "../components/AdoptionForm.svelte";
+  import { openModal } from "../stores/store";
+  import AdoptionForm from "../components/AdoptionForm.svelte";
 
   export let src;
   export let doggo;
@@ -12,10 +13,12 @@
   };
 
   let isStaff = false;
+  let isLoggedIn = false;
 
   user.subscribe((n) => {
     if (n) {
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
+      isLoggedIn = n.isLoggedIn;
     }
   });
 </script>
@@ -54,6 +57,13 @@
   [class*="home"],
   [class*="marker"] {
     left: 0em;
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 700px;
+      margin: 1rem auto;
+    }
   }
 </style>
 
@@ -100,7 +110,7 @@
   {/if}
 
   {#if doggo?.location}
-    <i class="fa fa-map-marker"> &nbsp; {doggo.location}</i>
+    <i class="fa fa-map-marker" style="text-transform: capitalize"> &nbsp; {doggo.location}</i>
   {:else}
     <i class="fa fa-home icon" aria-hidden="true" title="In Adoption Home" />
   {/if}
@@ -112,7 +122,7 @@
       <slot name="name" />
     </h4>
 
-    <p class="card-text text-secondary">
+    <p class="card-text text-secondary" style="text-transform: lowercase">
       <slot name="breed" />
     </p>
 
@@ -126,22 +136,41 @@
   </div>
 
   <div class="card-footer">
-    <!-- <div data-toggle="modal" data-target="#adopt">Adopt</div> -->
-    <Link class="card-link" to="adoption-form">Adopt</Link>
-    <a href="/" class="card-link">Foster</a>
+    {#if isLoggedIn}
+     <span data-toggle="modal" data-target="#adopt" class="pointer">Adopt</span>
+     <a href="/" class="card-link">Foster</a>
+    {:else}
+        <div class="text-right">
+          <button class="mt-4" on:click={() => openModal('login')}>Login
+            to adopt/foster</button>
+        </div>
+    {/if}
   </div>
 </article>
 
-<!-- <div
+<div
   class="modal fade"
   id="adopt"
   tabindex="-1"
   role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <AdoptionForm />
-    </div>
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+           Adopt {doggo.name}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+         <div class="modal-body" id="exampleModalLongTitle">
+              <AdoptionForm {doggo} />
+        </div>
+       </div>
   </div>
-</div> -->
+</div>

@@ -15,9 +15,6 @@
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
     }
   });
-
-  let message1 = isStaff ? "Add Items" : "Donate Items";
-  let message2 = isStaff ? "View Donations" : "Make a monetary donation";
 </script>
 
 <svelte:head>
@@ -28,32 +25,20 @@
   <Banner {message} {imgSrc} />
 
   <div
-    class="d-flex justify-content-around mt-4 row container"
-    style="margin: auto"
-  >
-    <div class="col-sm-4">
-      <div class="card border-dark mb-3">
-        <div class="card-header">
-          <span class="d-inline-block"> {message1} </span>
-          <span class="d-inline-block btn float-right">
-            <i class="fas fa-box-open" />
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
+    class="d-flex justify-content-around mt-4 row container text-left"
+    style="margin: auto">
+    <div class="col-sm-8">
       <div
         class="card border-dark mb-3"
         data-toggle="modal"
         data-target="#payment"
-        style="cursor: pointer;"
-      >
-        <div class="card-header">
-          <span class="d-inline-block">{message2}</span>
-          <span class="d-inline-block btn float-right">
+        style="cursor: pointer;">
+        {#if !isStaff}
+          <div class="card-header">
+            <span>{'Donate'}</span>
             <i class="far fa-credit-card" />
-          </span>
-        </div>
+          </div>
+        {/if}
       </div>
     </div>
   </div>
@@ -63,9 +48,7 @@
     id="payment"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-  >
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -76,8 +59,7 @@
             type="button"
             class="close"
             data-dismiss="modal"
-            aria-label="Close"
-          >
+            aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -98,11 +80,7 @@
   </div>
 
   <div class="container">
-    {#if isStaff}
-      <DonationBasket />
-    {:else}
-      <p> items here </p>
-    {/if}
+    <DonationBasket />
   </div>
   <small> All donations are exempted under the 80g certificate. </small>
 </div>

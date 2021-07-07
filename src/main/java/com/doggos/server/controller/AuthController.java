@@ -11,6 +11,7 @@ import com.doggos.server.repository.UserRepository;
 import com.doggos.server.security.jwt.JwtUtils;
 import com.doggos.server.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -116,6 +118,23 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok("User registered");
+    }
+
+    @PutMapping("update/{id}/{role}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> updateToVolunteer(@PathVariable("id") String id, @PathVariable String role){
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
+            User updatedUser = user.get();
+            updatedUser.setVolunteerRole(role);
+            updatedUser.getRoles().add(roleRepository.findByRole(ERole.ROLE_VOLUNTEER).get());
+            userRepository.save(updatedUser);
+            return new ResponseEntity<>(updatedUser.getRoles(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping("logout")

@@ -9,9 +9,9 @@
 <div>
   <Carousel />
   <h3>⧛ Under construction ⌂ ⧛</h3>
+  <AdoptGallery/>
   <Foster/>
   <Posts/>
-  <AdoptGallery/>
   <About/>
 </div>
 
