@@ -1,3 +1,4 @@
+
 package com.doggos.server.payload.request;
 
 public class ApplicantRequest {

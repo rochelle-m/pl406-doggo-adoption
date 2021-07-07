@@ -1,5 +1,6 @@
 <script>
   import Banner from "../utils/Banner.svelte";
+  import { Link } from "svelte-routing";
 
   export let title = "Dog Adoption and Care · Events";
 
@@ -27,7 +28,7 @@
 <br>
 <br>
 
-<a class="btn btn-primary register" href="registerevent" >Register</a>
+<Link class="btn btn-primary register" to="registerevent" >Register</Link>
 </div>
 
 <div  class="event">
@@ -37,7 +38,7 @@
 <h class="title">20th july 2021 - 30th july 2021</h><br><h class="title">View ground, Goa - 231458</h>
 <br>
 <br>
-<a class="btn btn-primary register" href="" >Register</a>
+<Link class="btn btn-primary register" to="registerevent" >Register</Link>
 </div>
 
 <div  class="event">
@@ -47,7 +48,7 @@
 <h class="title">12th july 2021 - 14th july 2021</h><br><h class="title">Doggo club, Goa - 456558</h>
 <br>
 <br>
-<a class="btn btn-primary register" href="" >Register</a>
+<Link class="btn btn-primary register" to="registerevent" >Register</Link>
 </div>
 
 
@@ -206,7 +207,7 @@
   }
 
   .event{
-    height:350px;
+    height:400px;
     border: 1px solid black;
     border-radius:15px;
     margin:10px 50px;
@@ -222,7 +223,7 @@
   font-size:23px;
   }
 .register{
-	color:white;
+	color:black;
 }
 </style>
 
