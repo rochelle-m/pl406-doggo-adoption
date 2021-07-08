@@ -24,7 +24,7 @@
 <h class="title "> <b>Dog Adoption Camp</b></h><br>
 <img class="logo" src="/images/camp.png" alt="doggo" />
 <br>
-<h class="title">5th August 2021</h><br><h class="title">Adoption Centre, Goa - 231458</h>
+<h class="title">20th July 2021</h><br><h class="title">Adoption Centre, Goa - 231458</h>
 <br>
 <br>
 
@@ -35,7 +35,7 @@
 <h class="title "> <b>Tranning Camp</b></h><br>
 <img class="logo" src="/images/train.png" alt="doggo" />
 <br>
-<h class="title">20th july 2021 - 30th july 2021</h><br><h class="title">View ground, Goa - 231458</h>
+<h class="title">20th August 2021 - 30th August 2021</h><br><h class="title">View ground, Goa - 231458</h>
 <br>
 <br>
 <Link class="btn btn-primary register" to="registerevent" >Register</Link>
@@ -45,7 +45,7 @@
 <h class="title "> <b>Pet Food Expo</b></h><br>
 <img class="logo" src="/images/download.png" alt="doggo" />
 <br>
-<h class="title">12th july 2021 - 14th july 2021</h><br><h class="title">Doggo club, Goa - 456558</h>
+<h class="title">02 August 2021 - 04th August 2021</h><br><h class="title">Doggo club, Goa - 456558</h>
 <br>
 <br>
 <Link class="btn btn-primary register" to="registerevent" >Register</Link>
