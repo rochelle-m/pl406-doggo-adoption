@@ -17,10 +17,16 @@
   const filter = (tag) => {
     posts = displayedPosts.filter((post) => post.tags.includes(tag));
   };
+
+  $: showing = posts.length
+  $: all = displayedPosts.length
 </script>
 
 <div class=" mx-5 d-flex col-lg-8 flex-column">
   <NewPost />
+
+  <p class="text-left mt-4"> Showing {showing} of {all} posts</p>
+
   {#if posts.length}
     <div class="card-body text-left">
         <small

@@ -1,9 +1,11 @@
 package com.doggos.server.controller;
 
 import com.doggos.server.model.Applicant;
+import com.doggos.server.model.Doggo;
 import com.doggos.server.model.User;
 import com.doggos.server.payload.request.ApplicantRequest;
 import com.doggos.server.repository.ApplicantRepository;
+import com.doggos.server.repository.DoggoRepository;
 import com.doggos.server.repository.UserRepository;
 import com.doggos.server.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class ApplicantController {
     UserRepository userRepository;
 
     @Autowired
+    DoggoRepository doggoRepository;
+
+    @Autowired
     public ApplicantController(StorageService storageService) {
         this.storageService = storageService;
     }
@@ -41,8 +46,9 @@ public class ApplicantController {
     public ResponseEntity<Applicant> create(@RequestBody ApplicantRequest applicantRequest) {
         try {
             User user = userRepository.findByUsername(applicantRequest.getUsername()).get();
+            Doggo doggo = doggoRepository.findById(applicantRequest.getDogId()).get();
 
-            Applicant newApplicant = new Applicant(applicantRequest.getDogId(),
+            Applicant newApplicant = new Applicant(doggo,
                     user,
                     applicantRequest.getApplicantName(),
                     applicantRequest.getPhoneNumber(),

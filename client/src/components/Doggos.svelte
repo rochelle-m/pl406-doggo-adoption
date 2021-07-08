@@ -109,6 +109,10 @@
 
 <div>
   <Banner {message} {imgSrc} />
+
+   {#if isStaff}
+          <Link to="applicant-list" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">View all applications</Link>
+   {/if}
   <div class="input-group mt-2 px-4">
     <input
       type="search" placeholder="Search location"
@@ -124,9 +128,6 @@
     </span>
   </div>
 
-   {#if isStaff}
-          <Link to="applicant-list" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">View all applications</Link>
-    {/if}
   <div class="d-flex flex-wrap justify-content-around my-4">
     {#each doggosToDisplay as doggo}
       {#if !Boolean(doggo.adopted || doggo.fostered)}
@@ -134,6 +135,7 @@
           <p slot="name">{doggo.name}</p>
           <p slot="breed">{doggo.breed}</p>
           <p slot="description">{doggo.description}</p>
+          {doggo.name}
         </Doggo>
       {:else if isStaff}
         <Doggo src={doggo.primaryImg} {doggo}>

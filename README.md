@@ -79,8 +79,8 @@ Method |Endpoint|  Description| Authentication
 |GET| /api/doggos/| Retrieves all dogs | ✕
 |POST| /api/doggos/| Creates a new dog resource | ✕
 |GET| /api/doggos/{id}| Retrieves a dog with matching id | ✕
-|POST| /api/auth/signup | Creates a new user, returns [JWT](https://jwt.io/) |✓
-|POST| /api/auth/signin | Authenticates the user, returns [JWT](https://jwt.io/) |✓
+|POST| /api/auth/signup | Creates a new user, returns [JWT](https://jwt.io/) |✕
+|POST| /api/auth/signin | Authenticates the user, returns [JWT](https://jwt.io/) |✕
 |POST| /api/auth/logout | Logs the user out | ✓
 |PUT| /api/auth/update/{id}/{role} | Updates the user to the VOLUNTEER role | ✓
 |GET| /api/checkout/{amount}| Redirects to the payment page | ✕

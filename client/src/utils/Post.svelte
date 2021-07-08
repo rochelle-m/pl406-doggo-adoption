@@ -87,6 +87,10 @@
     </div>
   </div>
 
+  {#if (tempPost.user.username == currentUser.username)}
+     <i class="fa fa-trash pointer" aria-hidden="true"></i>
+  {/if}
+
   {#if tempPost.imagePath}
     <img src={tempPost.imagePath} class=" img-fluid" alt="..." />
   {/if}
@@ -106,6 +110,9 @@
         <small>
           <strong>@{comment.user.username}</strong>
           <em>{comment.comment}</em>
+          {#if (comment.user.username == currentUser.username)}
+            <i class="fa fa-minus-square-o pointer" aria-hidden="true"></i>
+          {/if}
         </small>
       </div>
     {/each}
@@ -121,8 +128,11 @@
       {#each tempPost.comments.slice(2) as comment}
         <div>
           <small>
-            <strong>@{comment.user.username}</strong>
-            <em>{comment.comment}</em>
+              <strong>@{comment.user.username}</strong>
+              <em>{comment.comment}</em>
+              {#if (comment.user.username == currentUser.username)}
+                <i class="fa fa-minus-square-o pointer" aria-hidden="true">d</i>
+              {/if}
           </small>
         </div>
       {/each}

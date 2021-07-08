@@ -108,9 +108,9 @@ public class DoggoController {
         }
     }
 
-    @PutMapping("update/{type}/{id}")
+    @PutMapping("update/{action}/{id}")
     @PreAuthorize("hasRole('STAFF')")
-    public ResponseEntity<Doggo> updateToAdopted(@PathVariable("id") String id, @PathVariable("type") String type){
+    public ResponseEntity<Doggo> updateToAdopted(@PathVariable("id") String id, @PathVariable("action") String type){
         Optional<Doggo > doggo = doggoRepository.findById(id);
         if(doggo.isPresent()){
             Doggo updatedDoggo = doggo.get();

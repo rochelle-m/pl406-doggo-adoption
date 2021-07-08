@@ -30,6 +30,7 @@
       }
   });
 
+
   const URL = `/api/doggos/${doggo.id}`;
   async function deleteDog() {
     const response = await fetch(URL, {
@@ -179,7 +180,7 @@
     <div class="modal-content">
        <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
-           Adopt {doggo.name}
+           Adopt {doggo?.name}
           </h5>
           <button
             type="button"

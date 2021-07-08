@@ -48,11 +48,11 @@
     <div class="d-flex w-100 justify-content-between">
      <h5 class="mb-1">{applicant.applicantName}</h5>
     </div>
-    <p class="mb-1">{applicant.dogId}</p>
+
     <p class="mb-1">{applicant.address}</p>
     <div class="but">
-    <button type="button" class="btn btn-primary">Accept</button>
-      <button type="button" class="btn btn-primary">Reject</button>
+    <button type="button" class="btn-primary">Accept</button>
+      <button type="button" class="btn-primary">Reject</button>
     </div>
   </a>
     {/each}

@@ -7,11 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "applicant")
 public class Applicant {
 
-    private String dogId;
+    @DBRef
+    private Doggo doggo;
+
     @DBRef
     private User user;
+
     @Id
     private String applicantId;
+
     private String applicantName;
     private String phoneNumber;
     private String address;
@@ -27,7 +31,7 @@ public class Applicant {
     private String agreement;
 
 
-    public Applicant(String dogId,
+    public Applicant(Doggo doggo,
                      User user,
                      String applicantName,
                      String phoneNumber,
@@ -42,7 +46,7 @@ public class Applicant {
                      String[] reasonToAdopt,
                      String haveTime,
                      String agreement) {
-        this.dogId = dogId;
+        this.doggo = doggo;
         this.user = user;
         this.applicantName = applicantName;
         this.phoneNumber = phoneNumber;
@@ -59,12 +63,12 @@ public class Applicant {
         this.agreement = agreement;
     }
 
-    public String getDogId() {
-        return dogId;
+    public Doggo getDoggo() {
+        return doggo;
     }
 
-    public void setDogId(String dogId) {
-        this.dogId = dogId;
+    public void setDoggo(Doggo doggo) {
+        this.doggo = doggo;
     }
 
     public User getUser() {
