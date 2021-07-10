@@ -1,5 +1,4 @@
 <script>
-  import { Link } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
   import { update } from "../modules/doggo";
@@ -7,6 +6,7 @@
 
   export let src;
   export let doggo;
+  console.warn(doggo)
 
   let handleError = (el) => {
     el.target.error = null;
@@ -15,21 +15,15 @@
 
   let isStaff = false;
   let isLoggedIn = false;
+  let currentUser = {};
 
   user.subscribe((n) => {
     if (n) {
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
       isLoggedIn = n.isLoggedIn;
+      currentUser = n;
     }
   });
-
-  let currentUser = {};
-    user.subscribe((updatedUser) => {
-      if (updatedUser) {
-        currentUser = updatedUser;
-      }
-  });
-
 
   const URL = `/api/doggos/${doggo.id}`;
   async function deleteDog() {

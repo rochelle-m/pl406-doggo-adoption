@@ -61,21 +61,18 @@ input:disabled {
 }
 
 .btn {
-  padding: 1em 2em !important;
+  padding: 0.5em 1em !important;
   background: #f7e8ee !important;
-  margin: 5px 2px;
+  margin: 4px 2px;
   text-align: center;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
   box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.4),
-  6px 6px 10px rgba(0, 0, 0, 0.2);
-  color: #303021;
-  border-radius: 10px ;
 }
 
 .btn:hover {
   opacity: 0.8;
-  box-shadow: -6px -6px 5px rgba(255, 255, 255, 0.8),
+  box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.8),
     6px 6px 10px rgba(0, 0, 0, 0.2);
 }
 

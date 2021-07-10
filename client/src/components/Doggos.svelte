@@ -18,8 +18,6 @@
     if (n) {
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
       currentUser = n;
-
-      //if(currentUser.isLoggedIn && openAddDogDialog) { }
     }
   });
 
@@ -49,7 +47,6 @@
 
   const showLoginDialog = () => {
     openModal("login");
-    //openAddDogDialog = true;
   };
 
   let search = ""
