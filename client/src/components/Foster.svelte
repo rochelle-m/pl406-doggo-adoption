@@ -4,7 +4,7 @@
 	export let title = "Dog Adoption and Care · Foster";
 
   let message = "Foster";
-  let imgSrc = "images/foster.jpg";
+  let imgSrc = "images/banner/foster.jpg";
 </script>
 
 <svelte:head>

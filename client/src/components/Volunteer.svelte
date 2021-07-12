@@ -7,7 +7,7 @@
   export let title = "Dog Adoption and Care · Volunteer";
 
   let message = "Volunteer";
-  let imgSrc = "images/volunteer.jpg";
+  let imgSrc = "images/banner/volunteer.jpg";
 
   let isVolunteer = false
   let isLoggedIn = false

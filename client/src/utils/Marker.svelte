@@ -3,8 +3,8 @@
 	import { mapbox, key } from "./mapbox.js";
 
 	const icons = {
-		vet: "url(/icons8-vet.png)",
-		shop: "url(/icons8-shop-50.png)",
+		vet: "url(/images/icons8-vet.png)",
+		shop: "url(/images/icons8-shop-50.png)",
 	};
 
 	const { getMap } = getContext(key);

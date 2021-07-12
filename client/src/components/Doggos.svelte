@@ -4,7 +4,6 @@
   import Doggo from "../utils/Doggo.svelte";
   import Loading from "../utils/Loading.svelte";
   import BeforeYouAdopt from "../utils/BeforeYouAdopt.svelte";
-  import { navigate } from "svelte-routing";
   import { user } from "../stores/user";
   import { openModal } from "../stores/store";
   import NewDoggo from "../components/Post.svelte";
@@ -12,14 +11,11 @@
 
   let isStaff = false;
   let currentUser = {};
-  let openAddDogDialog = false;
 
   user.subscribe((n) => {
     if (n) {
       isStaff = n.roles.some((role) => role == "ROLE_STAFF");
       currentUser = n;
-
-      //if(currentUser.isLoggedIn && openAddDogDialog) { }
     }
   });
 
@@ -45,11 +41,10 @@
   });
 
   let message = "Adopt";
-  let imgSrc = "images/dog11.jpg";
+  let imgSrc = "images/banner/dog11.jpg";
 
   const showLoginDialog = () => {
     openModal("login");
-    //openAddDogDialog = true;
   };
 
   let search = ""

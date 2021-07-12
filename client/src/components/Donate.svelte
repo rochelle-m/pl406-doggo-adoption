@@ -6,7 +6,7 @@
   export let title = "Dog Adoption and Care · Donate";
 
   const message = "Donate";
-  const imgSrc = "images/donate.jpg";
+  const imgSrc = "images/banner/donate.jpg";
 
   let isStaff = false;
 
