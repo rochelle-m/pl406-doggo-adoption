@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -71,14 +72,19 @@ public class StorageServiceImplementation implements StorageService {
 
     @Override
     public byte[] get(String id, String name) throws IOException {
-        Path destination = Paths.get(this.rootLocation.toString() + "/" + id + "/" + name);
+        try {
+            Path destination = Paths.get(this.rootLocation.toString() + "/" + id + "/" + name);
+            return IOUtils.toByteArray(destination.toUri());
+        }
+        catch(FileNotFoundException fileNotFoundException) {
+            return null;
+        }
 
-        return IOUtils.toByteArray(destination.toUri());
     }
 
 
     @Override
-    public byte[] getLogo() throws IOException {
+    public byte[] getLogo() throws IOException, FileNotFoundException {
         return IOUtils.toByteArray(Paths.get(logoPath).toUri());
     }
 }

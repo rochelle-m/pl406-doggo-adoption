@@ -54,7 +54,7 @@
   </div>
 
   {#if posts.length}
-     {#each posts as tempPost}
+    {#each posts as tempPost}
       <Post {tempPost} />
     {:else}
       <Loading message={"Some error occured"} />

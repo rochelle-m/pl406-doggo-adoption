@@ -5,9 +5,7 @@
   let currentUser;
 
   user.subscribe((n) => {
-    if (n) {
-      currentUser = n;
-    }
+    if (n) currentUser = n;
   });
 </script>
 
