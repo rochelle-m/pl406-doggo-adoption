@@ -39,6 +39,7 @@
 
   const add = function ({ price, link }) {
     donation.items.push(link);
+    if (price.includes(",")) price = price.replace(/,/g, "")
     donation.amount += +price.substring(2);
     console.log(price.substring(2), donation.items);
   };
