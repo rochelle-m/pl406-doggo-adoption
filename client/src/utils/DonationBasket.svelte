@@ -23,13 +23,9 @@
   let productList = [];
 
   onMount(async () => {
-    const responses = await Promise.all([
+    productList = await Promise.all([
       ...productTypes.map((type) => fetch(`${URL}/${type}`)),
-    ]);
-    responses.forEach(
-      async (response, i) => (productList[i] = await response.json())
-    );
-    console.log(productList);
+    ]).then((res) => Promise.all(res.map(async (product) => await product.json())));
   });
 
   let donation = {
