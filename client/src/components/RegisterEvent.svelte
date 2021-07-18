@@ -1,8 +1,7 @@
 <script>
   import Banner from "../utils/Banner.svelte";
-  import { Link } from "svelte-routing";
 
-  export let title = "Dog Adoption and Care · Events";
+  export let title = "Register for Event · Dog Adoption and Care";
 
   let message = "Register";
   let imgSrc = "images/register.jpg";

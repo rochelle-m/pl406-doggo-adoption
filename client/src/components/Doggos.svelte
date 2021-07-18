@@ -19,7 +19,7 @@
     }
   });
 
-  export let title = "Dog Adoption and Care · Adopt";
+  export let title = "Adopt · Dog Adoption and Care";
 
   let doggos = [];
   let doggosToDisplay = []

@@ -11,10 +11,14 @@
   </ul>
 
   <!-- The slideshow -->
-  <div class="carousel-inner">
+  <div class="carousel-inner text-white">
     {#each carouselItems as item, key}
       <div class={"carousel-item" + (key ? "" : " active")}>
         <img src={item.img.src} alt={item.img.alt} width="100%" />
+        <div class="action">
+          <h2> {item.title} </h2>
+          <button class="text-capitalize mt-4" > {item.name} </button>
+        </div>
       </div>
     {/each}
   </div>
@@ -31,4 +35,11 @@
   img {
     filter: brightness(60%);
   }
+  img + .action {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 </style>

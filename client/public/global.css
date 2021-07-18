@@ -92,3 +92,7 @@ footer {
 .badge:hover {
     opacity: 0.8;
 }
+
+.bg-secondary-100 {
+  background-color: rgba(204, 204, 204, 0.5) !important;
+}

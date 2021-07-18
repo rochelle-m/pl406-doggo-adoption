@@ -3,7 +3,7 @@
   import DonationBasket from "../utils/DonationBasket.svelte";
   import { user } from "../stores/user";
 
-  export let title = "Dog Adoption and Care · Donate";
+  export let title = "Donate · Dog Adoption and Care";
 
   const message = "Donate";
   const imgSrc = "images/banner/donate.jpg";
