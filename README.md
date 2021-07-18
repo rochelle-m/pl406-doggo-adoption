@@ -53,7 +53,7 @@ Application where users can view dogs up for adoption/fostering, adopt/foster a 
 
   ```
 
-- In *client/* create a file *.env*, and in it enter your [Mapbox Access Token](https://docs.mapbox.com/api/overview/)
+- In *client/* create a file *.env* and in it, enter your [Mapbox Access Token](https://docs.mapbox.com/api/overview/)
   ```properties
   API_MAPBOX_ACCESS_TOKEN=
 
@@ -77,7 +77,7 @@ Application where users can view dogs up for adoption/fostering, adopt/foster a 
 Method |Endpoint|  Description| Authentication
 |--|--|--|--|
 |GET| /api/doggos/| Retrieves all dogs | ✕
-|POST| /api/doggos/| Creates a new dog resource | ✕
+|POST| /api/doggos/| Creates a new dog resource | ✓
 |GET| /api/doggos/{id}| Retrieves a dog with matching id | ✕
 |POST| /api/auth/signup | Creates a new user, returns [JWT](https://jwt.io/) |✕
 |POST| /api/auth/signin | Authenticates the user, returns [JWT](https://jwt.io/) |✕
@@ -85,8 +85,9 @@ Method |Endpoint|  Description| Authentication
 |PUT| /api/auth/update/{id}/{role} | Updates the user to the VOLUNTEER role | ✓
 |GET| /api/checkout/{amount}| Redirects to the payment page | ✕
 |POST| /api/posts/new| Creates a new post | ✓
-|POST| /api/posts/comment| Creates a new comment | ✓
+|POST| /api/posts/comment| Creates a new comment to a post| ✓
 |DELETE| /api/posts/{id}| Deletes post by id | ✓
 |GET| /api/products/[category-name]| Retrieves products by category | ✕
 |POST| /api/applicant/| Creates a new adoption applicant | ✓
-|GET| /api/applicant/| Retrieves all applicants | ✕
+|GET| /api/applicant/| Retrieves all applicants | ✓*
+|DELETE| /api/applicant/{id}| Deletes an applicant by id | ✓

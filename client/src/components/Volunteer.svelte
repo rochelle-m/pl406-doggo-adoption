@@ -4,10 +4,10 @@
   import { user } from "../stores/user";
   import { update } from "../modules/auth";
 
-  export let title = "Dog Adoption and Care · Volunteer";
+  export let title = "Volunteer · Dog Adoption and Care";
 
   let message = "Volunteer";
-  let imgSrc = "images/volunteer.jpg";
+  let imgSrc = "images/banner/volunteer.jpg";
 
   let isVolunteer = false
   let isLoggedIn = false

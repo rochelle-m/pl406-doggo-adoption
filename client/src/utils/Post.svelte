@@ -6,9 +6,10 @@
   export let tempPost;
   let showComments = false;
   let comment = "";
-  let liked = false;
   let sendBtnVisible = comment != "";
   let currentUser = {};
+  let disabled = false
+  let postCommentClass = "input-group-text pointer"
 
   user.subscribe((updatedUser) => {
       if (updatedUser) currentUser = updatedUser;
@@ -20,10 +21,8 @@
 
   const checkAuth = (action) => {
     interval = setInterval(() => {
-      if (currentUser.isLoggedIn) {
-        action();
-      }
-    }, 4000);
+      currentUser.isLoggedIn && action()
+    }, 3000);
   };
 
   const post = async () => {
@@ -52,10 +51,23 @@
     tempPost = tempPost;
     comment = "";
     sendBtnVisible = false
+    enableComments();
     clearInterval(interval);
   };
 
+  const disableComments = function() {
+      disabled = true
+      postCommentClass += " disabled"
+     
+  }
+
+  const enableComments = function() {
+      disabled = false
+      postCommentClass = "input-group-text pointer"
+  }
+
   const postComment = () => {
+    disableComments()
     if (!currentUser.isLoggedIn) {
       openModal("login");
       checkAuth(post);
@@ -74,6 +86,11 @@
     width: 400px;
     height: 300px;
     object-fit: cover;
+  }
+
+  .disabled {
+    cursor: none;
+    opacity: 0.6;
   }
 </style>
 
@@ -152,11 +169,12 @@
           on:input={handleChange}
           placeholder="Write a comment or a query"
           aria-describedby="inputGroupPrepend3"
+          disabled={disabled} 
           required />
 
         {#if sendBtnVisible}
           <span
-            class="input-group-text pointer"
+            class={postCommentClass}
             id="inputGroupPrepend3"
             on:click={postComment}><i class="fas fa-paper-plane" />
           </span>
