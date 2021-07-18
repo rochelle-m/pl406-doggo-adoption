@@ -17,9 +17,9 @@
   <Banner {message} {imgSrc} />
 </div>
 
-<div class="container col-md-10 m-3">
-  <h2 class="text-left mb-4">Upcoming events</h2>
-  <div class="event d-flex flex-wrap my-2">
+<div class="container col-md-10 my-3 mx-auto">
+  <h2 class="mb-4 bg-secondary-100 py-3 rounded"><img src="/images/pluto-45.png" alt="events" width="40"> Upcoming events</h2>
+  <div class="event d-flex flex-wrap my-2 justify-content-center">
     {#each events as event}
       <div class="border mx-2 p-4">
         <h3 class="title ">{event.name}</h3>
@@ -31,8 +31,8 @@
     {/each}
   </div>
 
-  <h2 class="text-left my-4">Events gallary</h2>
-  <div class="event d-flex flex-wrap my-2">
+  <h2 class="my-4 bg-secondary-100 py-3 rounded "><img src="/images/clip-1406.png" alt="gallery" width="40"> Gallery</h2>
+  <div class="event d-flex flex-wrap my-2 justify-content-center">
     {#each gallery as galleryItem}
       <div class="col-md-4">
         <div class="thumbnail p-1">
